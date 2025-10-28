@@ -4,141 +4,250 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Storm Lead Machine — High-Intent Roofing Appointments</title>
-  <meta name="description" content="We book high-intent, homeowner-present roofing appointments in the ZIPs you choose. Hail • Wind • Tornado • Hurricanes.">
+  <meta name="description" content="We book homeowner-present roofing appointments in the ZIPs you choose. Hail • Wind • Tornado • Hurricanes.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root{
-      --bg:#0a0f1c;
-      --bg-2:#0f1a32;
+      --bg:#0a0f1c;           /* deep navy background */
+      --panel:#0f1a32;        /* panel navy */
       --text:#e9f0ff;
       --muted:#a9b4c9;
-      --brand:#3ea0ff;
-      --brand-2:#6ee7ff;
-      --accent:#ffd166;
-      --card-border: rgba(255,255,255,.08);
-      --glass: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      --brand:#22506a;        /* logo teal/blue */
+      --brand-2:#6b46c1;      /* logo purple gear */
+      --accent:#f2a812;       /* logo gold bolt */
+      --border:rgba(255,255,255,.08);
+      --glass:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
     }
     *{box-sizing:border-box;margin:0;padding:0}
     body{
       font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      background:radial-gradient(80% 120% at 20% 0%, #0c1a35 0%, #0a0f1c 40%, #060a13 100%);
-      color:var(--text);
-      line-height:1.5;
+      background:radial-gradient(90% 130% at 15% -10%, #0c1a35 0%, #0a0f1c 50%, #060a13 100%);
+      color:var(--text); line-height:1.55;
     }
     a{color:inherit;text-decoration:none}
-    img{max-width:100%;border-radius:10px}
-    .container{max-width:1180px;margin:0 auto;padding:24px}
+    img{max-width:100%;height:auto;border-radius:12px}
+    .container{max-width:1180px;margin:0 auto;padding:22px}
+
+    /* NAV */
     header{
       position:sticky;top:0;z-index:50;
-      background:rgba(6,10,19,.7);
-      backdrop-filter:blur(10px);
-      border-bottom:1px solid rgba(255,255,255,.06);
+      background:rgba(6,10,19,.65); backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--border);
     }
-    nav{display:flex;align-items:center;justify-content:space-between;gap:14px}
-    .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px}
-    .logo img{height:40px;filter:drop-shadow(0 4px 10px rgba(62,160,255,.4))}
-    .nav-links a{margin-left:14px;color:var(--muted);font-weight:600}
-    .nav-links a:hover{color:var(--text)}
+    .nav{display:flex;align-items:center;gap:14px}
+    .spacer{flex:1}
+    .logo{display:flex;align-items:center;gap:10px;font-weight:800}
+    .logo img{height:44px;width:auto;display:block;filter:drop-shadow(0 8px 24px rgba(107,70,193,.35))}
+    .nav a{color:var(--muted);font-weight:600;margin-left:14px;padding:8px 10px;border-radius:10px}
+    .nav a:hover{color:var(--text);background:rgba(255,255,255,.06)}
     .btn{
-      display:inline-block;
-      background:linear-gradient(135deg,var(--brand),var(--brand-2));
-      color:#06101f;font-weight:800;padding:12px 20px;
-      border-radius:12px;box-shadow:0 6px 16px rgba(62,160,255,.3);
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      background:linear-gradient(135deg,var(--accent),#ffd873);
+      color:#1a1202;font-weight:800;padding:12px 18px;border-radius:12px;
+      box-shadow:0 10px 26px rgba(242,168,18,.28);
     }
-    .btn:hover{filter:brightness(1.05)}
-    .section{padding:60px 0}
-    h1{font-size:clamp(28px,5vw,52px);line-height:1.1;margin:16px 0}
-    h2{font-size:clamp(24px,3.2vw,36px);margin-bottom:14px}
-    h3{margin-bottom:8px;font-size:22px}
-    .sub{color:var(--muted);font-size:18px;margin-bottom:20px}
-    .cards{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
-    .card{background:var(--glass);padding:20px;border-radius:16px;border:1px solid var(--card-border)}
-    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;padding:70px 0}
-    @media(max-width:900px){.hero{grid-template-columns:1fr}}
-    footer{padding:30px 0;text-align:center;color:var(--muted);font-size:14px;border-top:1px solid var(--card-border)}
+    .btn.blue{
+      background:linear-gradient(135deg,var(--brand),var(--brand-2));
+      color:#06121f; box-shadow:0 10px 26px rgba(34,80,106,.35);
+    }
+
+    /* HERO */
+    .hero{display:grid;grid-template-columns:1.15fr .85fr;gap:30px;align-items:center;padding:56px 0}
+    @media (max-width:980px){.hero{grid-template-columns:1fr}}
+    h1{font-size:clamp(28px,5vw,54px);line-height:1.08;margin:14px 0;font-weight:900}
+    .sub{color:var(--muted);font-size:18px;margin:10px 0 18px}
+    .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--muted);font-weight:600}
+    .badges{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+    .panel{background:var(--glass);border:1px solid var(--border);border-radius:16px;padding:16px}
+    .gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+    @media (max-width:620px){.gallery{grid-template-columns:1fr}}
+
+    /* SECTIONS */
+    .section{padding:46px 0}
+    h2{font-size:clamp(22px,3vw,34px);margin-bottom:12px}
+    h3{font-size:20px;margin-bottom:6px}
+    .cards{display:grid;gap:16px;grid-template-columns:repeat(3,1fr)}
+    @media (max-width:1100px){.cards{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:720px){.cards{grid-template-columns:1fr}}
+    .card{background:var(--glass);border:1px solid var(--border);border-radius:16px;padding:18px}
+
+    /* FOOTER */
+    footer{padding:26px 0;border-top:1px solid var(--border);color:var(--muted);text-align:center;font-size:14px}
   </style>
 </head>
 <body>
+  <!-- NAV -->
   <header>
-    <div class="container">
+    <div class="container nav">
+      <a class="logo" href="#home" aria-label="Storm Lead Machine">
+        <!-- Use the uploaded asset path -->
+        <img src="/assets/storm-lead-machine-logo.png" alt="Storm Lead Machine Logo"
+             onerror="this.src='https://dummyimage.com/220x60/0b1220/ffffff&text=Storm+Lead+Machine'">
+      </a>
+      <div class="spacer"></div>
       <nav>
-        <div class="logo">
-          <img src="/assets/logo.png" alt="Storm Lead Machine Logo" onerror="this.src='https://dummyimage.com/180x60/0b1220/5b9cff&text=Storm+Lead+Machine'">
-          Storm Lead Machine
-        </div>
-        <div class="nav-links">
-          <a href="#lead-types">Lead Types</a>
-          <a href="#process">Process</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#contact">Contact</a>
-        </div>
-        <a class="btn" href="https://square.link/u/RSfgAZHS" target="_blank">Start Trial</a>
+        <a href="#lead-types">Lead Types</a>
+        <a href="#process">Process</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
       </nav>
+      <a class="btn" href="https://square.link/u/RSfgAZHS" target="_blank" rel="noopener">Buy 10-Lead Trial</a>
     </div>
   </header>
 
-  <section class="hero container">
+  <!-- HERO -->
+  <section class="container hero" id="home">
     <div>
-      <p>📞 833-9MACHIN • ✉️ stormleadmachine@gmail.com</p>
-      <h1>High-Intent Roofing Appointments <span style="color:var(--accent)">in Your Target ZIPs</span></h1>
-      <p class="sub">We book homeowner-present appointments. You show up and close. No tire-kickers. No live transfers.</p>
-      <a class="btn" href="https://square.link/u/RSfgAZHS" target="_blank">Buy 10-Lead Trial — $1,000</a>
+      <span class="pill">📞 833-9MACHIN • ✉️ stormleadmachine@gmail.com</span>
+      <h1>High-Intent, Homeowner-Present <span style="color:var(--accent)">Roofing Appointments</span> in Your ZIPs.</h1>
+      <p class="sub">We book, confirm, and route clustered appointments so you spend less time driving and more time closing.</p>
+      <div class="badges">
+        <span class="pill">ZIP-Code Targeting</span>
+        <span class="pill">Owner Present</span>
+        <span class="pill">Clustered Routes</span>
+        <span class="pill">2-Day Bad Lead Return</span>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px">
+        <a class="btn" href="https://square.link/u/RSfgAZHS" target="_blank" rel="noopener">Start Trial — $1,000</a>
+        <a class="btn blue" href="#lead-types">See Lead Types</a>
+      </div>
+      <p class="sub" style="margin-top:8px">* No live transfers. We get you <strong>on the roof in front of the owner</strong> in the ZIPs you choose.</p>
     </div>
-    <div>
-      <img src="https://images.unsplash.com/photo-1603565816273-3f12e726c3d1?q=80&w=1600&auto=format&fit=crop" alt="Storm damage">
+    <div class="panel">
+      <div class="gallery">
+        <img src="https://images.unsplash.com/photo-1603565816273-3f12e726c3d1?q=80&w=1600&auto=format&fit=crop" alt="Storm damage 1">
+        <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0b?q=80&w=1600&auto=format&fit=crop" alt="Storm damage 2">
+        <img src="https://picsum.photos/seed/hail/600/400" alt="Hail placeholder">
+        <img src="https://picsum.photos/seed/wind/600/400" alt="Wind placeholder">
+      </div>
     </div>
   </section>
 
+  <!-- VALUE CARDS -->
+  <section class="section">
+    <div class="container cards">
+      <div class="card"><h3>ZIP Targeting</h3><p class="sub">Swath intensity, recency, roof age & carrier filters stacked to win in the right blocks.</p></div>
+      <div class="card"><h3>Clustered Routes</h3><p class="sub">Tight routes minimize windshield time and maximize inspections.</p></div>
+      <div class="card"><h3>Show-Rate Focus</h3><p class="sub">Owner-present windows and confirmations tuned for roofing (not generic call-center scripts).</p></div>
+    </div>
+  </section>
+
+  <!-- LEAD TYPES -->
   <section class="section" id="lead-types">
     <div class="container">
       <h2>Storm Lead Types</h2>
       <div class="cards">
-        <div class="card"><h3>Hail</h3><p>High-intent homeowners in fresh hail zones with optimal roof age and carrier targets.</p></div>
-        <div class="card"><h3>Wind</h3><p>Booked in clusters for efficient travel — strong wind paths only.</p></div>
-        <div class="card"><h3>Tornado / Hurricanes</h3><p>Verified access and insured homeowners in active recovery regions.</p></div>
+        <div class="card"><h3>Hail</h3><p class="sub">Homeowner-present inspections prioritized by hail swath intensity and roof age.</p></div>
+        <div class="card"><h3>Wind</h3><p class="sub">High-probability wind paths booked in dense clusters for your team.</p></div>
+        <div class="card"><h3>Tornado • Hurricanes</h3><p class="sub">Localized access checks with safety-first scheduling to keep crews productive.</p></div>
       </div>
     </div>
   </section>
 
+  <!-- PROCESS -->
   <section class="section" id="process">
     <div class="container">
-      <h2>Our Process</h2>
+      <h2>How It Works</h2>
       <div class="cards">
-        <div class="card"><h3>1. Choose ZIPs</h3><p>You tell us your target markets.</p></div>
-        <div class="card"><h3>2. We Book</h3><p>We schedule homeowner-present appointments.</p></div>
-        <div class="card"><h3>3. You Show</h3><p>We get you on the roof in front of the owner.</p></div>
-        <div class="card"><h3>4. You Close</h3><p>You inspect and sign. Leads refundable within 2 days if invalid.</p></div>
+        <div class="card"><h3>1) Pick ZIPs</h3><p class="sub">Send your target ZIPs & carriers; we shape route density.</p></div>
+        <div class="card"><h3>2) Book</h3><p class="sub">We book owner-present appointments & confirm windows.</p></div>
+        <div class="card"><h3>3) Route</h3><p class="sub">We stack the day to reduce drive time and increase show-rate.</p></div>
+        <div class="card"><h3>4) Close</h3><p class="sub">You inspect and close. We rinse and scale.</p></div>
       </div>
     </div>
   </section>
 
+  <!-- PRICING -->
   <section class="section" id="pricing">
-    <div class="container">
-      <h2>Pricing</h2>
-      <div class="cards">
-        <div class="card"><h3>Trial Package</h3><p class="sub">10 Leads • $1,000</p><a class="btn" href="https://square.link/u/RSfgAZHS" target="_blank">Start Trial</a></div>
-        <div class="card"><h3>Custom Packages</h3><p class="sub">Ongoing routes, weekly or monthly clusters.</p><a class="btn" href="#contact">Request Custom Plan</a></div>
+    <div class="container cards">
+      <div class="card">
+        <h3>Trial Pack</h3>
+        <p style="font-size:36px;font-weight:900;color:var(--accent)">$1,000</p>
+        <p class="sub">10 leads to prove it works.</p>
+        <ul>
+          <li>Owner present</li>
+          <li>Target ZIPs</li>
+          <li>Appointed times</li>
+        </ul>
+        <p style="margin-top:10px"><a class="btn" href="https://square.link/u/RSfgAZHS" target="_blank" rel="noopener">Buy Trial</a></p>
+      </div>
+      <div class="card">
+        <h3>Growth</h3>
+        <p style="font-size:24px;font-weight:800">Custom</p>
+        <p class="sub">Weekly routes across multiple clusters; advanced filters.</p>
+        <ul>
+          <li>Carrier & roof-age targeting</li>
+          <li>ZIP roll-ups</li>
+          <li>Priority windows</li>
+        </ul>
+        <p style="margin-top:10px"><a class="btn blue" href="#contact">Request Plan →</a></p>
+      </div>
+      <div class="card">
+        <h3>Enterprise</h3>
+        <p style="font-size:24px;font-weight:800">Custom</p>
+        <p class="sub">Multi-market teams and seasonal expansions.</p>
+        <ul>
+          <li>Multi-state coverage</li>
+          <li>Team scheduling support</li>
+          <li>Priority routes</li>
+        </ul>
+        <p style="margin-top:10px"><a class="btn blue" href="#contact">Talk With Us →</a></p>
       </div>
     </div>
   </section>
 
+  <!-- FAQ / RULES -->
+  <section class="section" id="faq">
+    <div class="container cards">
+      <div class="card">
+        <h3>Rules</h3>
+        <ol>
+          <li><strong>Do not call leads ahead of time before you go.</strong></li>
+          <li><strong>Bad leads must be returned within 2 days.</strong></li>
+          <li>We get you on the roof in front of the owner; you close it from there.</li>
+          <li>No live transfers.</li>
+        </ol>
+      </div>
+      <div class="card">
+        <h3>What areas do you cover?</h3>
+        <p class="sub">Anywhere in the U.S. where storm activity and staffing make sense—send ZIPs and we’ll scope viability.</p>
+      </div>
+      <div class="card">
+        <h3>How fast can we start?</h3>
+        <p class="sub">Trial routes usually begin within a few business days depending on market load.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
   <section class="section" id="contact">
-    <div class="container">
-      <h2>Contact Us</h2>
-      <p class="sub">Email <a href="mailto:stormleadmachine@gmail.com">stormleadmachine@gmail.com</a> or call 833-9MACHIN.</p>
-      <p><a class="btn" href="https://square.link/u/RSfgAZHS" target="_blank">Buy 10-Lead Trial</a></p>
+    <div class="container" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <div class="card">
+        <h2>Contact</h2>
+        <p class="sub">Email <a href="mailto:stormleadmachine@gmail.com">stormleadmachine@gmail.com</a> or call 833-9MACHIN.</p>
+        <form onsubmit="event.preventDefault(); alert('Thanks! We\\'ll email you shortly.');">
+          <label>Name<br><input style="width:100%;padding:12px;border-radius:12px;border:1px solid var(--border);background:rgba(255,255,255,.03);color:var(--text)" placeholder="Your name" required></label><br><br>
+          <label>Email<br><input type="email" style="width:100%;padding:12px;border-radius:12px;border:1px solid var(--border);background:rgba(255,255,255,.03);color:var(--text)" placeholder="you@company.com" required></label><br><br>
+          <label>Target ZIPs<br><textarea style="width:100%;min-height:120px;padding:12px;border-radius:12px;border:1px solid var(--border);background:rgba(255,255,255,.03);color:var(--text)" placeholder="e.g., 78701, 78702, 78745"></textarea></label><br><br>
+          <button class="btn" type="submit">Request a Plan</button>
+        </form>
+      </div>
+      <div class="panel">
+        <h2>Fast Checkout</h2>
+        <p class="sub">Already decided? Buy the 10-lead trial now and we’ll confirm within 1 business day.</p>
+        <p><a class="btn" href="https://square.link/u/RSfgAZHS" target="_blank" rel="noopener">Buy 10-Lead Trial</a></p>
+        <p class="sub">Square checkout opens in a new tab.</p>
+      </div>
     </div>
   </section>
 
   <footer>
-    © <span id="year"></span> Storm Lead Machine — All Rights Reserved
+    © <span id="year"></span> Storm Lead Machine. All rights reserved.
   </footer>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
 </body>
 </html>
-
