@@ -3,32 +3,142 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Storm Lead Machine</title>
-  <meta name="description" content="High-intent, in-person roofing appointments in your target ZIPs. We get you on the roof. You close the deal." />
+  <title>Storm Lead Machine — High-Intent Roofing Appointments</title>
+  <meta name="description" content="We book high-intent, homeowner-present roofing appointments in the ZIPs you choose. Hail • Wind • Tornado • Hurricanes.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root{--bg:#0b1220;--text:#e6eefc;--muted:#a9b3c7;--accent:#ffc107}
-    *{box-sizing:border-box} html,body{margin:0;height:100%}
-    body{font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,#0b1220 0%,#0b132a 100%);color:var(--text)}
-    .container{max-width:1120px;margin:0 auto;padding:24px}
-    .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08)}
-    img{max-width:100%;height:auto;border-radius:12px}
+    :root{
+      --bg:#0a0f1c;
+      --bg-2:#0f1a32;
+      --text:#e9f0ff;
+      --muted:#a9b4c9;
+      --brand:#3ea0ff;
+      --brand-2:#6ee7ff;
+      --accent:#ffd166;
+      --card-border: rgba(255,255,255,.08);
+      --glass: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      background:radial-gradient(80% 120% at 20% 0%, #0c1a35 0%, #0a0f1c 40%, #060a13 100%);
+      color:var(--text);
+      line-height:1.5;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;border-radius:10px}
+    .container{max-width:1180px;margin:0 auto;padding:24px}
+    header{
+      position:sticky;top:0;z-index:50;
+      background:rgba(6,10,19,.7);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    nav{display:flex;align-items:center;justify-content:space-between;gap:14px}
+    .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px}
+    .logo img{height:40px;filter:drop-shadow(0 4px 10px rgba(62,160,255,.4))}
+    .nav-links a{margin-left:14px;color:var(--muted);font-weight:600}
+    .nav-links a:hover{color:var(--text)}
+    .btn{
+      display:inline-block;
+      background:linear-gradient(135deg,var(--brand),var(--brand-2));
+      color:#06101f;font-weight:800;padding:12px 20px;
+      border-radius:12px;box-shadow:0 6px 16px rgba(62,160,255,.3);
+    }
+    .btn:hover{filter:brightness(1.05)}
+    .section{padding:60px 0}
+    h1{font-size:clamp(28px,5vw,52px);line-height:1.1;margin:16px 0}
+    h2{font-size:clamp(24px,3.2vw,36px);margin-bottom:14px}
+    h3{margin-bottom:8px;font-size:22px}
+    .sub{color:var(--muted);font-size:18px;margin-bottom:20px}
+    .cards{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+    .card{background:var(--glass);padding:20px;border-radius:16px;border:1px solid var(--card-border)}
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;padding:70px 0}
+    @media(max-width:900px){.hero{grid-template-columns:1fr}}
+    footer{padding:30px 0;text-align:center;color:var(--muted);font-size:14px;border-top:1px solid var(--card-border)}
   </style>
 </head>
 <body>
-  <div class="container">
-    <p class="pill">📞 833-9MACHIN • ✉️ stormleadmachine@gmail.com</p>
-    <h1>We get you on the roof <span style="color:var(--accent)">with the owner</span> in the ZIPs you choose.</h1>
-    <p>No tire-kickers. High-intent, in-person roofing appointments so <strong>you can close</strong>.</p>
-    <p><a href="https://square.link/u/RSfgAZHS" target="_blank">Start $1,000 Trial (10 leads) →</a></p>
-    <p style="color:var(--muted)">*Bad leads refundable within 2 days. No live transfers.</p>
-    <div style="display:grid;gap:10px;grid-template-columns:repeat(3,1fr);margin-top:20px">
-      <img src="https://picsum.photos/seed/hail/600/400" alt="Hail damage placeholder">
-      <img src="https://picsum.photos/seed/wind/600/400" alt="Wind damage placeholder">
-      <img src="https://picsum.photos/seed/tornado/600/400" alt="Tornado damage placeholder">
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">
+          <img src="/assets/logo.png" alt="Storm Lead Machine Logo" onerror="this.src='https://dummyimage.com/180x60/0b1220/5b9cff&text=Storm+Lead+Machine'">
+          Storm Lead Machine
+        </div>
+        <div class="nav-links">
+          <a href="#lead-types">Lead Types</a>
+          <a href="#process">Process</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <a class="btn" href="https://square.link/u/RSfgAZHS" target="_blank">Start Trial</a>
+      </nav>
     </div>
-  </div>
+  </header>
+
+  <section class="hero container">
+    <div>
+      <p>📞 833-9MACHIN • ✉️ stormleadmachine@gmail.com</p>
+      <h1>High-Intent Roofing Appointments <span style="color:var(--accent)">in Your Target ZIPs</span></h1>
+      <p class="sub">We book homeowner-present appointments. You show up and close. No tire-kickers. No live transfers.</p>
+      <a class="btn" href="https://square.link/u/RSfgAZHS" target="_blank">Buy 10-Lead Trial — $1,000</a>
+    </div>
+    <div>
+      <img src="https://images.unsplash.com/photo-1603565816273-3f12e726c3d1?q=80&w=1600&auto=format&fit=crop" alt="Storm damage">
+    </div>
+  </section>
+
+  <section class="section" id="lead-types">
+    <div class="container">
+      <h2>Storm Lead Types</h2>
+      <div class="cards">
+        <div class="card"><h3>Hail</h3><p>High-intent homeowners in fresh hail zones with optimal roof age and carrier targets.</p></div>
+        <div class="card"><h3>Wind</h3><p>Booked in clusters for efficient travel — strong wind paths only.</p></div>
+        <div class="card"><h3>Tornado / Hurricanes</h3><p>Verified access and insured homeowners in active recovery regions.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="process">
+    <div class="container">
+      <h2>Our Process</h2>
+      <div class="cards">
+        <div class="card"><h3>1. Choose ZIPs</h3><p>You tell us your target markets.</p></div>
+        <div class="card"><h3>2. We Book</h3><p>We schedule homeowner-present appointments.</p></div>
+        <div class="card"><h3>3. You Show</h3><p>We get you on the roof in front of the owner.</p></div>
+        <div class="card"><h3>4. You Close</h3><p>You inspect and sign. Leads refundable within 2 days if invalid.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="pricing">
+    <div class="container">
+      <h2>Pricing</h2>
+      <div class="cards">
+        <div class="card"><h3>Trial Package</h3><p class="sub">10 Leads • $1,000</p><a class="btn" href="https://square.link/u/RSfgAZHS" target="_blank">Start Trial</a></div>
+        <div class="card"><h3>Custom Packages</h3><p class="sub">Ongoing routes, weekly or monthly clusters.</p><a class="btn" href="#contact">Request Custom Plan</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="container">
+      <h2>Contact Us</h2>
+      <p class="sub">Email <a href="mailto:stormleadmachine@gmail.com">stormleadmachine@gmail.com</a> or call 833-9MACHIN.</p>
+      <p><a class="btn" href="https://square.link/u/RSfgAZHS" target="_blank">Buy 10-Lead Trial</a></p>
+    </div>
+  </section>
+
+  <footer>
+    © <span id="year"></span> Storm Lead Machine — All Rights Reserved
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
+
