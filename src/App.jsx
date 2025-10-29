@@ -1,11 +1,6 @@
+// src/App.jsx
 import Home from "./Home.jsx";
 
-function App() {
-  return (
-    <div>
-      <Home />
-    </div>
-  );
+export default function App() {
+  return <Home />;
 }
-
-export default App;
