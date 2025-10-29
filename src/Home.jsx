@@ -127,7 +127,16 @@ export default function Home() {
             {/* Hail */}
             <div className="rounded-2xl border border-slate-200 overflow-hidden bg-slate-50">
               <img
-                {/* Hail */}
+  
+  />
+  <div className="p-5">
+    <h3 className="font-semibold">Tornado / Hurricanes</h3>
+    <p className="text-sm text-slate-600 mt-1">
+      Immediate homeowner connects after major events.
+    </p>
+  </div>
+</div>
+{/* Hail */}
 <div className="rounded-2xl border border-slate-200 overflow-hidden bg-slate-50">
   <img
     src="/assets/hail-damage.jiff"
@@ -157,7 +166,7 @@ export default function Home() {
   </div>
 </div>
 
-{/* Tornado / Hurricane */}
+{/* Tornado / Hurricanes */}
 <div className="rounded-2xl border border-slate-200 overflow-hidden bg-slate-50">
   <img
     src="/assets/tornado-damage.jiff"
