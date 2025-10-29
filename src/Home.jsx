@@ -120,7 +120,7 @@ export default function Home() {
 {/* Hail */}
 <div className="rounded-2xl border border-slate-200 overflow-hidden bg-slate-50">
   <img
-    src="/assets/hail-damage.jiff"
+    src="/assets/hail-damage.jpg"
     alt="Hail damage"
     className="h-48 w-full object-cover"
   />
@@ -135,7 +135,7 @@ export default function Home() {
 {/* Wind */}
 <div className="rounded-2xl border border-slate-200 overflow-hidden bg-slate-50">
   <img
-    src="/assets/wind-damage.jiff"
+    src="/assets/wind-damage.jpg"
     alt="Wind damage"
     className="h-48 w-full object-cover"
   />
@@ -150,7 +150,7 @@ export default function Home() {
 {/* Tornado / Hurricanes */}
 <div className="rounded-2xl border border-slate-200 overflow-hidden bg-slate-50">
   <img
-    src="/assets/tornado-damage.jiff"
+    src="/assets/tornado-damage.jpg"
     alt="Tornado or hurricane damage"
     className="h-48 w-full object-cover"
   />
