@@ -117,25 +117,6 @@ export default function Home() {
           </ul>
         </div>
       </section>
-
-      {/* Storm Lead Types */}
-      <section id="types" className="bg-white border-t border-slate-200">
-        <div className="mx-auto max-w-7xl px-4 py-16">
-          <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Storm Lead Types</h2>
-
-          <div className="mt-8 grid md:grid-cols-3 gap-6">
-            {/* Hail */}
-            <div className="rounded-2xl border border-slate-200 overflow-hidden bg-slate-50">
-              <img
-  
-  />
-  <div className="p-5">
-    <h3 className="font-semibold">Tornado / Hurricanes</h3>
-    <p className="text-sm text-slate-600 mt-1">
-      Immediate homeowner connects after major events.
-    </p>
-  </div>
-</div>
 {/* Hail */}
 <div className="rounded-2xl border border-slate-200 overflow-hidden bg-slate-50">
   <img
@@ -180,6 +161,7 @@ export default function Home() {
     </p>
   </div>
 </div>
+
 
       {/* Rules */}
       <section id="rules" className="mx-auto max-w-7xl px-4 py-16">
