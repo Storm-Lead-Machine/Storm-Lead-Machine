@@ -129,6 +129,7 @@ export default function Home() {
   <img
 <img src={hailImg} alt="Hail damage" className="h-48 w-full object-cover" />
 
+
   />
   <div className="p-5">
     <h3 className="font-semibold">Hail</h3>
@@ -141,7 +142,8 @@ export default function Home() {
 {/* Wind */}
 <div className="rounded-2xl border border-slate-200 overflow-hidden bg-slate-50">
   <img
- <img src={windImg} alt="Wind damage" className="h-48 w-full object-cover" />
+<img src={hailImg} alt="Wind damage" className="h-48 w-full object-cover" />
+
 
   />
   <div className="p-5">
@@ -155,7 +157,8 @@ export default function Home() {
 {/* Tornado / Hurricanes */}
 <div className="rounded-2xl border border-slate-200 overflow-hidden bg-slate-50">
   <img
-<img src={tornadoImg} alt="Tornado damage" className="h-48 w-full object-cover" />
+<img src={hailImg} alt="Tornado damage" className="h-48 w-full object-cover" />
+
 
   />
   <div className="p-5">
