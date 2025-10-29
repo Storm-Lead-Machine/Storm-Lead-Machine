@@ -127,47 +127,50 @@ export default function Home() {
             {/* Hail */}
             <div className="rounded-2xl border border-slate-200 overflow-hidden bg-slate-50">
               <img
-                src="/assets/hail.jiff"
-                onError={(e) => (e.currentTarget.src = "https://images.unsplash.com/photo-1605810230434-7631ac76ec71?q=80&w=1200&auto=format&fit=crop")}
-                alt="Hail damage"
-                className="h-48 w-full object-cover"
-              />
-              <div className="p-5">
-                <h3 className="font-semibold">Hail</h3>
-                <p className="text-sm text-slate-600 mt-1">Targeted hail zones by ZIP with roof-age filters.</p>
-              </div>
-            </div>
+                {/* Hail */}
+<div className="rounded-2xl border border-slate-200 overflow-hidden bg-slate-50">
+  <img
+    src="/assets/hail-damage.jiff"
+    alt="Hail damage"
+    className="h-48 w-full object-cover"
+  />
+  <div className="p-5">
+    <h3 className="font-semibold">Hail</h3>
+    <p className="text-sm text-slate-600 mt-1">
+      Targeted hail zones by ZIP with roof-age filters.
+    </p>
+  </div>
+</div>
 
-            {/* Wind */}
-            <div className="rounded-2xl border border-slate-200 overflow-hidden bg-slate-50">
-              <img
-                src="/assets/wind.jiff"
-                onError={(e) => (e.currentTarget.src = "https://images.unsplash.com/photo-1502175353174-a7a70e73b362?q=80&w=1200&auto=format&fit=crop")}
-                alt="Wind damage"
-                className="h-48 w-full object-cover"
-              />
-              <div className="p-5">
-                <h3 className="font-semibold">Wind</h3>
-                <p className="text-sm text-slate-600 mt-1">Shingle lift/tear-off lead flows after wind events.</p>
-              </div>
-            </div>
+{/* Wind */}
+<div className="rounded-2xl border border-slate-200 overflow-hidden bg-slate-50">
+  <img
+    src="/assets/wind-damage.jiff"
+    alt="Wind damage"
+    className="h-48 w-full object-cover"
+  />
+  <div className="p-5">
+    <h3 className="font-semibold">Wind</h3>
+    <p className="text-sm text-slate-600 mt-1">
+      Shingle lift/tear-off lead flows after wind events.
+    </p>
+  </div>
+</div>
 
-            {/* Tornado / Hurricane */}
-            <div className="rounded-2xl border border-slate-200 overflow-hidden bg-slate-50">
-              <img
-                src="/assets/tornado.jiff"
-                onError={(e) => (e.currentTarget.src = "https://images.unsplash.com/photo-1601042879364-f3947f2ea570?q=80&w=1200&auto=format&fit=crop")}
-                alt="Tornado or hurricane damage"
-                className="h-48 w-full object-cover"
-              />
-              <div className="p-5">
-                <h3 className="font-semibold">Tornado / Hurricanes</h3>
-                <p className="text-sm text-slate-600 mt-1">Immediate homeowner connects after major events.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+{/* Tornado / Hurricane */}
+<div className="rounded-2xl border border-slate-200 overflow-hidden bg-slate-50">
+  <img
+    src="/assets/tornado-damage.jiff"
+    alt="Tornado or hurricane damage"
+    className="h-48 w-full object-cover"
+  />
+  <div className="p-5">
+    <h3 className="font-semibold">Tornado / Hurricanes</h3>
+    <p className="text-sm text-slate-600 mt-1">
+      Immediate homeowner connects after major events.
+    </p>
+  </div>
+</div>
 
       {/* Rules */}
       <section id="rules" className="mx-auto max-w-7xl px-4 py-16">
