@@ -127,7 +127,7 @@ export default function Home() {
             {/* Hail */}
             <div className="rounded-2xl border border-slate-200 overflow-hidden bg-slate-50">
               <img
-                src="/assets/hail.jpg"
+                src="/assets/hail.jiff"
                 onError={(e) => (e.currentTarget.src = "https://images.unsplash.com/photo-1605810230434-7631ac76ec71?q=80&w=1200&auto=format&fit=crop")}
                 alt="Hail damage"
                 className="h-48 w-full object-cover"
@@ -141,7 +141,7 @@ export default function Home() {
             {/* Wind */}
             <div className="rounded-2xl border border-slate-200 overflow-hidden bg-slate-50">
               <img
-                src="/assets/wind.jpg"
+                src="/assets/wind.jiff"
                 onError={(e) => (e.currentTarget.src = "https://images.unsplash.com/photo-1502175353174-a7a70e73b362?q=80&w=1200&auto=format&fit=crop")}
                 alt="Wind damage"
                 className="h-48 w-full object-cover"
@@ -155,7 +155,7 @@ export default function Home() {
             {/* Tornado / Hurricane */}
             <div className="rounded-2xl border border-slate-200 overflow-hidden bg-slate-50">
               <img
-                src="/assets/tornado.jpg"
+                src="/assets/tornado.jiff"
                 onError={(e) => (e.currentTarget.src = "https://images.unsplash.com/photo-1601042879364-f3947f2ea570?q=80&w=1200&auto=format&fit=crop")}
                 alt="Tornado or hurricane damage"
                 className="h-48 w-full object-cover"
