@@ -1,5 +1,12 @@
-// src/Home.jsx
+
+import React from "react";
+import hailImg from "../assets/hail-damage.jpg";
+import windImg from "../assets/wind-damage.jpg";
+import tornadoImg from "../assets/tornado-damage.jpg";
+
 export default function Home() {
+
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900">
       {/* Nav */}
