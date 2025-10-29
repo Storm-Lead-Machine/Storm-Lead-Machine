@@ -98,3 +98,121 @@ export default function Home() {
               <li className="flex items-center justify-between"><span>20 leads</span><span className="font-semibold">$290 / lead — $5,800</span></li>
               <li className="flex items-center justify-between"><span>30 leads</span><span className="font-semibold">$285 / lead — $8,550</span></li>
               <li className="flex items-center justify-between"><span>50 leads</span><span className="font-semibold">$275 / lead — $13,750</span></li>
+            </ul>
+            <a
+              href="https://square.link/u/RSfgAZHS"
+              className="mt-6 inline-flex w-full items-center justify-center rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white hover:bg-blue-700 transition"
+            >
+              Get Commercial Leads
+            </a>
+          </div>
+        </div>
+
+        {/* Filters */}
+        <div className="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700">
+          <p className="font-semibold">Filters</p>
+          <ul className="mt-2 list-disc pl-6 space-y-1">
+            <li>5+ yr old roofs only: <span className="font-semibold">$10 more per lead</span></li>
+            <li>8+ yr old roofs only: <span className="font-semibold">$25 more per lead</span></li>
+          </ul>
+        </div>
+      </section>
+
+      {/* Storm Lead Types */}
+      <section id="types" className="bg-white border-t border-slate-200">
+        <div className="mx-auto max-w-7xl px-4 py-16">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Storm Lead Types</h2>
+
+          <div className="mt-8 grid md:grid-cols-3 gap-6">
+            {/* Hail */}
+            <div className="rounded-2xl border border-slate-200 overflow-hidden bg-slate-50">
+              <img
+                src="/assets/hail.jpg"
+                onError={(e) => (e.currentTarget.src = "https://images.unsplash.com/photo-1605810230434-7631ac76ec71?q=80&w=1200&auto=format&fit=crop")}
+                alt="Hail damage"
+                className="h-48 w-full object-cover"
+              />
+              <div className="p-5">
+                <h3 className="font-semibold">Hail</h3>
+                <p className="text-sm text-slate-600 mt-1">Targeted hail zones by ZIP with roof-age filters.</p>
+              </div>
+            </div>
+
+            {/* Wind */}
+            <div className="rounded-2xl border border-slate-200 overflow-hidden bg-slate-50">
+              <img
+                src="/assets/wind.jpg"
+                onError={(e) => (e.currentTarget.src = "https://images.unsplash.com/photo-1502175353174-a7a70e73b362?q=80&w=1200&auto=format&fit=crop")}
+                alt="Wind damage"
+                className="h-48 w-full object-cover"
+              />
+              <div className="p-5">
+                <h3 className="font-semibold">Wind</h3>
+                <p className="text-sm text-slate-600 mt-1">Shingle lift/tear-off lead flows after wind events.</p>
+              </div>
+            </div>
+
+            {/* Tornado / Hurricane */}
+            <div className="rounded-2xl border border-slate-200 overflow-hidden bg-slate-50">
+              <img
+                src="/assets/tornado.jpg"
+                onError={(e) => (e.currentTarget.src = "https://images.unsplash.com/photo-1601042879364-f3947f2ea570?q=80&w=1200&auto=format&fit=crop")}
+                alt="Tornado or hurricane damage"
+                className="h-48 w-full object-cover"
+              />
+              <div className="p-5">
+                <h3 className="font-semibold">Tornado / Hurricanes</h3>
+                <p className="text-sm text-slate-600 mt-1">Immediate homeowner connects after major events.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Rules */}
+      <section id="rules" className="mx-auto max-w-7xl px-4 py-16">
+        <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Rules to Running the Appointments</h2>
+        <ul className="mt-6 grid md:grid-cols-2 gap-3">
+          <li className="rounded-xl border border-slate-200 bg-white p-4">Do <b>not</b> call the leads ahead of time before you go.</li>
+          <li className="rounded-xl border border-slate-200 bg-white p-4">Bad leads must be returned within <b>2 days</b>.</li>
+          <li className="rounded-xl border border-slate-200 bg-white p-4">We get you on the roof in front of the owner in the ZIP codes you want.</li>
+          <li className="rounded-xl border border-slate-200 bg-white p-4">You close it from there.</li>
+        </ul>
+
+        <div className="mt-8">
+          <a
+            href="https://square.link/u/RSfgAZHS"
+            className="inline-flex items-center rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white hover:bg-blue-700 transition"
+          >
+            Start the 10-Lead Trial
+          </a>
+        </div>
+      </section>
+
+      {/* Contact / Footer */}
+      <footer id="contact" className="border-t border-slate-200 bg-white">
+        <div className="mx-auto max-w-7xl px-4 py-10 grid md:grid-cols-3 gap-8">
+          <div>
+            <div className="font-semibold">Storm Lead Machine</div>
+            <p className="mt-2 text-sm text-slate-600">Targeted, real-time storm restoration leads nationwide.</p>
+          </div>
+          <div>
+            <div className="font-semibold">Contact</div>
+            <p className="mt-2 text-sm text-slate-600">Phone: 833-9MACHIN</p>
+            <p className="text-sm text-slate-600">Email: stormleadmachine@gmail.com</p>
+          </div>
+          <div>
+            <div className="font-semibold">Get Started</div>
+            <a
+              href="https://square.link/u/RSfgAZHS"
+              className="mt-2 inline-flex w-fit items-center rounded-xl bg-blue-600 px-4 py-2 font-semibold text-white hover:bg-blue-700 transition"
+            >
+              Pay & Launch
+            </a>
+          </div>
+        </div>
+        <div className="text-center text-xs text-slate-500 pb-8">© {new Date().getFullYear()} Storm Lead Machine. All rights reserved.</div>
+      </footer>
+    </div>
+  );
+}
