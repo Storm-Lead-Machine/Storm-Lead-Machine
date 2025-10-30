@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import hailImg from "../assets/hail-damage.jpg";
-import windImg from "../assets/wind-damage.jpg";
-import tornadoImg from "../assets/tornado-hurricane.jpg";
+<img src="/hail-damage.jpg" alt="Hail damage" className="h-48 w-full object-cover" />
+<img src="/wind-damage.jpg" alt="Wind damage" className="h-48 w-full object-cover" />
+<img src="/tornado-hurricane.jpg" alt="Tornado and hurricane damage" className="h-48 w-full object-cover" />
 
 
 export default function Home() {
