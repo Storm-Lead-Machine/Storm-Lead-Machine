@@ -29,7 +29,7 @@ export default function Home() {
           transition={{ duration: 0.4 }}
           className="rounded-2xl border border-slate-200 overflow-hidden bg-white shadow-sm"
         >
-          <img src="/hail-damage.jpg" alt="Hail damage" className="h-48 w-full object-cover" />
+       <img src="/hail-damage.jpg" alt="Hail damage" className="h-48 w-full object-cover" />
           <div className="p-5">
             <h3 className="font-semibold text-lg">Hail</h3>
             <p className="text-sm text-slate-600 mt-1">
@@ -37,7 +37,7 @@ export default function Home() {
             </p>
           </div>
         </motion.div>
-
+<img src="/wind-damage.jpg" alt="Wind damage" className="h-48 w-full object-cover" />
         {/* Wind */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -46,7 +46,7 @@ export default function Home() {
           transition={{ duration: 0.4, delay: 0.1 }}
           className="rounded-2xl border border-slate-200 overflow-hidden bg-white shadow-sm"
         >
-          <img src="/wind-damage.jpg" alt="Wind damage" className="h-48 w-full object-cover" />
+     
           <div className="p-5">
             <h3 className="font-semibold text-lg">Wind</h3>
             <p className="text-sm text-slate-600 mt-1">
@@ -63,7 +63,7 @@ export default function Home() {
           transition={{ duration: 0.4, delay: 0.2 }}
           className="rounded-2xl border border-slate-200 overflow-hidden bg-white shadow-sm"
         >
-          <img src="/tornado-damage.jpg" alt="Tornado and hurricane damage" className="h-48 w-full object-cover" />
+         <img src="/tornado-damage.jpg" alt="Tornado and hurricane damage" className="h-48 w-full object-cover" />
           <div className="p-5">
             <h3 className="font-semibold text-lg">Tornado & Hurricanes</h3>
             <p className="text-sm text-slate-600 mt-1">
