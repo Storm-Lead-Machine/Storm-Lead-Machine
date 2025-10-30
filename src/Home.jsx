@@ -53,7 +53,7 @@ export default function Home() {
               href="#pricing"
               className="rounded-xl bg-white px-6 py-3 text-sm font-semibold text-slate-900 shadow hover:shadow-lg transition"
             >
-              See Pricing
+              Get Leads Now
             </a>
             <a
               href="#lead-types"
