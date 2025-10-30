@@ -11,6 +11,7 @@ export default function Home() {
   alt="Storm Lead Machine Logo"
   className="mx-auto mb-4 h-20 w-auto"
 />
+        
         <h1 className="text-4xl font-bold text-blue-700">
           Welcome to Storm Lead Machine
         </h1>
