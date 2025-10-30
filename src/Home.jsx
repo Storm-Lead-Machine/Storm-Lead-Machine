@@ -1,7 +1,5 @@
 // src/Home.jsx
 import { motion } from "framer-motion";
-
-
 export default function Home() {
   return (
     <div className="text-center bg-gray-50 min-h-screen text-slate-800">
