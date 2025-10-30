@@ -1,4 +1,4 @@
-// src/Home.jsx
+
 import { motion } from "framer-motion";
 import hailImg from "../assets/hail-damage.jpg";
 import windImg from "../assets/wind-damage.jpg";
