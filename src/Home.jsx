@@ -13,15 +13,45 @@ const fadeUp = {
 export default function Home() {
   return (
     <div className="bg-white text-slate-900">
+      {/* TOP CONTACT STRIP */}
+      <div className="w-full border-b bg-slate-50">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-2 text-sm">
+          <div className="flex items-center gap-4">
+            <a href="tel:+18339622446" className="font-semibold hover:underline">
+              📞 833-9MACHIN (962-2446)
+            </a>
+            <span className="hidden text-slate-400 sm:inline">•</span>
+            <a href="mailto:stormleadmachine@gmail.com" className="hover:underline">
+              ✉️ stormleadmachine@gmail.com
+            </a>
+          </div>
+          <a
+            href="#pricing"
+            className="hidden rounded-md bg-blue-600 px-3 py-1.5 text-white shadow hover:bg-blue-700 sm:block"
+          >
+            Get Leads Now
+          </a>
+        </div>
+      </div>
+
       {/* HERO */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-indigo-600 to-sky-500" />
-        {/* subtle grid */}
         <div
           aria-hidden
           className="absolute inset-0 opacity-10 [background:radial-gradient(circle_at_1px_1px,#fff_1px,transparent_1px)] [background-size:20px_20px]"
         />
-        <div className="relative mx-auto max-w-6xl px-6 py-28 sm:py-32">
+        <div className="relative mx-auto max-w-6xl px-6 py-24 sm:py-28">
+          {/* LOGO */}
+          <motion.img
+            src="/storm-lead-machine-logo.png"
+            alt="Storm Lead Machine logo"
+            className="mx-auto mb-6 h-16 w-auto"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+          />
           <motion.h1
             variants={fadeUp}
             initial="hidden"
@@ -31,23 +61,21 @@ export default function Home() {
           >
             Storm Lead Machine
           </motion.h1>
-
           <motion.p
             variants={fadeUp}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="mt-4 text-center text-xl text-blue-100"
+            className="mt-3 text-center text-lg text-blue-100"
           >
             Can’t Stop the Machine.
           </motion.p>
-
           <motion.div
             variants={fadeUp}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="mt-8 flex justify-center gap-4"
+            className="mt-7 flex justify-center gap-4"
           >
             <a
               href="#pricing"
@@ -104,26 +132,20 @@ export default function Home() {
         </p>
 
         <div className="mt-10 grid gap-6 sm:grid-cols-3">
-          {/* HAIL (no image to avoid build errors) */}
+          {/* HAIL — now with your new image */}
           <motion.div
             custom={0}
             variants={fadeUp}
             initial="hidden"
             whileInView="show"
             viewport={{ once: true }}
-            className="rounded-2xl border border-slate-200 bg-white shadow-sm"
+            className="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden"
           >
-            <div className="flex items-center justify-center h-40 bg-slate-50">
-              {/* hail icon */}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-16 w-16 text-blue-600"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d="M6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm5 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm5 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM7 20a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm5 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm5 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM7 4a5 5 0 0 1 9.584 2H17a4 4 0 1 1 0 8H6a4 4 0 1 1 .584-7.999A5 5 0 0 1 7 4Z" />
-              </svg>
-            </div>
+            <img
+              src="/hail-leads.jpg"
+              alt="Hail storm roof damage"
+              className="h-40 w-full object-cover"
+            />
             <div className="p-5">
               <h3 className="font-semibold">Hail</h3>
               <p className="mt-1 text-sm text-slate-600">
@@ -179,10 +201,7 @@ export default function Home() {
       </section>
 
       {/* PRICING */}
-      <section
-        id="pricing"
-        className="relative border-t bg-slate-50 py-16 sm:py-20"
-      >
+      <section id="pricing" className="relative border-t bg-slate-50 py-16 sm:py-20">
         <div className="mx-auto max-w-6xl px-6">
           <motion.h2
             variants={fadeUp}
@@ -261,7 +280,7 @@ export default function Home() {
                   href="#contact"
                   className="inline-flex items-center justify-center rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white shadow hover:shadow-lg transition"
                 >
-                  Get Started
+                  Get Leads Now
                 </a>
               </div>
             </motion.div>
@@ -269,8 +288,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* RULES / NOTES */}
-      <section className="mx-auto max-w-6xl px-6 py-14">
+      {/* CONTACT */}
+      <section id="contact" className="mx-auto max-w-6xl px-6 py-14">
         <div className="grid gap-6 sm:grid-cols-2">
           <motion.div
             custom={0}
@@ -280,14 +299,21 @@ export default function Home() {
             viewport={{ once: true }}
             className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
           >
-            <h3 className="text-lg font-semibold">Rules to Running Appointments</h3>
-            <ul className="mt-3 list-disc space-y-2 pl-6 text-sm text-slate-700">
-              <li>Do not call the leads ahead of time before you go.</li>
-              <li>Bad leads must be returned within 2 days.</li>
-              <li>
-                We get you on the roof, in front of the owner—close it from there.
-              </li>
-            </ul>
+            <h3 className="text-lg font-semibold">Contact</h3>
+            <div className="mt-3 space-y-2 text-sm">
+              <div>
+                <span className="font-medium">Phone: </span>
+                <a href="tel:+18339622446" className="hover:underline">
+                  833-9MACHIN (962-2446)
+                </a>
+              </div>
+              <div>
+                <span className="font-medium">Email: </span>
+                <a href="mailto:stormleadmachine@gmail.com" className="hover:underline">
+                  stormleadmachine@gmail.com
+                </a>
+              </div>
+            </div>
           </motion.div>
 
           <motion.div
@@ -298,40 +324,15 @@ export default function Home() {
             viewport={{ once: true }}
             className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
           >
-            <h3 className="text-lg font-semibold">Why Storm Lead Machine?</h3>
-            <ul className="mt-3 list-disc space-y-2 pl-6 text-sm text-slate-700">
-              <li>Event-driven targeting across hail, wind, tornado & hurricane.</li>
-              <li>ZIP-level control with optional roof-age filters.</li>
-              <li>Transparent pricing—no gimmicks, no resold leads.</li>
-            </ul>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* STICKY CTA */}
-      <section className="border-t bg-white py-10">
-        <div className="mx-auto max-w-6xl px-6 text-center">
-          <motion.h3
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="text-2xl font-bold"
-          >
-            Ready to turn storms into installs?
-          </motion.h3>
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="mt-5 flex justify-center"
-          >
+            <h3 className="text-lg font-semibold">Ready to Start?</h3>
+            <p className="mt-2 text-sm text-slate-600">
+              Click below to launch with our $1,000 trial or jump straight into a package.
+            </p>
             <a
               href="#pricing"
-              className="rounded-xl bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow hover:bg-blue-700 transition"
+              className="mt-4 inline-flex items-center justify-center rounded-xl bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow hover:bg-blue-700 transition"
             >
-              View Packages
+              Get Leads Now
             </a>
           </motion.div>
         </div>
