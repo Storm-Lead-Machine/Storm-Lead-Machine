@@ -1,10 +1,16 @@
 // src/Home.jsx
 import { motion } from "framer-motion";
+import logo from "../assets/storm-lead-machine-logo.png";
 
 export default function Home() {
   return (
     <div className="text-center bg-gray-50 min-h-screen text-slate-800">
       <header className="py-10">
+        <img
+  src={logo}
+  alt="Storm Lead Machine Logo"
+  className="mx-auto mb-4 h-20 w-auto"
+/>
         <h1 className="text-4xl font-bold text-blue-700">
           Welcome to Storm Lead Machine
         </h1>
