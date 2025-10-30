@@ -1,8 +1,5 @@
+// src/Home.jsx
 import { motion } from "framer-motion";
-<img src="/hail-damage.jpg" alt="Hail damage" className="h-48 w-full object-cover" />
-<img src="/wind-damage.jpg" alt="Wind damage" className="h-48 w-full object-cover" />
-<img src="/tornado-hurricane.jpg" alt="Tornado and hurricane damage" className="h-48 w-full object-cover" />
-
 
 export default function Home() {
   return (
@@ -26,7 +23,7 @@ export default function Home() {
           transition={{ duration: 0.4 }}
           className="rounded-2xl border border-slate-200 overflow-hidden bg-white shadow-sm"
         >
-          <img src={hailImg} alt="Hail damage" className="h-48 w-full object-cover" />
+          <img src="/hail-damage.jpg" alt="Hail damage" className="h-48 w-full object-cover" />
           <div className="p-5">
             <h3 className="font-semibold text-lg">Hail</h3>
             <p className="text-sm text-slate-600 mt-1">
@@ -43,7 +40,7 @@ export default function Home() {
           transition={{ duration: 0.4, delay: 0.1 }}
           className="rounded-2xl border border-slate-200 overflow-hidden bg-white shadow-sm"
         >
-          <img src={windImg} alt="Wind damage" className="h-48 w-full object-cover" />
+          <img src="/wind-damage.jpg" alt="Wind damage" className="h-48 w-full object-cover" />
           <div className="p-5">
             <h3 className="font-semibold text-lg">Wind</h3>
             <p className="text-sm text-slate-600 mt-1">
@@ -60,7 +57,7 @@ export default function Home() {
           transition={{ duration: 0.4, delay: 0.2 }}
           className="rounded-2xl border border-slate-200 overflow-hidden bg-white shadow-sm"
         >
-          <img src={tornadoImg} alt="Tornado and hurricane damage" className="h-48 w-full object-cover" />
+          <img src="/tornado-damage.jpg" alt="Tornado and hurricane damage" className="h-48 w-full object-cover" />
           <div className="p-5">
             <h3 className="font-semibold text-lg">Tornado & Hurricanes</h3>
             <p className="text-sm text-slate-600 mt-1">
