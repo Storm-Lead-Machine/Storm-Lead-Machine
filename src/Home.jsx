@@ -14,7 +14,7 @@ export default function Home() {
       </header>
 
       <section className="max-w-6xl mx-auto px-4 py-12 grid gap-6 sm:grid-cols-3">
-        {/* Hail */}
+        {/* Hail (uses the file that sits directly in /src) */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -35,7 +35,7 @@ export default function Home() {
           </div>
         </motion.div>
 
-        {/* Wind */}
+        {/* Wind (these live in /public) */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -56,7 +56,7 @@ export default function Home() {
           </div>
         </motion.div>
 
-        {/* Tornado / Hurricane */}
+        {/* Tornado / Hurricane (also in /public) */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
