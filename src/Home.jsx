@@ -23,11 +23,6 @@ export default function Home() {
           transition={{ duration: 0.4 }}
           className="rounded-2xl border border-slate-200 overflow-hidden bg-white shadow-sm"
         >
-          <img
-            src="/hail-damage.jpg"
-            alt="Hail damage"
-            className="h-48 w-full object-cover"
-          />
           <div className="p-5">
             <h3 className="font-semibold text-lg">Hail</h3>
             <p className="text-sm text-slate-600 mt-1">
