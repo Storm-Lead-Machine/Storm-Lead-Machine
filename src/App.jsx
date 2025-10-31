@@ -1,8 +1,5 @@
-// src/App.jsx
 import React from "react";
 import Home from "./Home.jsx";
+export default function App(){ return <Home/> }
 
-export default function App() {
-  return <Home />;
-}
 
