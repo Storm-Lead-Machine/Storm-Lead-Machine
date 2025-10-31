@@ -353,6 +353,7 @@ export default function Home() {
           )}
 
           <footer className="footer">
+            <div style={{marginTop:8, fontSize:12, opacity:.7}}>build: {new Date().toISOString()}</div>
             <div><strong>Storm Lead Machine</strong> — Exclusive Hail/Wind/Tornado/Hurricane Roofing Leads</div>
             <div>📞 833-9MACHIN (622-446) • 📧 stormleadmachine@gmail.com</div>
             <div style={{ fontSize: 12 }}>© {new Date().getFullYear()} Storm Lead Machine. All rights reserved.</div>
