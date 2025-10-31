@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-
 // --- assets (match names exactly) ---
 import logo from "./assets/Logo.png";
 import hailImg from "./assets/hail.jpg";
