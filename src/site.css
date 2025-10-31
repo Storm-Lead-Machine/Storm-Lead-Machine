@@ -1,0 +1,4 @@
+@keyframes kenburns {
+  0% { transform: scale(1.05) translateY(0px); }
+  100% { transform: scale(1.10) translateY(-8px); }
+}
