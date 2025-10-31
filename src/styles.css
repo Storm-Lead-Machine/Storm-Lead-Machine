@@ -130,3 +130,29 @@ body {
   .grid { grid-template-columns: 1fr; }
   .hero h2 { font-size: 28px; }
 }
+<style>{`
+  .bg-layer{
+    position:fixed; inset:0;
+    background-size:cover; background-position:center;
+    background-attachment:fixed;
+    opacity:0; transition:opacity 1.6s ease;
+    z-index:-2;
+    animation:kenburns 30s ease-in-out infinite alternate;
+    filter:saturate(1.05) contrast(1.05);
+  }
+  .bg-layer.show{ opacity:1; }
+
+  .vignette::after{
+    content:""; position:absolute; inset:0; pointer-events:none;
+    background: radial-gradient(1200px 700px at 100% -10%,
+      rgba(8,18,46,.75) 0%, rgba(5,9,22,.95) 45%, rgba(4,6,12,1) 85%);
+  }
+
+  @keyframes kenburns{
+    0%{ transform:scale(1) translateY(0px); }
+    100%{ transform:scale(1.08) translateY(-6px); }
+  }
+
+  /* ensure content is above background */
+  body, html { background:#05070f; }
+`}</style>
