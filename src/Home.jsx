@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import logo from "./assets/Logo.png";
 import hailImg from "./assets/hail.jpg";
 import windImg from "./assets/wind.jpg";
 import tornadoImg from "./assets/tornado.jpg";
 
-// Make sure these exist in /src/assets/
 import sky1 from "./assets/sky1.jpg";
 import sky2 from "./assets/sky2.jpg";
 import sky3 from "./assets/sky3.jpg";
@@ -19,28 +18,33 @@ export default function Home() {
   const [bgB, setBgB] = useState(skies[1]);
   const [showA, setShowA] = useState(true);
 
+  // rotate every 18s
   useEffect(() => {
-    const interval = setInterval(() => {
-      setShowA((prev) => !prev);
+    const id = setInterval(() => {
+      setShowA((s) => !s);
       setBgA(skies[Math.floor(Math.random() * skies.length)]);
       setBgB(skies[Math.floor(Math.random() * skies.length)]);
-    }, 20000);
-    return () => clearInterval(interval);
+    }, 18000);
+    return () => clearInterval(id);
   }, [skies]);
 
   return (
     <>
-      {/* Background layers */}
+      {/* SKY BACKGROUND LAYERS (must be first in DOM) */}
       <div
         className={`bg-layer vignette ${showA ? "show" : ""}`}
-        style={{ backgroundImage: `url(${bgA})` }}
+        style={{
+          backgroundImage: `url(${bgA})`,
+        }}
       />
       <div
         className={`bg-layer vignette ${!showA ? "show" : ""}`}
-        style={{ backgroundImage: `url(${bgB})` }}
+        style={{
+          backgroundImage: `url(${bgB})`,
+        }}
       />
 
-      {/* Header */}
+      {/* HEADER */}
       <header className="header">
         <div className="brand">
           <img src={logo} alt="Storm Lead Machine" className="logo" />
@@ -49,123 +53,84 @@ export default function Home() {
             <div className="tag">Can’t Stop the Machine</div>
           </div>
         </div>
-        <a href={SQUARE_LINK} className="cta">
-          Get Leads Now
-        </a>
+        <a className="cta" href={SQUARE_LINK}>Get Leads Now</a>
       </header>
 
+      {/* MAIN */}
       <main className="main">
-        {/* Storm Lead Types */}
-        <section className="panel reveal">
+        {/* TRIAL FIRST */}
+        <section className="panel">
+          <h2>1st-Time Customer Trial Package</h2>
+          <div className="trial">
+            <h3>10 Lead Trial — <span style={{color:"#ffd166"}}>$1,000</span></h3>
+            <p className="small dim">Try us once and scale from there.</p>
+            <a className="cta" href={SQUARE_LINK}>Start Trial</a>
+          </div>
+        </section>
+
+        {/* PRICING (Residential only) */}
+        <section className="panel">
+          <h2>Residential Lead Packages</h2>
+          <ul className="price">
+            <li>25 leads <span>$120/lead</span> <span>$3,000</span></li>
+            <li>50 leads <span>$115/lead</span> <span>$5,750</span></li>
+            <li>100 leads <span>$110/lead</span> <span>$11,000</span></li>
+            <li>200 leads <span>$105/lead</span> <span>$21,000</span></li>
+          </ul>
+          <p className="small dim">Filters: 5+ yr roofs +$10/lead • 8+ yr roofs +$25/lead</p>
+        </section>
+
+        {/* STORM LEAD TYPES */}
+        <section className="panel">
           <h2>Storm Lead Types</h2>
 
           <div className="card">
-            <img src={hailImg} className="img" alt="Hail damage" />
+            <img className="img" src={hailImg} alt="Hail" />
             <div className="body">
               <h3>Hail</h3>
-              <p>
-                Targeted hail zones by ZIP with optional roof-age filters for
-                precise lead targeting.
-              </p>
+              <p>ZIP-level hail footprints with roof-age filters for precision targeting.</p>
             </div>
           </div>
 
           <div className="card">
-            <img src={windImg} className="img" alt="Wind damage" />
+            <img className="img" src={windImg} alt="Wind" />
             <div className="body">
               <h3>Wind</h3>
-              <p>
-                Active storm footprints and verified damage paths across
-                counties and cities.
-              </p>
+              <p>Active wind damage paths verified across cities and counties.</p>
             </div>
           </div>
 
           <div className="card">
-            <img src={tornadoImg} className="img" alt="Tornado & Hurricanes" />
+            <img className="img" src={tornadoImg} alt="Tornado & Hurricanes" />
             <div className="body">
               <h3>Tornado & Hurricanes</h3>
-              <p>
-                Lead generation focused on catastrophic storm zones for rapid
-                response roofing contractors.
-              </p>
+              <p>High-intent appointments in catastrophic-zone footprints.</p>
             </div>
           </div>
         </section>
 
-        {/* Pricing */}
-        <section className="panel reveal">
-          <h2>Lead Packages & Pricing</h2>
-
-          <div className="trial">
-            <h3>Residential Leads</h3>
-            <ul className="price">
-              <li>
-                25 leads <span>$120 per lead</span> <span>$3,000</span>
-              </li>
-              <li>
-                50 leads <span>$115 per lead</span> <span>$5,750</span>
-              </li>
-              <li>
-                100 leads <span>$110 per lead</span> <span>$11,000</span>
-              </li>
-              <li>
-                200 leads <span>$105 per lead</span> <span>$21,000</span>
-              </li>
-            </ul>
-            <p className="small dim">
-              5+ yr roofs +$10/lead — 8+ yr roofs +$25/lead
-            </p>
-          </div>
-
-          <div className="trial">
-            <h3>Commercial Leads</h3>
-            <ul className="price">
-              <li>
-                5 leads <span>$300 per lead</span> <span>$1,500</span>
-              </li>
-              <li>
-                20 leads <span>$290 per lead</span> <span>$5,800</span>
-              </li>
-              <li>
-                30 leads <span>$285 per lead</span> <span>$8,550</span>
-              </li>
-              <li>
-                50 leads <span>$275 per lead</span> <span>$13,750</span>
-              </li>
-            </ul>
-          </div>
-        </section>
-
-        {/* Rules and Why */}
-        <section className="panel reveal">
+        {/* RULES + WHY */}
+        <section className="panel">
           <div className="grid">
             <div className="col">
               <h3>Rules to Running Appointments</h3>
               <ul>
                 <li>Do not call the leads ahead of time before you go.</li>
                 <li>
-                  Bad leads must be returned within 2 days — otherwise you will
-                  receive 20% extra only.
+                  Bad leads must be returned within 2 days — otherwise you will receive
+                  <strong> 20% extra only</strong>.
                 </li>
                 <li>
-                  Give us ZIP codes you know were hit with a storm and let us
-                  know how many appointments you can handle per day.
+                  Give us ZIP codes you know were hit with a storm and let us know how many
+                  appointments you can handle per day.
                 </li>
-                <li>
-                  We get you on the roof, in front of the owner—you close it from
-                  there.
-                </li>
+                <li>We get you on the roof, in front of the owner — you close it from there.</li>
               </ul>
             </div>
-
             <div className="col">
               <h3>Why Storm Lead Machine?</h3>
               <ul>
-                <li>
-                  Event-driven targeting across hail, wind, tornado & hurricane
-                  zones.
-                </li>
+                <li>Event-driven targeting across hail, wind, tornado & hurricane zones.</li>
                 <li>ZIP-level control with optional roof-age filters.</li>
                 <li>Transparent pricing — no gimmicks, no resold leads.</li>
               </ul>
@@ -173,13 +138,20 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="panel reveal" style={{ textAlign: "center" }}>
+        {/* CTA */}
+        <section className="panel" style={{textAlign:"center"}}>
           <h2>Ready to turn storms into installs?</h2>
-          <a href={SQUARE_LINK} className="cta">
-            View Packages
-          </a>
+          <a className="cta" href={SQUARE_LINK}>View Packages</a>
         </section>
       </main>
+
+      {/* Build tag so we can confirm the live version */}
+      <div style={{
+        position:"fixed", bottom:8, right:10, fontSize:11, color:"#b6c0ff", opacity:.8,
+        background:"rgba(12,18,40,.6)", padding:"4px 8px", borderRadius:8, border:"1px solid #ffffff2a", zIndex:20
+      }}>
+        build: SKYBG-v4 • {new Date().toISOString()}
+      </div>
     </>
   );
 }
