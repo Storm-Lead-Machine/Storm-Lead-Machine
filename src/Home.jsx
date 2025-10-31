@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useMemo, useRef } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import logo from "./assets/Storm Lead Machine Logo.png";
 import hailImg from "./assets/hail.jpg";
 import windImg from "./assets/wind.jpg";
 import tornadoImg from "./assets/tornado.jpg";
 
+// Make sure these exist in /src/assets/
 import sky1 from "./assets/sky1.jpg";
 import sky2 from "./assets/sky2.jpg";
 import sky3 from "./assets/sky3.jpg";
@@ -18,7 +19,6 @@ export default function Home() {
   const [bgB, setBgB] = useState(skies[1]);
   const [showA, setShowA] = useState(true);
 
-  // Switch backgrounds every 20 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setShowA((prev) => !prev);
@@ -54,8 +54,8 @@ export default function Home() {
         </a>
       </header>
 
-      {/* Main content */}
       <main className="main">
+        {/* Storm Lead Types */}
         <section className="panel reveal">
           <h2>Storm Lead Types</h2>
 
@@ -93,7 +93,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Pricing Section */}
+        {/* Pricing */}
         <section className="panel reveal">
           <h2>Lead Packages & Pricing</h2>
 
@@ -137,27 +137,35 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Rules & Why */}
+        {/* Rules and Why */}
         <section className="panel reveal">
           <div className="grid">
             <div className="col">
               <h3>Rules to Running Appointments</h3>
               <ul>
+                <li>Do not call the leads ahead of time before you go.</li>
                 <li>
-                  Do not call the leads ahead of time before you go.
+                  Bad leads must be returned within 2 days — otherwise you will
+                  receive 20% extra only.
                 </li>
                 <li>
-                  Bad leads must be returned within 2 days.
+                  Give us ZIP codes you know were hit with a storm and let us
+                  know how many appointments you can handle per day.
                 </li>
                 <li>
-                  We get you on the roof, in front of the owner—you close it from there.
+                  We get you on the roof, in front of the owner—you close it from
+                  there.
                 </li>
               </ul>
             </div>
+
             <div className="col">
               <h3>Why Storm Lead Machine?</h3>
               <ul>
-                <li>Event-driven targeting across hail, wind, tornado & hurricane zones.</li>
+                <li>
+                  Event-driven targeting across hail, wind, tornado & hurricane
+                  zones.
+                </li>
                 <li>ZIP-level control with optional roof-age filters.</li>
                 <li>Transparent pricing — no gimmicks, no resold leads.</li>
               </ul>
