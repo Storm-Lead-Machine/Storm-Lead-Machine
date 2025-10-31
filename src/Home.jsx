@@ -1,4 +1,6 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+
+// ── Assets (filenames must match exactly) ──────────────────────────────────────
 import logo from "./assets/Logo.png";
 import hailImg from "./assets/hail.jpg";
 import windImg from "./assets/wind.jpg";
@@ -10,75 +12,66 @@ import sky3 from "./assets/sky3.jpg";
 import sky4 from "./assets/sky4.jpg";
 import sky5 from "./assets/sky5.jpg";
 
+// Square checkout
 const SQUARE_LINK = "https://square.link/u/RSfgAZHS";
 
+// Tabs
+const tabs = [
+  { id: "overview", label: "Overview" },
+  { id: "lead-types", label: "Storm Lead Types" },
+  { id: "pricing", label: "Pricing" },
+  { id: "testimonials", label: "Testimonials" },
+  { id: "contact", label: "Contact" },
+];
+
 export default function Home() {
+  const [active, setActive] = useState("overview");
+
+  // pool of background images
   const skies = useMemo(() => [sky1, sky2, sky3, sky4, sky5], []);
-  const [bgA, setBgA] = useState(skies[0]);
-  const [bgB, setBgB] = useState(skies[1]);
+  const pickSky = () => skies[Math.floor(Math.random() * skies.length)];
+
+  // cross-fade background layers
+  const [bgA, setBgA] = useState(pickSky());
+  const [bgB, setBgB] = useState(pickSky());
   const [showA, setShowA] = useState(true);
+  const firstRun = useRef(true);
 
   useEffect(() => {
-    const id = setInterval(() => {
+    // when tab changes, flip background once so it feels alive
+    if (firstRun.current) {
+      firstRun.current = false;
+    } else {
+      const next = pickSky();
+      if (showA) setBgB(next);
+      else setBgA(next);
       setShowA((s) => !s);
-      setBgA(skies[Math.floor(Math.random() * skies.length)]);
-      setBgB(skies[Math.floor(Math.random() * skies.length)]);
-    }, 18000);
-    return () => clearInterval(id);
-  }, [skies]);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [active]); // eslint-disable-line
 
-  // Inline style base for guaranteed background rendering
-  const layerBase = {
-    position: "fixed",
-    left: 0,
-    top: 0,
-    width: "100%",
-    height: "100%",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundAttachment: "fixed",
-    pointerEvents: "none",
-    zIndex: 0,
-    transition: "opacity 1.6s ease-in-out",
-    animation: "kenburns 30s ease-in-out infinite alternate",
-    filter: "saturate(1.08) contrast(1.1) brightness(0.85)",
-  };
+  useEffect(() => {
+    // autonomous slow cross-fade every 10s
+    const id = setInterval(() => {
+      const next = pickSky();
+      if (showA) setBgB(next);
+      else setBgA(next);
+      setShowA((s) => !s);
+    }, 10000);
+    return () => clearInterval(id);
+  }, [showA, skies]); // eslint-disable-line
 
   return (
     <>
-      {/* SKY BACKGROUND LAYERS */}
+      {/* SKY BACKGROUND LAYERS (use site.css classes) */}
       <div
-        style={{
-          ...layerBase,
-          opacity: showA ? 1 : 0,
-          backgroundImage: `url(${bgA})`,
-        }}
-      >
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "radial-gradient(1200px 700px at 100% -10%, rgba(8,18,46,.6) 0%, rgba(5,9,22,.85) 45%, rgba(4,6,12,.95) 85%)",
-          }}
-        />
-      </div>
+        className={`bg-layer vignette ${showA ? "show" : ""}`}
+        style={{ backgroundImage: `url(${bgA})` }}
+      />
       <div
-        style={{
-          ...layerBase,
-          opacity: showA ? 0 : 1,
-          backgroundImage: `url(${bgB})`,
-        }}
-      >
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "radial-gradient(1200px 700px at 100% -10%, rgba(8,18,46,.6) 0%, rgba(5,9,22,.85) 45%, rgba(4,6,12,.95) 85%)",
-          }}
-        />
-      </div>
+        className={`bg-layer vignette ${!showA ? "show" : ""}`}
+        style={{ backgroundImage: `url(${bgB})` }}
+      />
 
       {/* HEADER */}
       <header
@@ -86,197 +79,347 @@ export default function Home() {
         style={{
           position: "sticky",
           top: 0,
-          zIndex: 5,
-          display: "flex",
-          gap: 20,
-          alignItems: "center",
-          justifyContent: "space-between",
-          padding: "16px 22px",
-          borderBottom: "1px solid #ffffff1a",
-          background: "rgba(9,14,28,.70)",
-          backdropFilter: "blur(10px)",
+          zIndex: 30,
+          backdropFilter: "blur(6px)",
+          background: "rgba(8,18,46,.5)",
+          borderBottom: "1px solid rgba(255,255,255,.06)",
         }}
       >
-        <div className="brand" style={{ display: "flex", alignItems: "center", gap: 16 }}>
-          <img
-            src={logo}
-            alt="Storm Lead Machine"
-            style={{ height: 200, width: "auto", filter: "drop-shadow(0 12px 24px #0008)" }}
-          />
-          <div>
-            <h1 style={{ fontSize: 52, margin: 0, textShadow: "0 4px 22px #000a" }}>
-              Storm Lead Machine
-            </h1>
-            <div style={{ color: "#ffd166", fontWeight: 800, marginTop: 4 }}>
-              Can’t Stop the Machine
+        <div
+          style={{
+            maxWidth: 1180,
+            margin: "0 auto",
+            padding: "14px 18px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: 18,
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+            <img
+              src={logo}
+              alt="Storm Lead Machine"
+              style={{
+                height: 84, // big logo
+                width: "auto",
+                borderRadius: 10,
+                boxShadow: "0 6px 20px rgba(0,0,0,.35)",
+              }}
+            />
+            <div>
+              <div
+                style={{
+                  fontSize: 36,
+                  fontWeight: 800,
+                  letterSpacing: 0.2,
+                  color: "#fff",
+                  textShadow: "0 2px 18px rgba(0,0,0,.45)",
+                }}
+              >
+                Storm Lead Machine
+              </div>
+              <div
+                style={{
+                  marginTop: -2,
+                  color: "var(--gold)",
+                  fontWeight: 700,
+                }}
+              >
+                Can’t Stop the Machine
+              </div>
             </div>
           </div>
+
+          {/* CTA */}
+          <a
+            href={SQUARE_LINK}
+            target="_blank"
+            rel="noreferrer"
+            className="cta"
+            style={{
+              background:
+                "linear-gradient(180deg, #ff7ba6 0%, #ff558a 100%)",
+              color: "#fff",
+              fontWeight: 800,
+              padding: "12px 18px",
+              borderRadius: 12,
+              boxShadow: "0 8px 24px rgba(255,85,138,.35)",
+              textDecoration: "none",
+              whiteSpace: "nowrap",
+            }}
+          >
+            Get Leads Now
+          </a>
         </div>
-        <a className="cta" href={SQUARE_LINK}>
-          Get Leads Now
-        </a>
+
+        {/* NAV TABS */}
+        <nav
+          style={{
+            maxWidth: 1180,
+            margin: "0 auto",
+            padding: "0 12px 12px",
+            display: "flex",
+            gap: 8,
+            flexWrap: "wrap",
+          }}
+        >
+          {tabs.map((t) => (
+            <button
+              key={t.id}
+              onClick={() => setActive(t.id)}
+              style={{
+                border: "1px solid rgba(255,255,255,.12)",
+                background:
+                  active === t.id
+                    ? "rgba(255,255,255,.10)"
+                    : "rgba(8,18,46,.35)",
+                color: "#eaf0ff",
+                padding: "8px 12px",
+                borderRadius: 10,
+                fontWeight: 700,
+                cursor: "pointer",
+                backdropFilter: "blur(6px)",
+              }}
+            >
+              {t.label}
+            </button>
+          ))}
+        </nav>
       </header>
 
-      {/* MAIN */}
-      <main className="main" style={{ position: "relative", zIndex: 2, maxWidth: 1200, margin: "0 auto", padding: "30px 22px 100px" }}>
-        {/* TRIAL */}
-        <section className="panel" style={panelStyle}>
-          <h2>1st-Time Customer Trial Package</h2>
-          <div className="trial">
-            <h3>
-              10 Lead Trial — <span style={{ color: "#ffd166" }}>$1,000</span>
-            </h3>
-            <p className="small dim">Try us once and scale from there.</p>
-            <a className="cta" href={SQUARE_LINK}>
-              Start Trial
-            </a>
-          </div>
-        </section>
+      {/* PAGE BODY */}
+      <main style={{ maxWidth: 1180, margin: "0 auto", padding: "18px" }}>
+        {/* ───────── Overview ───────── */}
+        {active === "overview" && (
+          <section className="panel reveal">
+            <h1 style={{ marginTop: 6 }}>Dominate storm markets. On-demand.</h1>
+            <p style={{ marginTop: 8 }}>
+              Exclusive storm leads where you want them — <em>targeted by ZIP</em>,
+              optional roof-age filters, and fast routing. We get you on the roof
+              in front of the owner. <strong>You close it from there.</strong>
+            </p>
 
-        {/* PRICING */}
-        <section className="panel" style={panelStyle}>
-          <h2>Residential Lead Packages</h2>
-          <ul className="price" style={{ listStyle: "none", margin: 0, padding: 0 }}>
-            <PriceRow qty="25" per="$120/lead" total="$3,000" />
-            <PriceRow qty="50" per="$115/lead" total="$5,750" />
-            <PriceRow qty="100" per="$110/lead" total="$11,000" />
-            <PriceRow qty="200" per="$105/lead" total="$21,000" />
-          </ul>
-          <p className="small dim" style={{ color: "#c6cde0", fontSize: 13, marginTop: 8 }}>
-            Filters: 5+ yr roofs +$10/lead • 8+ yr roofs +$25/lead
-          </p>
-        </section>
+            <div
+              style={{
+                display: "flex",
+                gap: 12,
+                marginTop: 16,
+                flexWrap: "wrap",
+              }}
+            >
+              <a className="cta" href={SQUARE_LINK} target="_blank" rel="noreferrer">
+                Get Leads Now
+              </a>
+              <button
+                className="cta ghost"
+                onClick={() => setActive("pricing")}
+                style={{ background: "transparent" }}
+              >
+                View Pricing
+              </button>
+              <button
+                className="cta ghost"
+                onClick={() => setActive("lead-types")}
+                style={{ background: "transparent" }}
+              >
+                See Lead Types
+              </button>
+            </div>
 
-        {/* LEAD TYPES */}
-        <section className="panel" style={panelStyle}>
-          <h2>Storm Lead Types</h2>
-
-          <Card img={hailImg} title="Hail" text="ZIP-level hail footprints with roof-age filters for precision targeting." />
-          <Card img={windImg} title="Wind" text="Active wind damage paths verified across cities and counties." />
-          <Card img={tornadoImg} title="Tornado & Hurricanes" text="High-intent appointments in catastrophic-zone footprints." />
-        </section>
-
-        {/* RULES + WHY */}
-        <section className="panel" style={panelStyle}>
-          <div className="grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
-            <div className="col" style={colStyle}>
-              <h3>Rules to Running Appointments</h3>
-              <ul>
+            <div className="panel" style={{ marginTop: 22 }}>
+              <h3>Rules to Running the Appointments</h3>
+              <ul style={{ marginTop: 8 }}>
                 <li>Do not call the leads ahead of time before you go.</li>
                 <li>
-                  Bad leads must be returned within 2 days — otherwise you will receive
-                  <strong> 20% extra only</strong>.
+                  Give us ZIP codes you know were hit with a storm and let us
+                  know how many appointments you can handle per day.
                 </li>
                 <li>
-                  Give us ZIP codes you know were hit with a storm and let us know how many
-                  appointments you can handle per day.
+                  Bad leads must be returned within 2 days —{" "}
+                  <strong>otherwise you will receive 20% extra only.</strong>
                 </li>
-                <li>We get you on the roof, in front of the owner — you close it from there.</li>
+                <li>
+                  We get you on the roof, in front of the owner — you close it
+                  from there.
+                </li>
               </ul>
             </div>
-            <div className="col" style={colStyle}>
-              <h3>Why Storm Lead Machine?</h3>
-              <ul>
-                <li>Event-driven targeting across hail, wind, tornado & hurricane zones.</li>
-                <li>ZIP-level control with optional roof-age filters.</li>
-                <li>Transparent pricing — no gimmicks, no resold leads.</li>
-              </ul>
+          </section>
+        )}
+
+        {/* ───────── Lead Types ───────── */}
+        {active === "lead-types" && (
+          <section className="grid reveal">
+            <div className="card">
+              <img
+                src={hailImg}
+                alt="Hail damage"
+                className="card-img"
+                style={{ objectFit: "cover" }}
+              />
+              <div className="card-body">
+                <h3>Hail</h3>
+                <p>ZIP-targeted hail events with optional roof-age filters.</p>
+              </div>
             </div>
+
+            <div className="card">
+              <img
+                src={windImg}
+                alt="Wind damage"
+                className="card-img"
+                style={{ objectFit: "cover" }}
+              />
+              <div className="card-body">
+                <h3>Wind</h3>
+                <p>High-wind swaths and address-precision appointment routing.</p>
+              </div>
+            </div>
+
+            <div className="card">
+              <img
+                src={tornadoImg}
+                alt="Tornado & Hurricanes"
+                className="card-img"
+                style={{ objectFit: "cover" }}
+              />
+              <div className="card-body">
+                <h3>Tornado / Hurricanes</h3>
+                <p>Severe storm footprints with owner-present visits.</p>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* ───────── Pricing (trial first, no commercial) ───────── */}
+        {active === "pricing" && (
+          <>
+            <section className="panel reveal">
+              <h2>1st-Time Customer Trial Package</h2>
+              <p style={{ marginTop: 6 }}>
+                <strong>10 Lead Trial — $1,000</strong>
+              </p>
+              <p style={{ marginTop: 6 }}>Try us once and scale from there.</p>
+              <a
+                className="cta"
+                href={SQUARE_LINK}
+                target="_blank"
+                rel="noreferrer"
+                style={{ marginTop: 12, display: "inline-block" }}
+              >
+                Start Trial
+              </a>
+            </section>
+
+            <section className="panel reveal">
+              <h2>Residential Lead Packages</h2>
+              <div className="rows" style={{ marginTop: 10 }}>
+                <Row label="25 leads" price="$120/lead — $3,000" />
+                <Row label="50 leads" price="$115/lead — $5,750" />
+                <Row label="100 leads" price="$110/lead — $11,000" />
+                <Row label="200 leads" price="$105/lead — $21,000" />
+              </div>
+              <div className="muted" style={{ marginTop: 10 }}>
+                <strong>Filters:</strong> 5+ yr roofs +$10/lead • 8+ yr roofs +$25/lead
+              </div>
+            </section>
+
+            <section className="panel" style={{ textAlign: "center" }}>
+              <a className="cta" href={SQUARE_LINK} target="_blank" rel="noreferrer">
+                View Packages
+              </a>
+            </section>
+          </>
+        )}
+
+        {/* ───────── Testimonials ───────── */}
+        {active === "testimonials" && (
+          <section className="grid reveal">
+            <div className="card">
+              <div className="card-body">
+                <p style={{ fontStyle: "italic" }}>
+                  “No fluff. Real storm homeowners, and the roof-age filter saved
+                  us time on site.”
+                </p>
+                <span className="muted">— A. M., Project Manager</span>
+              </div>
+            </div>
+            <div className="card">
+              <div className="card-body">
+                <p style={{ fontStyle: "italic" }}>
+                  “ZIP-level targeting helped us load crews exactly where we
+                  needed them.”
+                </p>
+                <span className="muted">— D. S., Owner</span>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* ───────── Contact ───────── */}
+        {active === "contact" && (
+          <section className="panel reveal">
+            <h2>Contact</h2>
+            <div style={{ marginTop: 10, display: "grid", gap: 6 }}>
+              <div>
+                <strong>Phone:</strong> 833-9MACHIN (622-446)
+              </div>
+              <div>
+                <strong>Email:</strong>{" "}
+                <a href="mailto:stormleadmachine@gmail.com">
+                  stormleadmachine@gmail.com
+                </a>
+              </div>
+              <div style={{ marginTop: 10 }}>
+                <a
+                  className="cta"
+                  href={SQUARE_LINK}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Get Leads Now
+                </a>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {/* FOOTER / tiny build tag for quick verification */}
+        <footer className="footer">
+          <div className="muted" style={{ fontSize: 12, opacity: 0.7 }}>
+            build: SKY-TABS • {new Date().toISOString()}
           </div>
-        </section>
-
-        {/* CTA */}
-        <section className="panel" style={{ ...panelStyle, textAlign: "center" }}>
-          <h2>Ready to turn storms into installs?</h2>
-          <a className="cta" href={SQUARE_LINK}>
-            View Packages
-          </a>
-        </section>
+          <div style={{ marginTop: 4 }}>
+            <strong>Storm Lead Machine</strong> — Exclusive Hail/Wind/Tornado/Hurricane
+            Roofing Leads • 833-9MACHIN (622-446) •{" "}
+            <a href="mailto:stormleadmachine@gmail.com">
+              stormleadmachine@gmail.com
+            </a>
+          </div>
+        </footer>
       </main>
-
-      {/* Build tag to confirm live */}
-      <div
-        style={{
-          position: "fixed",
-          bottom: 8,
-          right: 10,
-          fontSize: 11,
-          color: "#b6c0ff",
-          opacity: 0.8,
-          background: "rgba(12,18,40,.6)",
-          padding: "4px 8px",
-          borderRadius: 8,
-          border: "1px solid #ffffff2a",
-          zIndex: 20,
-        }}
-      >
-        build: SKYBG-v5 • {new Date().toISOString()}
-      </div>
     </>
   );
 }
 
-/* helpers */
-function PriceRow({ qty, per, total }) {
-  return (
-    <li
-      style={{
-        display: "grid",
-        gridTemplateColumns: "1fr auto auto",
-        gap: 12,
-        alignItems: "center",
-        padding: "12px 0",
-        borderBottom: "1px dashed #2c3560",
-        color: "#dfe5ff",
-      }}
-    >
-      <span>{qty} leads</span>
-      <span>{per}</span>
-      <span>{total}</span>
-    </li>
-  );
-}
-
-function Card({ img, title, text }) {
+/* simple row helper for pricing */
+function Row({ label, price }) {
   return (
     <div
-      className="card"
       style={{
-        display: "grid",
-        gridTemplateColumns: "320px 1fr",
-        gap: 18,
-        background: "rgba(12,18,44,.9)",
-        border: "1px solid #ffffff22",
-        borderRadius: 16,
-        overflow: "hidden",
-        margin: "18px 0",
-        boxShadow: "0 10px 40px #0008",
+        display: "flex",
+        justifyContent: "space-between",
+        padding: "12px 14px",
+        border: "1px solid rgba(255,255,255,.08)",
+        borderRadius: 12,
+        background: "rgba(0,0,0,.25)",
       }}
     >
-      <img src={img} alt={title} style={{ width: "100%", height: 240, objectFit: "cover" }} />
-      <div className="body" style={{ padding: 18 }}>
-        <h3 style={{ margin: "0 0 6px", fontSize: 22 }}>{title}</h3>
-        <p style={{ margin: 0, color: "#dfe5ff" }}>{text}</p>
-      </div>
+      <span>{label}</span>
+      <span className="muted" style={{ fontWeight: 700 }}>
+        {price}
+      </span>
     </div>
   );
 }
-
-/* shared small style objects */
-const panelStyle = {
-  background: "rgba(12, 18, 40, 0.80)",
-  border: "1px solid #ffffff1f",
-  borderRadius: 18,
-  padding: 24,
-  boxShadow: "0 12px 48px #0008",
-  marginBottom: 30,
-  backdropFilter: "blur(8px)",
-};
-
-const colStyle = {
-  border: "1px solid #ffffff1f",
-  borderRadius: 16,
-  background: "rgba(13, 20, 56, 0.95)",
-  padding: 18,
-};
-
