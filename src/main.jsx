@@ -1,3 +1,4 @@
+import "./styles.css";
 // src/main.jsx
 import React from "react";
 import ReactDOM from "react-dom/client";
