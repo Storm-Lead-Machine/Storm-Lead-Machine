@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
-import logo from "./assets/Storm Lead Machine Logo.png";
+import logo from "./assets/Logo.png";
 import hailImg from "./assets/hail.jpg";
 import windImg from "./assets/wind.jpg";
 import tornadoImg from "./assets/tornado.jpg";
