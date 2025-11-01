@@ -118,24 +118,21 @@ export default function Home() {
         {/* CONTENT SWITCHER */}
         {active === "overview" && (
           <>
-            <section className="panel">
-              <h3>Rules to Running the Appointments</h3>
-              <ul>
-                <li>Do not call the leads ahead of time before you go.</li>
-                <li>
-                  Bad leads must be returned within 2 days —{" "}
-                  <strong>otherwise you will receive 20% extra only.</strong>
-                </li>
-                <li>
-                  We get you on the roof in the ZIP codes you want — <strong>you close the deal.</strong>
-                </li>
-                <li>
-                  Give us ZIP codes you know were hit with a storm and let us know how many
-                  appointments you can handle per day.
-                </li>
-              </ul>
-            </section>
-
+           <section className="panel">
+  <h3>Rules to Running the Appointments</h3>
+  <ul>
+    <li>Do not call the leads ahead of time before you go.</li>
+    <li>
+      Bad leads must be returned within 2 days — <strong>otherwise you will receive 20% extra only.</strong>
+    </li>
+    <li>
+      We get you on the roof in the ZIP codes you want — <strong>you close the deal.</strong>
+    </li>
+    <li>
+      Give us ZIP codes you know were hit with a storm and let us know how many appointments you can handle per day.
+    </li>
+  </ul>
+</section>
             <section className="panel grid">
               <div className="card">
                 <img src={hailImg} alt="Hail damage" className="cover" />
