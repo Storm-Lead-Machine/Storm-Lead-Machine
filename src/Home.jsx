@@ -11,7 +11,6 @@ import sky3 from "./assets/sky3.jpg";
 import sky4 from "./assets/sky4.jpg";
 import sky5 from "./assets/sky5.jpg";
 
-
 const SQUARE_LINK = "https://square.link/u/RSfgAZHS";
 const TABS = [
   { id: "overview", label: "Overview" },
