@@ -1,205 +1,104 @@
-/* ===========================
-   Storm Lead Machine — site.css
-   FULL REPLACEMENT
-   =========================== */
+/* src/site.css — SKYBG-v8 */
 
-/* ---- Base / Reset ---- */
 html, body {
   margin: 0;
   padding: 0;
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  color: #eaf0ff;
-  background: #000;           /* fallback while images load */
-  overflow-x: hidden;
   height: 100%;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: #000; /* fallback while images load */
+  overflow-x: hidden;
 }
 
-/* Smooth typography + links */
-h1, h2, h3 { margin: 0 0 10px 0; line-height: 1.2; }
-p { margin: 0 0 10px 0; color: #bcd0ff; }
-a { color: #ffd166; text-decoration: none; }
-a:hover { text-decoration: underline; }
-
-/* ===========================
-   BACKGROUND SKY LAYERS
-   =========================== */
+/* === Background sky layers (fixed, behind everything) === */
 .bg-layer {
   position: fixed;
   inset: 0;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  opacity: 0;                         /* hidden until .show is toggled */
+  opacity: 0;
   transition: opacity 1.6s ease-in-out;
-  animation: kenburns 38s ease-in-out infinite alternate;
-  filter: saturate(1.08) contrast(1.05) brightness(0.9);
-  z-index: 0;                         /* keep BEHIND the page */
+  z-index: 0;             /* <- BEHIND CONTENT, but visible */
+  animation: kenburns 13s ease-in-out infinite alternate;
+  filter: saturate(1.05) brightness(0.9);
 }
-
 .bg-layer.show { opacity: 1; }
 
-@keyframes kenburns {
-  0%   { transform: scale(1.05) translateY(0px); }
-  100% { transform: scale(1.10) translateY(-8px); }
-}
-
-/* Soft dark vignette that floats above the image but below content */
+/* subtle vignette, does not block the image */
 .vignette::after {
   content: "";
-  position: absolute;
+  position: fixed;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(1200px 780px at 100% 10%,
-    rgba(8,18,46,0.0) 0%,
-    rgba(5,9,22,0.85) 45%,
-    rgba(4,6,12,0.95) 85%);
+  background: radial-gradient(1200px 760px at 100% 10%,
+    rgba(0,0,0,0) 0%,
+    rgba(0,0,0,0.45) 45%,
+    rgba(0,0,0,0.65) 85%);
+  z-index: 1;    /* above bg, below content */
 }
 
-/* ===========================
-   PAGE LAYOUT / CHROME
-   =========================== */
-.page {
+/* All actual page content sits ABOVE the sky */
+.page, header, main, .panel, .container, .tabs, .card {
   position: relative;
-  z-index: 1;                 /* ABOVE the bg layers */
-  background: transparent;    /* don’t paint over the sky */
+  z-index: 2;
 }
 
-/* Header bar (semi-transparent so sky peeks through) */
+/* Header */
 .header {
   position: sticky;
   top: 0;
-  z-index: 2;
-  background: rgba(8, 12, 20, 0.55);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
   backdrop-filter: blur(6px);
+  background: rgba(6,10,26,.55);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  z-index: 3;
 }
-
-/* Constrain content width */
-.container {
-  max-width: 1160px;
-  margin: 0 auto;
-  padding: 22px;
-}
-
-/* Logo sizing in header */
 .logo {
-  display: flex;
+  display: grid;
+  grid-template-columns: 100px 1fr auto;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
+  padding: 14px 18px;
 }
-.logo img {
-  width: 108px;              /* make bigger/smaller as needed */
-  height: auto;
-  display: block;
-}
-.logo .brand {
-  font-size: clamp(26px, 4vw, 48px);
-  font-weight: 800;
-  letter-spacing: 0.3px;
-  text-shadow: 0 6px 24px rgba(0,0,0,.35);
-}
-.tagline { color: #ffd166; font-weight: 600; }
+.logo img { width: 100px; height: 100px; object-fit: contain; }
+.brand { font-size: 40px; font-weight: 800; letter-spacing: .4px; color: #fff; }
+.tagline { color: #ffd166; font-weight: 600; margin-top: 2px; }
 
-/* CTA button style */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 20px;
-  border-radius: 999px;
-  background: linear-gradient(180deg, #ff7aa3 0%, #ff4b6e 100%);
-  color: #fff;
-  border: none;
-  font-weight: 700;
-  box-shadow: 0 10px 28px rgba(255, 64, 108, 0.28);
-  transition: transform .08s ease, filter .15s ease;
-}
-.btn:hover { transform: translateY(-1px); filter: brightness(1.05); }
-.btn:active { transform: translateY(0); }
+/* Layout */
+.container { max-width: 1080px; margin: 0 auto; padding: 16px; }
+.panel { background: rgba(8,12,28,.72); border: 1px solid rgba(255,255,255,.07);
+  border-radius: 16px; padding: 18px; box-shadow: 0 10px 20px rgba(0,0,0,.25); }
+.card { background: rgba(10,14,36,.65); border: 1px solid rgba(255,255,255,.08);
+  border-radius: 12px; padding: 16px; }
 
-/* ===========================
-   TABS
-   =========================== */
-.tabs {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin: 18px 0 12px;
-}
-.tab {
-  padding: 10px 14px;
-  border-radius: 10px;
-  background: rgba(10,14,22,0.55);
-  border: 1px solid rgba(255,255,255,0.06);
-  color: #dfe8ff;
-  cursor: pointer;
-  user-select: none;
-}
-.tab.active {
-  background: rgba(18,26,46,0.78);
-  border-color: rgba(255,255,255,0.14);
-  color: #fff;
-}
+/* Tabs */
+.tabs { display: flex; gap: 10px; padding: 12px 0 0 0; flex-wrap: wrap; }
+.tab { background: rgba(16,20,44,.6); color: #cfe0ff; border: 1px solid rgba(255,255,255,.1);
+  border-radius: 22px; padding: 8px 14px; cursor: pointer; }
+.tab.active { background: #355CFF; color: #fff; border-color: #355CFF; }
 
-/* Panels/sections (translucent so sky is visible) */
-.panel {
-  background: rgba(8, 12, 20, 0.72);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 16px;
-  padding: 18px;
-  margin: 14px 0;
-  backdrop-filter: blur(2px);
-}
-
-/* Cards and hero */
-.card {
-  background: rgba(10,14,22,0.78);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 16px;
-  padding: 18px;
-}
-
-/* Pricing rows */
-.price-row {
-  display: flex;
-  justify-content: space-between;
-  padding: 14px 12px;
-  border-bottom: 1px dashed rgba(255,255,255,0.12);
-}
-.price-row:last-child { border-bottom: none; }
+/* Buttons / prices */
+.btn { background: #ff5b7f; color: #fff; border: none; border-radius: 999px;
+  padding: 10px 16px; font-weight: 700; cursor: pointer; display: inline-block; text-decoration: none; }
+.btn:hover { filter: brightness(1.06); }
+.price-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed rgba(255,255,255,.12); }
+.price-row:last-child { border-bottom: 0; }
 .price-muted { color: #9fb3ff; }
 
-/* Footer build tag */
+/* Simple grid */
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.col-4 { grid-column: span 1; }
+.col-6 { grid-column: span 1; }
+@media (max-width: 900px) { .grid { grid-template-columns: 1fr; } .logo { grid-template-columns: 80px 1fr; } .brand { font-size: 32px; }}
+
+/* build tag */
 .build-tag {
-  font-size: 11px;
-  opacity: .8;
-  position: fixed;
-  bottom: 8px;
-  right: 10px;
-  padding: 6px 8px;
-  border: 1px solid rgba(255,255,255,.18);
-  border-radius: 8px;
-  background: rgba(6,10,18,.55);
+  position: fixed; bottom: 8px; right: 10px; font-size: 11px; opacity: .8;
+  background: rgba(18,20,36,.6); color: #a9b6ff; padding: 4px 8px; border-radius: 6px;
+  border: 1px solid rgba(255,255,255,.12); z-index: 4;
 }
 
-/* ===========================
-   UTILITIES
-   =========================== */
-.center { text-align: center; }
-.grid {
-  display: grid;
-  gap: 14px;
-  grid-template-columns: repeat(12, 1fr);
+/* Ken Burns motion */
+@keyframes kenburns {
+  0%   { transform: scale(1.05) translateY(0); }
+  100% { transform: scale(1.10) translateY(-8px); }
 }
-.col-12 { grid-column: span 12; }
-.col-6  { grid-column: span 6; }
-.col-4  { grid-column: span 4; }
-@media (max-width: 900px) {
-  .col-6, .col-4 { grid-column: span 12; }
-  .logo img { width: 88px; }
-  .logo .brand { font-size: clamp(24px, 5vw, 40px); }
-}
-
-/* Simple reveal on scroll (optional) */
-.reveal { opacity: 0; transform: translateY(12px); transition: opacity .5s ease, transform .5s ease; }
-.reveal.in { opacity: 1; transform: translateY(0); }
