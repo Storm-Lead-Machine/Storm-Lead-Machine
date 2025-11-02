@@ -244,3 +244,5 @@ export default function Home() {
     </div>
   );
 }
+<div className={`bg-layer vignette ${showA ? "show" : ""}`} style={{ backgroundImage: `url(${bgA})` }} />
+<div className={`bg-layer vignette ${!showA ? "show" : ""}`} style={{ backgroundImage: `url(${bgB})` }} />
