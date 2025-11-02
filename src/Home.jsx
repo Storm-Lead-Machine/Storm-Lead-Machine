@@ -2,10 +2,9 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 
 // ---- assets (filenames must match exactly) ----
 import logo from "./assets/Logo.png";
-import hailImg from "./assets/hail.jpg";
+import hailing from "./assets/hail.jpg";
 import windImg from "./assets/wind.jpg";
 import tornadoImg from "./assets/tornado.jpg";
-
 import sky1 from "./assets/sky1.jpg";
 import sky2 from "./assets/sky2.jpg";
 import sky3 from "./assets/sky3.jpg";
@@ -14,7 +13,7 @@ import sky5 from "./assets/sky5.jpg";
 
 const SQUARE_LINK = "https://square.link/u/RSfgAZHS";
 
-const tabs = [
+const TABS = [
   { id: "overview", label: "Overview" },
   { id: "lead-types", label: "Storm Lead Types" },
   { id: "pricing", label: "Pricing" },
@@ -36,24 +35,31 @@ export default function Home() {
   const firstRun = useRef(true);
 
   useEffect(() => {
-    // ensure the first render immediately shows a layer
+    // on tab change, choose a new background and toggle layers (fade)
     if (firstRun.current) {
       firstRun.current = false;
-      setShowA(true);
+    } else {
+      const next = pickSky();
+      if (showA) setBgB(next);
+      else setBgA(next);
+      setShowA(!showA);
     }
-    const id = setInterval(() => {
-      setShowA((prev) => !prev);
-      // when we flip to A, refresh B (and vice-versa)
-      setBgA((prev) => (showA ? prev : pickSky()));
-      setBgB((prev) => (!showA ? prev : pickSky()));
-    }, 9000); // 9s per crossfade
-    return () => clearInterval(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [skies, showA]);
+  }, [active]); // changes when tab changes
+
+  // slow automatic motion
+  useEffect(() => {
+    const t = setInterval(() => {
+      const next = pickSky();
+      if (showA) setBgB(next);
+      else setBgA(next);
+      setShowA((s) => !s);
+    }, 12000);
+    return () => clearInterval(t);
+  }, [showA, skies]);
 
   return (
-    <div className="page">
-      {/* === SKY BACKGROUND LAYERS (must render first) === */}
+    <div>
+      {/* === SKY BACKGROUND LAYERS (must be first in DOM) === */}
       <div
         className={`bg-layer vignette ${showA ? "show" : ""}`}
         style={{ backgroundImage: `url(${bgA})` }}
@@ -63,26 +69,46 @@ export default function Home() {
         style={{ backgroundImage: `url(${bgB})` }}
       />
 
-      {/* === HEADER === */}
-      <header className="header">
-        <div className="container logo">
-          <img src={logo} alt="Storm Lead Machine" />
-          <div>
-            <div className="brand">Storm Lead Machine</div>
-            <div className="tagline">Can’t Stop the Machine</div>
+      {/* HEADER */}
+      <header
+        className="header"
+        style={{
+          position: "sticky",
+          top: 0,
+          zIndex: 50,
+          background:
+            "linear-gradient(180deg, rgba(5,10,20,.85) 0%, rgba(5,10,20,.65) 100%)",
+          borderBottom: "1px solid rgba(255,255,255,.06)",
+          backdropFilter: "blur(6px)",
+        }}
+      >
+        <div className="container" style={{ display: "flex", alignItems: "center", gap: 18 }}>
+          <img
+            src={logo}
+            alt="Storm Lead Machine"
+            style={{ height: 92, width: 92, objectFit: "contain" }}
+          />
+          <div style={{ lineHeight: 1.05 }}>
+            <h1 style={{ margin: 0, fontSize: 44, letterSpacing: 0.2 }}>Storm Lead Machine</h1>
+            <div style={{ marginTop: 6, fontWeight: 600, color: "var(--gold)" }}>
+              Can’t Stop the Machine
+            </div>
           </div>
-          <div style={{ marginLeft: "auto" }}>
-            <a className="btn" href={SQUARE_LINK} target="_blank" rel="noreferrer">
-              Get Leads Now
-            </a>
-          </div>
-        </div>
-      </header>
 
-      {/* === NAV TABS === */}
-      <div className="container">
+          <a
+            href={SQUARE_LINK}
+            target="_blank"
+            rel="noreferrer"
+            className="cta"
+            style={{ marginLeft: "auto" }}
+          >
+            Get Leads Now
+          </a>
+        </div>
+
+        {/* TABS */}
         <nav className="tabs">
-          {tabs.map((t) => (
+          {TABS.map((t) => (
             <button
               key={t.id}
               className={`tab ${active === t.id ? "active" : ""}`}
@@ -92,157 +118,141 @@ export default function Home() {
             </button>
           ))}
         </nav>
-      </div>
+      </header>
 
-      {/* === PANELS === */}
       <main className="container">
-
-        {/* Overview */}
+        {/* OVERVIEW */}
         {active === "overview" && (
-          <section className="panel">
+          <section className="panel reveal">
             <h2>Dominate storm markets. On-demand.</h2>
-            <p style={{ marginTop: 8 }}>
-              Exclusive storm leads where you want them — <em>targeted by ZIP</em>,
-              roof-age filters, and fast routing. We get you on the roof in front of the owner.
-              <br />
-              <strong>You close it from there.</strong>
+            <p>
+              Exclusive storm leads where you want them — <em>targeted by ZIP</em>, roof-age filters,
+              and fast routing. We get you on the roof in front of the owner. <strong>You close it from there.</strong>
             </p>
 
-            <div style={{ display: "flex", gap: 12, marginTop: 16, flexWrap: "wrap" }}>
-              <a className="btn" href={SQUARE_LINK} target="_blank" rel="noreferrer">Get Leads Now</a>
-              <a className="btn" href="#pricing" onClick={(e)=>{e.preventDefault(); setActive("pricing");}}>
+            <div className="btn-row">
+              <a href={SQUARE_LINK} target="_blank" rel="noreferrer" className="cta">
+                Get Leads Now
+              </a>
+              <button className="ghost" onClick={() => setActive("pricing")}>
                 View Pricing
-              </a>
-              <a className="btn" href="#leadtypes" onClick={(e)=>{e.preventDefault(); setActive("lead-types");}}>
+              </button>
+              <button className="ghost" onClick={() => setActive("lead-types")}>
                 See Lead Types
-              </a>
+              </button>
             </div>
 
-            {/* Rules box (includes 20% line) */}
+            {/* RULES (with your new lines) */}
             <div className="card" style={{ marginTop: 22 }}>
               <h3>Rules to Running the Appointments</h3>
-              <ul style={{ marginTop: 10 }}>
+              <ul>
                 <li>Do not call the leads ahead of time before you go.</li>
                 <li>
-                  Bad leads must be returned within 2 days — <strong>otherwise you will receive
-                  20% extra only</strong>.
+                  Bad leads must be returned within 2 days — <strong>otherwise you will receive 20% extra only.</strong>
                 </li>
                 <li>
-                  Give us ZIP codes you know were hit with a storm and let us know how many
-                  appointments you can handle per day.
+                  Give us ZIP codes you know were hit with a storm and let us know how many appointments you can handle per day.
                 </li>
-                <li>We get you on the roof in the ZIP codes you want — <strong>you close the deal.</strong></li>
+                <li>
+                  We get you on the roof, in front of the owner — <strong>you close the deal.</strong>
+                </li>
               </ul>
             </div>
           </section>
         )}
 
-        {/* Lead Types */}
+        {/* LEAD TYPES */}
         {active === "lead-types" && (
-          <section className="panel" id="leadtypes">
-            <h2>Storm Lead Types</h2>
-            <div className="grid" style={{ marginTop: 12 }}>
-              <div className="col-4">
-                <div className="card">
-                  <img src={hailImg} alt="Hail" style={{ width: "100%", borderRadius: 12, marginBottom: 10 }} />
-                  <h3>Hail</h3>
-                  <p>Targeted hail zones by ZIP with optional roof-age filters and routing.</p>
-                </div>
-              </div>
-              <div className="col-4">
-                <div className="card">
-                  <img src={windImg} alt="Wind" style={{ width: "100%", borderRadius: 12, marginBottom: 10 }} />
-                  <h3>Wind</h3>
-                  <p>Wind-event targeting with ZIP focus and fast appointment setting.</p>
-                </div>
-              </div>
-              <div className="col-4">
-                <div className="card">
-                  <img src={tornadoImg} alt="Tornado/Hurricanes" style={{ width: "100%", borderRadius: 12, marginBottom: 10 }} />
-                  <h3>Tornado / Hurricanes</h3>
-                  <p>Major-event areas with owner-present routing and no-resold leads.</p>
-                </div>
-              </div>
+          <section className="panel grid reveal">
+            <div className="col">
+              <img src={hailing} alt="Hail" className="section-logo" />
+              <h3>Hail</h3>
+              <p>Targeted hail zones by ZIP with optional roof-age filters.</p>
+            </div>
+            <div className="col">
+              <img src={windImg} alt="Wind" className="section-logo" />
+              <h3>Wind</h3>
+              <p>High-wind corridors and swaths routed to your team.</p>
+            </div>
+            <div className="col">
+              <img src={tornadoImg} alt="Tornado/Hurricane" className="section-logo" />
+              <h3>Tornado / Hurricane</h3>
+              <p>Surge zones post-event with fast appointment windows.</p>
             </div>
           </section>
         )}
 
-        {/* Pricing */}
+        {/* PRICING */}
         {active === "pricing" && (
-          <section className="panel" id="pricing">
-            <h2>1st-Time Customer Trial Package</h2>
-            <div className="card" style={{ marginTop: 12, marginBottom: 18 }}>
-              <p style={{ fontSize: 18 }}>
-                <strong>10 Lead Trial — $1,000</strong>
-              </p>
-              <p style={{ marginTop: 6 }}>Try us once and scale from there.</p>
-              <div style={{ marginTop: 12 }}>
-                <a className="btn" href={SQUARE_LINK} target="_blank" rel="noreferrer">Start Trial</a>
-              </div>
+          <section className="panel reveal">
+            <div className="card">
+              <h3>1st-Time Customer Trial Package</h3>
+              <p><strong>10 Lead Trial — $1,000</strong></p>
+              <a href={SQUARE_LINK} target="_blank" rel="noreferrer" className="cta">Start Trial</a>
             </div>
 
-            <h2>Residential Lead Packages</h2>
-            <div className="card" style={{ marginTop: 12 }}>
-              <div className="price-row"><span>25 leads</span>  <span className="price-muted">$120/lead — $3,000</span></div>
-              <div className="price-row"><span>50 leads</span>  <span className="price-muted">$115/lead — $5,750</span></div>
-              <div className="price-row"><span>100 leads</span> <span className="price-muted">$110/lead — $11,000</span></div>
-              <div className="price-row"><span>200 leads</span> <span className="price-muted">$105/lead — $21,000</span></div>
-              <div style={{ marginTop: 10, color: "#9fb3ff" }}>
-                Filters: 5+ yr roofs +$10/lead • 8+ yr roofs +$25/lead
+            <div className="grid" style={{ marginTop: 16 }}>
+              <div className="col">
+                <h3>Residential Lead Packages</h3>
+                <ul className="price-list">
+                  <li><span>25 leads</span><span>$120/lead — $3,000</span></li>
+                  <li><span>50 leads</span><span>$115/lead — $5,750</span></li>
+                  <li><span>100 leads</span><span>$110/lead — $11,000</span></li>
+                  <li><span>200 leads</span><span>$105/lead — $21,000</span></li>
+                </ul>
+                <div className="muted">Filters: 5+ yr roofs +$10/lead • 8+ yr roofs +$25/lead</div>
               </div>
             </div>
           </section>
         )}
 
-        {/* Testimonials */}
+        {/* TESTIMONIALS */}
         {active === "testimonials" && (
-          <section className="panel">
-            <h2>Testimonials</h2>
-            <div className="card" style={{ marginTop: 12 }}>
-              <p>
-                “Real storm homeowners, and the roof-age filter saved us time on site.”
-                <br /><span style={{ color: "#ffd166" }}>— A. M., Project Manager</span>
-              </p>
-            </div>
+          <section className="panel reveal">
+            <h3>Real results, real roofs.</h3>
+            <p>“No fluff. Real storm homeowners, and the roof-age filter saved us time on site.”</p>
+            <span className="muted">— A. M., Project Manager</span>
           </section>
         )}
 
-        {/* Contact */}
+        {/* CONTACT */}
         {active === "contact" && (
-          <section className="panel">
-            <h2>Contact / Next Steps</h2>
-            <div className="grid" style={{ marginTop: 12 }}>
-              <div className="col-6">
-                <div className="card">
-                  <strong>Phone:</strong> 833-9MACHIN (622-446)
-                  <br />
-                  <strong>Email:</strong> <a href="mailto:stormleadmachine@gmail.com">stormleadmachine@gmail.com</a>
-                  <br />
-                  <a className="btn" href={SQUARE_LINK} target="_blank" rel="noreferrer" style={{ marginTop: 10 }}>
-                    Get Leads Now
-                  </a>
-                </div>
+          <section className="panel reveal">
+            <img className="section-logo" src={logo} alt="" />
+            <div className="frow">
+              <div>
+                <strong>Phone:</strong> 833-9MACHIN (622-446)
               </div>
-              <div className="col-6">
-                <div className="card">
-                  <ul style={{ margin: 0 }}>
-                    <li>ZIP-level control with optional roof-age filters.</li>
-                    <li>No gimmicks, no resold leads.</li>
-                    <li>Event-driven targeting across hail, wind, tornado & hurricane zones.</li>
-                  </ul>
-                </div>
+              <div>
+                <strong>Email:</strong> <a href="mailto:stormleadmachine@gmail.com">stormleadmachine@gmail.com</a>
               </div>
             </div>
+            <a className="cta" href={SQUARE_LINK} target="_blank" rel="noreferrer">Get Leads Now</a>
+            <p className="muted" style={{ marginTop: 8 }}>
+              After checkout, we confirm your ZIP filters and launch your campaign.
+            </p>
           </section>
         )}
       </main>
 
-      {/* build tag so we can confirm the live version */}
-      <div className="build-tag">
-        build: SKYBG-v7 • {new Date().toISOString()}
+      {/* tiny build tag so we can confirm the live version */}
+      <div
+        style={{
+          position: "fixed",
+          bottom: 8,
+          right: 10,
+          fontSize: 11,
+          opacity: 0.8,
+          color: "#b6c0ff",
+          padding: "4px 8px",
+          borderRadius: 8,
+          border: "1px solid #ffffff22",
+          zIndex: 20,
+          background: "rgba(12,18,40,.6)",
+        }}
+      >
+        build: SKYBG-v8 • {new Date().toISOString()}
       </div>
     </div>
   );
 }
-<div className={`bg-layer vignette ${showA ? "show" : ""}`} style={{ backgroundImage: `url(${bgA})` }} />
-<div className={`bg-layer vignette ${!showA ? "show" : ""}`} style={{ backgroundImage: `url(${bgB})` }} />
