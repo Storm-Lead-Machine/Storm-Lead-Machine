@@ -25,6 +25,7 @@ export default function Home() {
 
   const [active, setActive] = useState("overview");
 
+  
   // pool of sky backgrounds
   const skies = useMemo(() => [sky1, sky2, sky3, sky4, sky5], []);
   const pickSky = () => skies[Math.floor(Math.random() * skies.length)];
