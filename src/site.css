@@ -25,11 +25,16 @@ body {
 .hero {
   position: relative;
   min-height: 68vh;
-  background-image: url("/hail-leads.jpg"); /* file already in /public */
+  background-image: url("/hail-leads.jpg");
   background-size: cover;
   background-position: center;
   border-bottom: 1px solid #1f2937;
 }
+
+.bg-hail::before { background-image: url("/hail-damage.jpg"); }
+.bg-wind::before { background-image: url("/wind-damage.jpg"); }
+.bg-tornado::before { background-image: url("/tornado-damage.jpg"); }
+
 .hero__overlay {
   backdrop-filter: saturate(120%) brightness(95%);
   background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.65));
