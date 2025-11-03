@@ -1,88 +1,77 @@
-/* ---------- Base ---------- */
 :root {
-  --bg-dark: #0b0f14;
-  --text: #e6edf3;
-  --muted: #b7c1cc;
-  --ring: rgba(255,255,255,.2);
-  --brand: #ff3333;
+  --bg-dark:#0b0f14; --text:#e6edf3; --muted:#b7c1cc; --ring:rgba(255,255,255,.2);
+  --brand:#ff3333;
+}
+*{box-sizing:border-box} html,body,#root{height:100%}
+body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;background:var(--bg-dark);color:var(--text)}
+
+/* ===== HEADER ===== */
+.site-header{
+  position:sticky; top:0; z-index:40; display:flex; align-items:center; justify-content:space-between;
+  gap:16px; padding:10px 18px; backdrop-filter:saturate(130%) blur(4px);
+  background:linear-gradient(180deg,rgba(0,0,0,.65),rgba(0,0,0,.35));
+  border-bottom:1px solid #1f2937;
+}
+.brand{display:flex; align-items:center; gap:12px; color:var(--text); text-decoration:none; font-weight:800}
+.brand img{height:56px; width:auto; border-radius:8px; box-shadow:0 6px 16px rgba(0,0,0,.35)}
+.brand span{font-size:20px; letter-spacing:.2px}
+.main-nav{display:flex; align-items:center; gap:14px}
+.main-nav a{color:var(--text); text-decoration:none; opacity:.85; padding:8px 10px; border-radius:10px}
+.main-nav a.active{outline:2px solid var(--ring); background:#0f172a}
+.btn{display:inline-block; padding:12px 18px; border-radius:14px; font-weight:800; border:1px solid transparent; text-decoration:none; transition:transform .12s, box-shadow .12s}
+.btn:hover{transform:translateY(-1px); box-shadow:0 10px 28px rgba(0,0,0,.28)}
+.btn.cta{background:linear-gradient(90deg,var(--brand),#ff7a00); color:#fff}
+.btn.outline{border-color:var(--ring); color:var(--text)}
+.btn.small{padding:8px 12px}
+
+/* ===== APP BG (per page) ===== */
+.app{
+  background-size:cover; background-position:center; background-attachment:fixed;
+  min-height:100vh;
 }
 
-* { box-sizing: border-box; }
-html, body, #root { height: 100%; }
-body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial; background: var(--bg-dark); color: var(--text); }
-.slm-root { display: flex; flex-direction: column; gap: 48px; }
+/* ===== HERO with motion ===== */
+.hero{position:relative; min-height:58vh; display:grid; place-items:center; text-align:center}
+.hero__overlay{position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,.65))}
+.hero__content{position:relative; z-index:1; padding:48px 16px 36px}
+.hero__content h1{font-size:clamp(36px,6.8vw,68px); margin:0}
+.hero__content p{color:var(--muted); margin:10px 0 16px}
+.hero__buttons{display:flex; gap:10px; flex-wrap:wrap; justify-content:center}
 
-/* ---------- HERO ---------- */
-.hero {
-  position: relative;
-  min-height: 60vh;
-  background-image: url("/hail-leads.jpg"); /* default banner */
-  background-size: cover;
-  background-position: center;
-  border-bottom: 1px solid #1f2937;
+/* ===== PAGE LAYOUT ===== */
+.page{width:min(1100px,94%); margin:20px auto 60px; position:relative; z-index:1}
+
+/* ===== CARDS / GRIDS ===== */
+.grid-3{display:grid; gap:16px; grid-template-columns:1fr}
+@media(min-width:900px){.grid-3{grid-template-columns:repeat(3,1fr)}}
+.card{
+  position:relative; min-height:240px; border-radius:18px; overflow:hidden;
+  background:#0f172a; background-size:cover; background-position:center;
+  border:1px solid #1f2937; transform:translateZ(0); transition:transform .25s ease, box-shadow .25s ease;
 }
-.hero__overlay { width: 100%; height: 100%; background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.65)); backdrop-filter: saturate(120%) brightness(95%); }
-.nav { display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; gap: 16px; }
-.brand { display: flex; align-items: center; gap: 12px; font-weight: 700; }
-.brand img { height: 38px; width: auto; filter: drop-shadow(0 2px 8px rgba(0,0,0,.5)); }
-.contact a { color: var(--text); text-decoration: none; margin-left: 16px; opacity: .9; }
-.contact a:hover { text-decoration: underline; }
-.hero__content { text-align: center; padding: 56px 20px 72px; display: grid; place-items: center; gap: 12px; }
-.hero__content h1 { font-size: clamp(34px, 6.5vw, 60px); margin: 0; }
-.hero__content p { color: var(--muted); margin: 4px 0 14px; }
+.card:hover{transform:translateY(-4px) scale(1.02); box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.card__shade{position:absolute; inset:0; display:grid; align-content:end; padding:16px; background:linear-gradient(180deg,rgba(0,0,0,0) 35%, rgba(0,0,0,.70) 100%)}
+.card__shade h3{margin:0 0 6px}
 
-/* ---------- Buttons ---------- */
-.btn { display: inline-block; padding: 12px 20px; border-radius: 14px; font-weight: 700; text-decoration: none; border: 1px solid transparent; transition: transform .12s ease, box-shadow .12s ease; }
-.btn:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,0,0,.25); }
-.btn.cta { background: linear-gradient(90deg, var(--brand), #ff7a00); color: #fff; }
-.btn.outline { border-color: var(--ring); color: var(--text); }
+/* ===== PRICING / RULES ===== */
+.price-col{background:rgba(15,23,42,.92); border:1px solid #1f2937; border-radius:18px; padding:16px; color:#cbd5e1}
+.rules h4{margin:0 0 8px}
+.rules ol{margin:0; padding-left:20px; display:grid; gap:10px; color:#cbd5e1}
+.rules-cta{margin-top:8px}
 
-/* ---------- Tabs ---------- */
-.tabs { position: relative; width: min(1100px, 94%); margin: 0 auto; display: grid; gap: 14px; }
-.tabs input[type="radio"] { display: none; }
-.tab-labels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; z-index: 2; }
-.tab-labels label { text-align: center; padding: 12px; cursor: pointer; border: 1px solid #1f2937; border-radius: 12px; background: #0f172a; color: #cbd5e1; font-weight: 600; }
-#tab1:checked ~ .tab-labels label[for="tab1"],
-#tab2:checked ~ .tab-labels label[for="tab2"],
-#tab3:checked ~ .tab-labels label[for="tab3"] { outline: 2px solid var(--ring); background: #111827; color: #fff; }
+/* ===== FOOTER ===== */
+.footer{text-align:center; color:#94a3b8; padding:20px 0 40px; border-top:1px solid #1f2937}
 
-/* Full-bleed background that changes per tab */
-.tabs-bg {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  background-size: cover;
-  background-position: center;
-  opacity: .25;             /* subtle behind cards */
-  transition: background-image .25s ease-in-out, opacity .2s ease-in-out;
-  pointer-events: none;
-  filter: saturate(110%);
-}
-/* Per-tab backgrounds — use your sky images here */
-#tab1:checked ~ .tabs-bg { background-image: url("/hail-leads.jpg"); }      /* Types tab */
-#tab2:checked ~ .tabs-bg { background-image: url("/wind-damage.jpg"); }     /* Pricing tab */
-#tab3:checked ~ .tabs-bg { background-image: url("/tornado-damage.jpg"); }  /* Rules tab */
+/* ===== MOTION EFFECTS ===== */
+@keyframes rise{from{opacity:0; transform:translateY(12px)} to{opacity:1; transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0} to{opacity:1}}
+@keyframes pop{0%{transform:scale(.96); opacity:0} 100%{transform:scale(1); opacity:1}}
+.fx-rise{animation:rise .5s ease-out both}
+.fx-fade{animation:fadeIn .6s .1s ease-out both}
+.fx-pop{animation:pop .35s .12s ease-out both}
 
-/* Panels */
-.tab.panel { position: relative; z-index: 1; display: none; border: 1px solid #1f2937; border-radius: 16px; padding: 16px; background: rgba(11,18,32,.9); backdrop-filter: blur(2px); }
-#tab1:checked ~ .panel--types,
-#tab2:checked ~ .panel--pricing,
-#tab3:checked ~ .panel--rules { display: grid; }
+/* subtle entrance on scroll */
+.reveal{animation:fadeIn .6s ease-out both}
 
-.panel--types { grid-template-columns: 1fr; gap: 16px; }
-@media (min-width: 900px) { .panel--types { grid-template-columns: repeat(3, 1fr); } }
-
-/* Cards */
-.card { position: relative; min-height: 240px; border-radius: 16px; overflow: hidden; border: 1px solid #1f2937; background: #0f172a; }
-.card__body { position: relative; z-index: 1; height: 100%; display: grid; align-content: end; padding: 16px; background: linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,.65) 100%); }
-.card__body h3 { margin: 0 0 6px; }
-.card__body p { margin: 0; color: #d1d5db; }
-
-/* Pricing */
-.panel--pricing { grid-template-columns: 1fr; gap: 16px; }
-@media (min-width: 900px) { .panel--pricing { grid-template-columns: repeat(3, 1fr); } }
-.price-col { background: #0f172a; border: 1px solid #1f2937; border-radius: 16px; padding: 16px; color: #cbd5e1; }
-
-/* Rules */
-.panel--rules { gap: 12px; }
-.panel--rules ol { margin: 0; padding-left: 20px; display: grid; g
+/* tiny parallax tilt illusion on hover */
+.parallax-tilt:hover{transform:perspective(800px) rotateX(2.2deg) rotateY(-2.2deg) scale(1.02)}
