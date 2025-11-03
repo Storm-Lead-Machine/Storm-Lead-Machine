@@ -1,148 +1,190 @@
-import React from "react";
-import "./site.css"; // lowercase on Vercel
+import React, { useState } from "react";
+import "./site.css";
+
+// === Image imports (keep these names; just drop files in src/assets) ===
+import roofBg from "./assets/roof-bg.jpg";              // hero background (shingles)
+import hailImg from "./assets/hail.jpg";                // hail card photo
+import windImg from "./assets/wind.jpg";                // wind card photo
+import tornadoImg from "./assets/tornado.jpg";          // tornado/hurricane card photo
+import logo from "./assets/storm-lead-machine-logo.png";// your logo (renders at 2 inches)
+
+// If you prefer using the public folder instead, comment the imports above and use:
+// const roofBg = "/images/roof-bg.jpg";
+// const hailImg = "/images/hail.jpg";
+// const windImg = "/images/wind.jpg";
+// const tornadoImg = "/images/tornado.jpg";
+// const logo = "/images/storm-lead-machine-logo.png";
 
 export default function Home() {
+  const [tab, setTab] = useState("leadTypes");
+
   return (
-    <main className="slm-root">
-      {/* HERO */}
-      <section className="hero">
-        <div className="hero__overlay">
-          <header className="nav">
-            <div className="brand">
-              <img
-                src="/Storm Lead Machine Logo.png"
-                alt="Storm Lead Machine"
-                onError={(e) => (e.currentTarget.style.display = "none")}
-              />
-              <span>Storm Lead Machine</span>
-            </div>
-            <div className="contact">
-              <a href="tel:+183369622446">833-9MACHIN (622446)</a>
-              <a href="mailto:stormleadmachine@gmail.com">stormleadmachine@gmail.com</a>
-            </div>
-          </header>
+    <div className="slm-page" style={{ backgroundImage: `url(${roofBg})` }}>
+      {/* Top Nav / Header */}
+      <header className="slm-header">
+        <div className="slm-header-left">
+          <img src={logo} alt="Storm Lead Machine" className="slm-logo" />
+          <span className="slm-brand">Storm Lead Machine</span>
+        </div>
 
-          <div className="hero__content">
-            <h1>Can’t Stop the Machine</h1>
-            <p>Exclusive storm-damage roofing leads. Hail • Wind • Tornado/Hurricane</p>
-            <a className="btn cta" href="https://square.link/u/RSfgAZHS" target="_blank" rel="noreferrer">
-              Get Leads Now
-            </a>
-          </div>
+        <nav className="slm-nav">
+          <button
+            className={`slm-tab ${tab === "leadTypes" ? "active" : ""}`}
+            onClick={() => setTab("leadTypes")}
+          >
+            Lead Types
+          </button>
+          <button
+            className={`slm-tab ${tab === "pricing" ? "active" : ""}`}
+            onClick={() => setTab("pricing")}
+          >
+            Pricing
+          </button>
+          <button
+            className={`slm-tab ${tab === "rules" ? "active" : ""}`}
+            onClick={() => setTab("rules")}
+          >
+            Rules
+          </button>
+          <a
+            className="slm-cta sm-hide"
+            href="https://square.link/u/RSfgAZHS"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Get Leads Now
+          </a>
+        </nav>
+      </header>
+
+      {/* Hero */}
+      <section className="slm-hero">
+        <h1>Dominate Storm Markets. On-Demand.</h1>
+        <p>
+          Exclusive storm leads where you want them — targeted by ZIP, roof-age filters, and fast routing.
+          We get you on the roof in front of the owner. <strong>You close it.</strong>
+        </p>
+        <div className="slm-hero-ctas">
+          <a className="slm-cta" href="https://square.link/u/RSfgAZHS" target="_blank" rel="noreferrer">
+            Get Leads Now
+          </a>
+          <button className="slm-ghost" onClick={() => setTab("pricing")}>View Pricing</button>
+          <button className="slm-ghost" onClick={() => setTab("leadTypes")}>See Lead Types</button>
+        </div>
+
+        {/* 20% over-delivery ribbon */}
+        <div className="slm-ribbon">
+          We automatically over-deliver by <strong>+20%</strong> on every order to cover returns/replacements.
         </div>
       </section>
 
-      {/* TABS */}
-      <section className="tabs">
-        {/* Radios control background + content */}
-        <input type="radio" name="tab" id="tab1" defaultChecked />
-        <input type="radio" name="tab" id="tab2" />
-        <input type="radio" name="tab" id="tab3" />
+      {/* Content Switcher */}
+      <main className="slm-content">
+        {tab === "leadTypes" && <LeadTypes />}
+        {tab === "pricing" && <Pricing />}
+        {tab === "rules" && <Rules />}
+      </main>
 
-        <div className="tab-labels">
-          <label htmlFor="tab1">Storm Lead Types</label>
-          <label htmlFor="tab2">Pricing</label>
-          <label htmlFor="tab3">Rules</label>
+      {/* Footer */}
+      <footer className="slm-footer">
+        <div>© {new Date().getFullYear()} Storm Lead Machine</div>
+        <div>
+          <a href="mailto:stormleadmachine@gmail.com">stormleadmachine@gmail.com</a>
+          {"  ·  "}
+          <a href="tel:+183369622446">833-9MACHIN (622446)</a>
         </div>
-
-        {/* Full-bleed sky background that changes per tab */}
-        <div className="tabs-bg" aria-hidden="true" />
-
-        {/* TAB 1: TYPES */}
-        <div className="tab panel panel--types">
-          <div
-            className="card"
-            style={{
-              backgroundImage: 'url("/hail-damage.jpg")',
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          >
-            <div className="card__body">
-              <h3>Hail</h3>
-              <p>Targeted hail zones by ZIP with roof-age filters.</p>
-            </div>
-          </div>
-
-          <div
-            className="card"
-            style={{
-              backgroundImage: 'url("/wind-damage.jpg")',
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          >
-            <div className="card__body">
-              <h3>Wind</h3>
-              <p>Fresh wind swaths with high-intent homeowners.</p>
-            </div>
-          </div>
-
-          <div
-            className="card"
-            style={{
-              backgroundImage: 'url("/tornado-damage.jpg")',
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          >
-            <div className="card__body">
-              <h3>Tornado / Hurricanes</h3>
-              <p>ZIP-precise disaster coverage for fast deployment and scale.</p>
-            </div>
-          </div>
-        </div>
-
-        {/* TAB 2: PRICING */}
-        <div className="tab panel panel--pricing" id="pricing">
-          <div className="price-col">
-            <h4>Residential Leads</h4>
-            <ul>
-              <li><b>25</b> leads — <b>$120</b>/lead — $3,000</li>
-              <li><b>50</b> leads — <b>$115</b>/lead — $5,750</li>
-              <li><b>100</b> leads — <b>$110</b>/lead — $11,000</li>
-              <li><b>200</b> leads — <b>$105</b>/lead — $21,000</li>
-            </ul>
-          </div>
-          <div className="price-col">
-            <h4>Commercial Leads</h4>
-            <ul>
-              <li><b>5</b> leads — <b>$300</b>/lead — $1,500</li>
-              <li><b>20</b> leads — <b>$290</b>/lead — $5,800</li>
-              <li><b>30</b> leads — <b>$285</b>/lead — $8,550</li>
-              <li><b>50</b> leads — <b>$275</b>/lead — $13,750</li>
-            </ul>
-          </div>
-          <div className="price-col">
-            <h4>Filters</h4>
-            <ul>
-              <li>5+ yr roofs: <b>$10</b> more per lead</li>
-              <li>8+ yr roofs: <b>$25</b> more per lead</li>
-            </ul>
-            <a className="btn outline" href="https://square.link/u/RSfgAZHS" target="_blank" rel="noreferrer">
-              Start with Trial Package
-            </a>
-          </div>
-        </div>
-
-        {/* TAB 3: RULES with your exact wording */}
-        <div className="tab panel panel--rules" id="rules">
-          <ol>
-            <li><b>Do not call the leads ahead of time</b> before you go.</li>
-            <li><b>Bad leads must be returned within 2 days to receive credit; otherwise we automatically give 20% extra to help make up for bad leads.</b></li>
-            <li>We get you on the roof in front of the owner in the ZIP codes you want — <b>you close the deal</b>.</li>
-          </ol>
-          <div className="rules-cta">
-            <a className="btn cta" href="https://square.link/u/RSfgAZHS" target="_blank" rel="noreferrer">
-              Get Leads Now
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <footer className="footer">
-        <p>© {new Date().getFullYear()} Storm Lead Machine • <a href="mailto:stormleadmachine@gmail.com">stormleadmachine@gmail.com</a> • <a href="tel:+183369622446">833-9MACHIN</a></p>
       </footer>
-    </main>
+    </div>
+  );
+}
+
+function LeadTypes() {
+  return (
+    <section className="grid-cards">
+      {/* Hail */}
+      <article className="card">
+        <img src={hailImg} alt="Hail damage" className="card-img" />
+        <div className="card-body">
+          <h3>Hail</h3>
+          <p>Targeted hail zones by ZIP with roof-age filters.</p>
+        </div>
+      </article>
+
+      {/* Wind */}
+      <article className="card">
+        <img src={windImg} alt="Wind damage" className="card-img" />
+        <div className="card-body">
+          <h3>Wind</h3>
+          <p>Fresh wind swaths with high-intent homeowners.</p>
+        </div>
+      </article>
+
+      {/* Tornado / Hurricanes */}
+      <article className="card">
+        <img src={tornadoImg} alt="Tornado and hurricane damage" className="card-img" />
+        <div className="card-body">
+          <h3>Tornado / Hurricanes</h3>
+          <p>ZIP-precise disaster coverage for fast deployment and scale.</p>
+        </div>
+      </article>
+    </section>
+  );
+}
+
+function Pricing() {
+  return (
+    <section className="pricing">
+      <h2>Residential Leads</h2>
+      <div className="price-grid">
+        <PriceCard qty="25" price="$120" total="$3,000" />
+        <PriceCard qty="50" price="$115" total="$5,750" />
+        <PriceCard qty="100" price="$110" total="$11,000" />
+        <PriceCard qty="200" price="$105" total="$21,000" />
+      </div>
+
+      <h2>Commercial Leads</h2>
+      <div className="price-grid">
+        <PriceCard qty="5" price="$300" total="$1,500" />
+        <PriceCard qty="20" price="$290" total="$5,800" />
+        <PriceCard qty="30" price="$285" total="$8,550" />
+        <PriceCard qty="50" price="$275" total="$13,750" />
+      </div>
+
+      <h2>Filters</h2>
+      <ul className="filters">
+        <li>5+ yr old roofs: <strong>+ $10</strong> per lead</li>
+        <li>8+ yr old roofs: <strong>+ $25</strong> per lead</li>
+      </ul>
+
+      <div className="pricing-cta">
+        <a className="slm-cta" href="https://square.link/u/RSfgAZHS" target="_blank" rel="noreferrer">
+          Get Leads Now
+        </a>
+      </div>
+    </section>
+  );
+}
+
+function PriceCard({ qty, price, total }) {
+  return (
+    <div className="price-card">
+      <div className="price-qty">{qty} Leads</div>
+      <div className="price-each">{price} / lead</div>
+      <div className="price-total">{total}</div>
+    </div>
+  );
+}
+
+function Rules() {
+  return (
+    <section className="rules">
+      <h2>Rules to Run the Appointments</h2>
+      <ol>
+        <li><strong>Do not call leads ahead of time</strong> before you go.</li>
+        <li><strong>Bad leads must be returned within 2 days.</strong></li>
+        <li>We get you on the roof in the ZIPs you choose. <strong>You close it.</strong></li>
+        <li>Every order includes an automatic <strong>+20% over-delivery</strong> to cover returns.</li>
+      </ol>
+    </section>
   );
 }
