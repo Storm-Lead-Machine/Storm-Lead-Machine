@@ -9,8 +9,7 @@ export default function Home() {
         <div className="hero__overlay">
           <header className="nav">
             <div className="brand">
-              {/* If you have a logo file, drop it in /public/images/logo.png */}
-              <img src="/images/logo.png" alt="Storm Lead Machine" onError={(e)=>{e.currentTarget.style.display='none'}} />
+              <img src="/Storm Lead Machine Logo.png" alt="Storm Lead Machine" onError={(e)=>{e.currentTarget.style.display='none'}} />
               <span>Storm Lead Machine</span>
             </div>
             <div className="contact">
@@ -22,10 +21,40 @@ export default function Home() {
           <div className="hero__content">
             <h1>Can’t Stop the Machine</h1>
             <p>Exclusive storm-damage roofing leads. Hail • Wind • Tornado/Hurricane</p>
-            <a className="btn cta" href="https://square.link/u/RSfgAZHS" target="_blank" rel="noreferrer">Get leads now</a>
+            <a className="btn cta" href="https://square.link/u/RSfgAZHS" target="_blank" rel="noreferrer">
+              Get leads now
+            </a>
           </div>
         </div>
       </section>
+
+      {/* STORM TYPES */}
+      <section className="panel panel--types">
+        <div className="card bg-hail">
+          <div className="card__body">
+            <h3>Hail</h3>
+            <p>Targeted hail zones by ZIP with roof-age filters.</p>
+          </div>
+        </div>
+
+        <div className="card bg-wind">
+          <div className="card__body">
+            <h3>Wind</h3>
+            <p>Fresh wind swaths with high-intent homeowners.</p>
+          </div>
+        </div>
+
+        <div className="card bg-tornado">
+          <div className="card__body">
+            <h3>Tornado / Hurricanes</h3>
+            <p>ZIP-precise disaster coverage for fast deployment.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}
+
 
       {/* TABS */}
       <section className="tabs">
