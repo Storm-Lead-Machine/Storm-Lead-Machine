@@ -1,15 +1,22 @@
 import React from "react";
-import "./site.css"; // IMPORTANT: lowercase to match your file
+import "./site.css"; // lowercase (Vercel is case-sensitive)
 
 export default function Home() {
   return (
     <main className="slm-root">
-      {/* HERO with background from /hail-leads.jpg */}
-      <section className="hero">
+      {/* HERO — inline background so it cannot be lost */}
+      <section
+        className="hero"
+        style={{
+          backgroundImage: 'url("/hail-leads.jpg")',
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
         <div className="hero__overlay">
           <header className="nav">
             <div className="brand">
-              {/* If this logo path 404s it will hide itself */}
               <img
                 src="/Storm Lead Machine Logo.png"
                 alt="Storm Lead Machine"
@@ -40,24 +47,45 @@ export default function Home() {
         </div>
       </section>
 
-      {/* STORM LEAD TYPES (background cards) */}
+      {/* STORM LEAD TYPES — inline backgrounds on each card */}
       <section id="types" className="panel panel--types">
-        <div className="card bg-hail">
-          <div className="card__body">
+        <div
+          className="card bg-hail"
+          style={{
+            backgroundImage: 'url("/hail-damage.jpg")',
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <div className="card__body" style={{ background: "linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,.65) 100%)" }}>
             <h3>Hail</h3>
             <p>Targeted hail zones by ZIP with roof-age filters.</p>
           </div>
         </div>
 
-        <div className="card bg-wind">
-          <div className="card__body">
+        <div
+          className="card bg-wind"
+          style={{
+            backgroundImage: 'url("/wind-damage.jpg")',
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <div className="card__body" style={{ background: "linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,.65) 100%)" }}>
             <h3>Wind</h3>
             <p>Fresh wind swaths with high-intent homeowners.</p>
           </div>
         </div>
 
-        <div className="card bg-tornado">
-          <div className="card__body">
+        <div
+          className="card bg-tornado"
+          style={{
+            backgroundImage: 'url("/tornado-damage.jpg")',
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <div className="card__body" style={{ background: "linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,.65) 100%)" }}>
             <h3>Tornado / Hurricanes</h3>
             <p>ZIP-precise disaster coverage for fast deployment and scale.</p>
           </div>
@@ -96,7 +124,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* RULES (includes 20% note) */}
+      {/* RULES — includes 20% note */}
       <section id="rules" className="panel panel--rules">
         <h4>Rules to Running the Appointments</h4>
         <ol>
@@ -111,7 +139,11 @@ export default function Home() {
       </section>
 
       <footer className="footer">
-        <p>© {new Date().getFullYear()} Storm Lead Machine • <a href="mailto:stormleadmachine@gmail.com">stormleadmachine@gmail.com</a> • <a href="tel:+183369622446">833-9MACHIN</a></p>
+        <p>
+          © {new Date().getFullYear()} Storm Lead Machine •{" "}
+          <a href="mailto:stormleadmachine@gmail.com">stormleadmachine@gmail.com</a> •{" "}
+          <a href="tel:+183369622446">833-9MACHIN</a>
+        </p>
       </footer>
     </main>
   );
