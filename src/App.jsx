@@ -5,6 +5,7 @@ import "./site.css";
 import Types from "./pages/Types.jsx";
 import Pricing from "./pages/Pricing.jsx";
 import Rules from "./pages/Rules.jsx";
+import Contact from "./pages/Contact.jsx";
 
 function useHashRoute() {
   const getRoute = () => (window.location.hash.replace("#", "") || "/types");
@@ -20,14 +21,25 @@ function useHashRoute() {
 export default function App() {
   const route = useHashRoute();
 
-  // pick page + background
+  // Page + background (first is your SKY photo, second is your current fallback)
   let Page = Types;
-  let bg = '/hail-leads.jpg';
-  if (route.startsWith("/pricing")) { Page = Pricing; bg = "/wind-damage.jpg"; }
-  if (route.startsWith("/rules")) { Page = Rules; bg = "/tornado-damage.jpg"; }
+  let bg = 'url("/sky-types.jpg"), url("/hail-leads.jpg")';
+
+  if (route.startsWith("/pricing")) {
+    Page = Pricing;
+    bg = 'url("/sky-pricing.jpg"), url("/wind-damage.jpg")';
+  }
+  if (route.startsWith("/rules")) {
+    Page = Rules;
+    bg = 'url("/sky-rules.jpg"), url("/tornado-damage.jpg")';
+  }
+  if (route.startsWith("/contact")) {
+    Page = Contact;
+    bg = 'url("/sky-contact.jpg"), url("/hail-leads.jpg")';
+  }
 
   return (
-    <div className="app" style={{ backgroundImage: `url("${bg}")` }}>
+    <div className="app" style={{ backgroundImage: bg }}>
       <header className="site-header">
         <a className="brand" href="#/types">
           <img
@@ -38,14 +50,14 @@ export default function App() {
           <span>Storm Lead Machine</span>
         </a>
         <nav className="main-nav">
-          <a href="#/types" className={route.startsWith("/types") ? "active" : ""}>Lead Types</a>
+          <a href="#/types"   className={route.startsWith("/types")   ? "active" : ""}>Lead Types</a>
           <a href="#/pricing" className={route.startsWith("/pricing") ? "active" : ""}>Pricing</a>
-          <a href="#/rules" className={route.startsWith("/rules") ? "active" : ""}>Rules</a>
+          <a href="#/rules"   className={route.startsWith("/rules")   ? "active" : ""}>Rules</a>
+          <a href="#/contact" className={route.startsWith("/contact") ? "active" : ""}>Contact</a>
           <a className="btn cta small" href="https://square.link/u/RSfgAZHS" target="_blank" rel="noreferrer">Get Leads Now</a>
         </nav>
       </header>
 
-      {/* Hero with motion */}
       <section className="hero">
         <div className="hero__overlay" />
         <div className="hero__content">
@@ -62,13 +74,12 @@ export default function App() {
         </div>
       </section>
 
-      {/* Page body */}
-      <main className="page">
-        <Page />
-      </main>
+      <main className="page"><Page /></main>
 
       <footer className="footer">
-        © {new Date().getFullYear()} Storm Lead Machine • <a href="mailto:stormleadmachine@gmail.com">stormleadmachine@gmail.com</a> • <a href="tel:+183369622446">833-9MACHIN</a>
+        © {new Date().getFullYear()} Storm Lead Machine •{" "}
+        <a href="mailto:stormleadmachine@gmail.com">stormleadmachine@gmail.com</a> •{" "}
+        <a href="tel:+183369622446">833-9MACHIN</a>
       </footer>
     </div>
   );
