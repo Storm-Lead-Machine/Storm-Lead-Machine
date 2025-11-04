@@ -1,34 +1,35 @@
 import React, { useMemo, useState } from "react";
 import "./site.css";
 
-
 export default function Home() {
   const [tab, setTab] = useState("leadTypes");
-
-  // Public-root images: /sky1.jpg ... /sky5.jpg
-  const bgMap = useMemo(
-    () => ({
-      leadTypes: "/sky1.jpg",
-      pricing: "/sky2.jpg",
-      rules: "/sky3.jpg",
-      contact: "/sky4.jpg",
-    }),
-    []
-  );
+  const bgMap = useMemo(() => ({
+    leadTypes: "/sky1.jpg",
+    pricing:   "/sky2.jpg",
+    rules:     "/sky3.jpg",
+    contact:   "/sky4.jpg",
+  }), []);
   const bgUrl = bgMap[tab] || "/sky5.jpg";
 
   return (
     <div className="slm-page" style={{ backgroundImage: `url(${bgUrl})` }}>
-      {/* Header */}
       <header className="slm-header">
         <div className="slm-header-left">
-          <img
-            src="/Storm%20Lead%20Machine%20Logo.png"
-            alt="Storm Lead Machine"
-            className="slm-logo"
-          />
+          <img src="/Storm%20Lead%20Machine%20Logo.png" className="slm-logo" alt="Storm Lead Machine" />
           <span className="slm-brand">Storm Lead Machine</span>
         </div>
+        <nav className="slm-nav">
+          <button className={`slm-tab ${tab==="leadTypes"?"active":""}`} onClick={() => setTab("leadTypes")}>Lead Types</button>
+          <button className={`slm-tab ${tab==="pricing"?"active":""}`} onClick={() => setTab("pricing")}>Pricing</button>
+          <button className={`slm-tab ${tab==="rules"?"active":""}`} onClick={() => setTab("rules")}>Rules</button>
+          <button className={`slm-tab ${tab==="contact"?"active":""}`} onClick={() => setTab("contact")}>Contact</button>
+        </nav>
+      </header>
+      {/* ... your existing hero + cards content unchanged ... */}
+    </div>
+  );
+}
+
 
         <nav className="slm-nav">
           <button
