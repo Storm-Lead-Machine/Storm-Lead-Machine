@@ -7,16 +7,16 @@ export default function Home() {
 
   
   // Map a different background image per page
-  const bgMap = useMemo(
-    () => ({
-      leadTypes: "/sky1.jpg",
-      pricing: "/sky2.jpg",
-      rules: "/sky3.jpg",
-      contact: "/sky4.jpg",
-      const bgUrl = bgMap[tab] || "/sky5.jpg";
+const bgMap = {
+  leadTypes: "/sky1.jpg",
+  pricing:   "/sky2.jpg",
+  rules:     "/sky3.jpg",
+  contact:   "/sky4.jpg",
+};
+const bgUrl = bgMap[tab] || "/sky5.jpg";
 
-return (
-  <div className="slm-page" style={{ backgroundImage: `url(${bgUrl})` }}>
+<div className="slm-page" style={{ backgroundImage: `url(${bgUrl})` }}>
+  <img src="/Storm%20Lead%20Machine%20Logo.png" className="slm-logo" alt="Storm Lead Machine" />
 
     }),
     []
