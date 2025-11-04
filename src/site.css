@@ -8,12 +8,12 @@
 }
 
 /* Page background (set per-tab inline) */
-.slm-page{
-  min-height:100dvh;
-  background-size:cover;
-  background-position:center;
-  background-attachment:fixed;
-  color:var(--text);
+.slm-page {
+  min-height: 100dvh;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: var(--text);
 }
 
 /* Header / Nav */
