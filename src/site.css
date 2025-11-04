@@ -30,6 +30,8 @@
 .slm-logo{
   width:2in;              /* EXACT 2 inches */
   height:auto; object-fit:contain;
+  .slm-logo { width: 2in; height: auto; object-fit: contain; }
+
 }
 
 .slm-brand{ font-weight:700; letter-spacing:.2px; opacity:.9; }
