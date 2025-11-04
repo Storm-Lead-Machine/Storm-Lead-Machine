@@ -2,20 +2,14 @@ import React from "react";
 
 export default function Rules() {
   return (
-    <section className="rules reveal">
-      <h4>Rules to Running the Appointments</h4>
+    <section className="rules">
+      <h2>Rules to Run the Appointments</h2>
       <ol>
-        <li><b>Do not call the leads ahead of time</b> before you go.</li>
-        <li>
-          <b>Bad leads must be returned within 2 days to receive credit; otherwise we automatically give 20% extra to help make up for bad leads.</b>
-        </li>
-        <li>
-          We get you on the roof in front of the owner in the ZIP codes you want — <b>you close the deal</b>.
-        </li>
+        <li><strong>Do not call leads ahead of time</strong> before you go.</li>
+        <li><strong>Bad leads must be returned within 2 days.</strong></li>
+        <li>We get you on the roof in the ZIPs you choose. <strong>You close it.</strong></li>
+        <li>Every order includes an automatic <strong>+20% over-delivery</strong> to cover returns.</li>
       </ol>
-      <div className="rules-cta">
-        <a className="btn cta" href="https://square.link/u/RSfgAZHS" target="_blank" rel="noreferrer">Get Leads Now</a>
-      </div>
     </section>
   );
 }
