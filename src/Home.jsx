@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from "react";
 import "./site.css";
 
+
 export default function Home() {
   // Tabs: leadTypes, pricing, rules, contact
   const [tab, setTab] = useState("leadTypes");
