@@ -27,9 +27,7 @@ export default function Home() {
       <header className="slm-header">
         <div className="slm-header-left">
           <img
-            src="/images/storm-lead-machine-logo.png"
-            alt="Storm Lead Machine"
-            className="slm-logo"
+            <img src="/Storm%20Lead%20Machine%20Logo.png" className="slm-logo" />
             .slm-logo { width: 2in; height: auto; object-fit: contain; }
 
           />
