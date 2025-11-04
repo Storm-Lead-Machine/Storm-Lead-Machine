@@ -1,10 +1,10 @@
-import React, { useState, useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import "./site.css";
 
 export default function Home() {
   const [tab, setTab] = useState("leadTypes");
 
-  // Map a different background image per tab
+  // Public-root images: /sky1.jpg ... /sky5.jpg
   const bgMap = useMemo(
     () => ({
       leadTypes: "/sky1.jpg",
@@ -14,12 +14,11 @@ export default function Home() {
     }),
     []
   );
-
   const bgUrl = bgMap[tab] || "/sky5.jpg";
 
   return (
     <div className="slm-page" style={{ backgroundImage: `url(${bgUrl})` }}>
-      {/* HEADER */}
+      {/* Header */}
       <header className="slm-header">
         <div className="slm-header-left">
           <img
@@ -32,57 +31,58 @@ export default function Home() {
 
         <nav className="slm-nav">
           <button
-            className={tab === "leadTypes" ? "slm-tab active" : "slm-tab"}
+            className={`slm-tab ${tab === "leadTypes" ? "active" : ""}`}
             onClick={() => setTab("leadTypes")}
           >
             Lead Types
           </button>
           <button
-            className={tab === "pricing" ? "slm-tab active" : "slm-tab"}
+            className={`slm-tab ${tab === "pricing" ? "active" : ""}`}
             onClick={() => setTab("pricing")}
           >
             Pricing
           </button>
           <button
-            className={tab === "rules" ? "slm-tab active" : "slm-tab"}
+            className={`slm-tab ${tab === "rules" ? "active" : ""}`}
             onClick={() => setTab("rules")}
           >
             Rules
           </button>
           <button
-            className={tab === "contact" ? "slm-tab active" : "slm-tab"}
+            className={`slm-tab ${tab === "contact" ? "active" : ""}`}
             onClick={() => setTab("contact")}
           >
-            Get Leads Now
+            Contact
           </button>
         </nav>
       </header>
 
-      {/* HERO */}
-      <section className="hero">
-        <div className="hero-overlay"></div>
-        <div className="hero-content">
-          <h1>Dominate Storm Markets. On-Demand.</h1>
-          <p>
-            Exclusive storm leads where you want them — targeted by ZIP, roof-age filters, and fast routing. 
-            We get you on the roof in front of the owner. <strong>You close it.</strong>
-          </p>
-          <div className="hero-buttons">
-            <a href="#contact" className="btn-primary">
-              Get Leads Now
-            </a>
-            <a href="#pricing" className="btn-secondary">
-              View Pricing
-            </a>
-            <a href="#leadtypes" className="btn-secondary">
-              See Lead Types
-            </a>
-          </div>
+      {/* Hero */}
+      <section className="slm-hero">
+        <h1>Dominate Storm Markets. On-Demand.</h1>
+        <p>
+          Exclusive storm leads where you want them — targeted by ZIP, roof-age
+          filters, and fast routing. We get you on the roof in front of the
+          owner. <strong>You close it.</strong>
+        </p>
+        <div className="slm-hero-ctas">
+          <a className="slm-cta" href="https://square.link/u/RSfgAZHS" target="_blank" rel="noreferrer">
+            Get Leads Now
+          </a>
+          <button className="slm-ghost" onClick={() => setTab("pricing")}>
+            View Pricing
+          </button>
+          <button className="slm-ghost" onClick={() => setTab("leadTypes")}>
+            See Lead Types
+          </button>
+        </div>
+        <div className="slm-ribbon">
+          We automatically over-deliver by <strong>+20%</strong> on every order to cover returns/replacements.
         </div>
       </section>
 
-      {/* MAIN CONTENT */}
-      <main>
+      {/* Lead Types cards (kept same content) */}
+      <main className="slm-content">
         <section className="grid-cards">
           <article className="card">
             <img src="/hail-damage.jpg" alt="Hail damage" className="card-img" />
@@ -101,11 +101,7 @@ export default function Home() {
           </article>
 
           <article className="card">
-            <img
-              src="/tornado-damage.jpg"
-              alt="Tornado/Hurricane damage"
-              className="card-img"
-            />
+            <img src="/tornado-damage.jpg" alt="Tornado/Hurricane damage" className="card-img" />
             <div className="card-body">
               <h3>Tornado / Hurricanes</h3>
               <p>ZIP-precise disaster coverage for fast deployment and scale.</p>
@@ -114,13 +110,14 @@ export default function Home() {
         </section>
       </main>
 
-      {/* FOOTER */}
+      {/* Footer */}
       <footer className="slm-footer">
-        <p>
-          © 2025 Storm Lead Machine —{" "}
-          <a href="mailto:stormleadmachine@gmail.com">stormleadmachine@gmail.com</a>{" "}
-          — 833-9MACHIN
-        </p>
+        <div>© {new Date().getFullYear()} Storm Lead Machine</div>
+        <div>
+          <a href="mailto:stormleadmachine@gmail.com">stormleadmachine@gmail.com</a>
+          {"  ·  "}
+          <a href="tel:+183369622446">833-9MACHIN (622446)</a>
+        </div>
       </footer>
     </div>
   );
