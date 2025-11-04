@@ -2,37 +2,44 @@ import React from "react";
 
 export default function Pricing() {
   return (
-    <section className="grid-3 reveal">
-      <div className="price-col fx-pop">
-        <h4>Residential Leads</h4>
-        <ul>
-          <li><b>25</b> leads — <b>$120</b>/lead — $3,000</li>
-          <li><b>50</b> leads — <b>$115</b>/lead — $5,750</li>
-          <li><b>100</b> leads — <b>$110</b>/lead — $11,000</li>
-          <li><b>200</b> leads — <b>$105</b>/lead — $21,000</li>
-        </ul>
+    <section className="pricing">
+      <h2>Residential Leads</h2>
+      <div className="price-grid">
+        <PriceCard qty="25" price="$120" total="$3,000" />
+        <PriceCard qty="50" price="$115" total="$5,750" />
+        <PriceCard qty="100" price="$110" total="$11,000" />
+        <PriceCard qty="200" price="$105" total="$21,000" />
       </div>
 
-      <div className="price-col fx-pop" style={{animationDelay:'0.07s'}}>
-        <h4>Commercial Leads</h4>
-        <ul>
-          <li><b>5</b> leads — <b>$300</b>/lead — $1,500</li>
-          <li><b>20</b> leads — <b>$290</b>/lead — $5,800</li>
-          <li><b>30</b> leads — <b>$285</b>/lead — $8,550</li>
-          <li><b>50</b> leads — <b>$275</b>/lead — $13,750</li>
-        </ul>
+      <h2>Commercial Leads</h2>
+      <div className="price-grid">
+        <PriceCard qty="5" price="$300" total="$1,500" />
+        <PriceCard qty="20" price="$290" total="$5,800" />
+        <PriceCard qty="30" price="$285" total="$8,550" />
+        <PriceCard qty="50" price="$275" total="$13,750" />
       </div>
 
-      <div className="price-col fx-pop" style={{animationDelay:'0.14s'}}>
-        <h4>Filters</h4>
-        <ul>
-          <li>5+ yr roofs: <b>$10</b> more per lead</li>
-          <li>8+ yr roofs: <b>$25</b> more per lead</li>
-        </ul>
-        <a className="btn outline" href="https://square.link/u/RSfgAZHS" target="_blank" rel="noreferrer">
-          Start with Trial Package
+      <h2>Filters</h2>
+      <ul className="filters">
+        <li>5+ yr old roofs: <strong>+ $10</strong> per lead</li>
+        <li>8+ yr old roofs: <strong>+ $25</strong> per lead</li>
+      </ul>
+
+      <div className="pricing-cta">
+        <a className="slm-cta" href="https://square.link/u/RSfgAZHS" target="_blank" rel="noreferrer">
+          Get Leads Now
         </a>
       </div>
     </section>
+  );
+}
+
+function PriceCard({ qty, price, total }) {
+  return (
+    <div className="price-card">
+      <div className="price-qty">{qty} Leads</div>
+      <div className="price-each">{price} / lead</div>
+      <div className="price-total">{total}</div>
+    </div>
   );
 }
