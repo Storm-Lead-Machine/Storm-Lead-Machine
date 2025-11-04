@@ -1,29 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import "./site.css";
 
-// === Image imports (keep these names; just drop files in src/assets) ===
-import roofBg from "./assets/roof-bg.jpg";              // hero background (shingles)
-import hailImg from "./assets/hail.jpg";                // hail card photo
-import windImg from "./assets/wind.jpg";                // wind card photo
-import tornadoImg from "./assets/tornado.jpg";          // tornado/hurricane card photo
-import logo from "./assets/storm-lead-machine-logo.png";// your logo (renders at 2 inches)
-
-// If you prefer using the public folder instead, comment the imports above and use:
-// const roofBg = "/images/roof-bg.jpg";
-// const hailImg = "/images/hail.jpg";
-// const windImg = "/images/wind.jpg";
-// const tornadoImg = "/images/tornado.jpg";
-// const logo = "/images/storm-lead-machine-logo.png";
-
 export default function Home() {
+  // Tabs: leadTypes, pricing, rules, contact
   const [tab, setTab] = useState("leadTypes");
 
+  // Map a different background image per page
+  const bgMap = useMemo(
+    () => ({
+      leadTypes: "/images/sky1.jpg",
+      pricing: "/images/sky2.jpg",
+      rules: "/images/sky3.jpg",
+      contact: "/images/sky4.jpg",
+    }),
+    []
+  );
+
+  const bgUrl = bgMap[tab] || "/images/sky5.jpg";
+
   return (
-    <div className="slm-page" style={{ backgroundImage: `url(${roofBg})` }}>
-      {/* Top Nav / Header */}
+    <div className="slm-page" style={{ backgroundImage: `url('${bgUrl}')` }}>
+      {/* Header */}
       <header className="slm-header">
         <div className="slm-header-left">
-          <img src={logo} alt="Storm Lead Machine" className="slm-logo" />
+          <img
+            src="/images/storm-lead-machine-logo.png"
+            alt="Storm Lead Machine"
+            className="slm-logo"
+          />
           <span className="slm-brand">Storm Lead Machine</span>
         </div>
 
@@ -46,6 +50,13 @@ export default function Home() {
           >
             Rules
           </button>
+          <button
+            className={`slm-tab ${tab === "contact" ? "active" : ""}`}
+            onClick={() => setTab("contact")}
+          >
+            Contact
+          </button>
+
           <a
             className="slm-cta sm-hide"
             href="https://square.link/u/RSfgAZHS"
@@ -64,25 +75,36 @@ export default function Home() {
           Exclusive storm leads where you want them — targeted by ZIP, roof-age filters, and fast routing.
           We get you on the roof in front of the owner. <strong>You close it.</strong>
         </p>
+
         <div className="slm-hero-ctas">
-          <a className="slm-cta" href="https://square.link/u/RSfgAZHS" target="_blank" rel="noreferrer">
+          <a
+            className="slm-cta"
+            href="https://square.link/u/RSfgAZHS"
+            target="_blank"
+            rel="noreferrer"
+          >
             Get Leads Now
           </a>
-          <button className="slm-ghost" onClick={() => setTab("pricing")}>View Pricing</button>
-          <button className="slm-ghost" onClick={() => setTab("leadTypes")}>See Lead Types</button>
+          <button className="slm-ghost" onClick={() => setTab("pricing")}>
+            View Pricing
+          </button>
+          <button className="slm-ghost" onClick={() => setTab("leadTypes")}>
+            See Lead Types
+          </button>
         </div>
 
-        {/* 20% over-delivery ribbon */}
+        {/* 20% over-delivery banner */}
         <div className="slm-ribbon">
           We automatically over-deliver by <strong>+20%</strong> on every order to cover returns/replacements.
         </div>
       </section>
 
-      {/* Content Switcher */}
+      {/* Page content */}
       <main className="slm-content">
         {tab === "leadTypes" && <LeadTypes />}
         {tab === "pricing" && <Pricing />}
         {tab === "rules" && <Rules />}
+        {tab === "contact" && <Contact />}
       </main>
 
       {/* Footer */}
@@ -98,12 +120,14 @@ export default function Home() {
   );
 }
 
+/* ==== Sections ==== */
+
 function LeadTypes() {
   return (
     <section className="grid-cards">
       {/* Hail */}
       <article className="card">
-        <img src={hailImg} alt="Hail damage" className="card-img" />
+        <img src="/images/hail.jpg" alt="Hail damage" className="card-img" />
         <div className="card-body">
           <h3>Hail</h3>
           <p>Targeted hail zones by ZIP with roof-age filters.</p>
@@ -112,7 +136,7 @@ function LeadTypes() {
 
       {/* Wind */}
       <article className="card">
-        <img src={windImg} alt="Wind damage" className="card-img" />
+        <img src="/images/wind.jpg" alt="Wind damage" className="card-img" />
         <div className="card-body">
           <h3>Wind</h3>
           <p>Fresh wind swaths with high-intent homeowners.</p>
@@ -121,7 +145,11 @@ function LeadTypes() {
 
       {/* Tornado / Hurricanes */}
       <article className="card">
-        <img src={tornadoImg} alt="Tornado and hurricane damage" className="card-img" />
+        <img
+          src="/images/tornado.jpg"
+          alt="Tornado and hurricane damage"
+          className="card-img"
+        />
         <div className="card-body">
           <h3>Tornado / Hurricanes</h3>
           <p>ZIP-precise disaster coverage for fast deployment and scale.</p>
@@ -157,7 +185,12 @@ function Pricing() {
       </ul>
 
       <div className="pricing-cta">
-        <a className="slm-cta" href="https://square.link/u/RSfgAZHS" target="_blank" rel="noreferrer">
+        <a
+          className="slm-cta"
+          href="https://square.link/u/RSfgAZHS"
+          target="_blank"
+          rel="noreferrer"
+        >
           Get Leads Now
         </a>
       </div>
@@ -185,6 +218,61 @@ function Rules() {
         <li>We get you on the roof in the ZIPs you choose. <strong>You close it.</strong></li>
         <li>Every order includes an automatic <strong>+20% over-delivery</strong> to cover returns.</li>
       </ol>
+    </section>
+  );
+}
+
+function Contact() {
+  return (
+    <section className="contact">
+      <h2>Contact Us</h2>
+      <p>
+        Questions or custom targeting? Reach out and we’ll get you deployed fast.
+      </p>
+
+      <div className="contact-grid">
+        <div className="contact-card">
+          <h3>Email</h3>
+          <a href="mailto:stormleadmachine@gmail.com">stormleadmachine@gmail.com</a>
+        </div>
+        <div className="contact-card">
+          <h3>Phone</h3>
+          <a href="tel:+183369622446">833-9MACHIN (622446)</a>
+        </div>
+        <div className="contact-card">
+          <h3>Order Leads</h3>
+          <a
+            className="slm-cta"
+            href="https://square.link/u/RSfgAZHS"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Get Leads Now
+          </a>
+        </div>
+      </div>
+
+      <form
+        className="contact-form"
+        onSubmit={(e) => {
+          e.preventDefault();
+          alert("Thanks! We’ll reach out shortly.");
+        }}
+      >
+        <label>
+          Name
+          <input type="text" required placeholder="Your name" />
+        </label>
+        <label>
+          Email
+          <input type="email" required placeholder="you@company.com" />
+        </label>
+        <label>
+          Message
+          <textarea rows="4" placeholder="Tell us your target ZIPs, roof-age filters, and volume." />
+        </label>
+        <button className="slm-cta" type="submit">Send</button>
+      </form>
     </section>
   );
 }
