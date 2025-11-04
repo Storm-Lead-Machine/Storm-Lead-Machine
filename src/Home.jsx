@@ -16,6 +16,8 @@ export default function Home() {
     []
   );
 
+
+  
   const bgUrl = bgMap[tab] || "/images/sky5.jpg";
 
   return (
