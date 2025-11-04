@@ -5,6 +5,7 @@ export default function Home() {
   // Tabs: leadTypes, pricing, rules, contact
   const [tab, setTab] = useState("leadTypes");
 
+  
   // Map a different background image per page
   const bgMap = useMemo(
     () => ({
