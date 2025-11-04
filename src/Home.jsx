@@ -9,10 +9,10 @@ export default function Home() {
   // Map a different background image per page
   const bgMap = useMemo(
     () => ({
-      leadTypes: "/images/sky1.jpg",
-      pricing: "/images/sky2.jpg",
-      rules: "/images/sky3.jpg",
-      contact: "/images/sky4.jpg",
+      leadTypes: "/sky1.jpg",
+      pricing: "/sky2.jpg",
+      rules: "/sky3.jpg",
+      contact: "/sky4.jpg",
     }),
     []
   );
