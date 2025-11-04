@@ -30,6 +30,8 @@ export default function Home() {
             src="/images/storm-lead-machine-logo.png"
             alt="Storm Lead Machine"
             className="slm-logo"
+            .slm-logo { width: 2in; height: auto; object-fit: contain; }
+
           />
           <span className="slm-brand">Storm Lead Machine</span>
         </div>
