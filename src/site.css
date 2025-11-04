@@ -1,87 +1,177 @@
-:root{
-  --bg-dark: rgba(0,0,0,.62);
-  --bg-darker: rgba(0,0,0,.78);
-  --text:#f3f4f6;
-  --muted:#d1d5db;
-  --accent:#ff5a1f;
-  --border:rgba(255,255,255,.12);
-}
+/* ===========================
+   STORM LEAD MACHINE SITE.CSS
+   =========================== */
 
-/* Hard kill any global/bg leftovers */
-html, body, #root, .app { 
-  background: none !important; 
-  background-image: none !important; 
-  margin: 0; 
+/* GLOBAL RESET */
+html, body, #root, .app {
+  margin: 0;
   padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  color: #fff;
+  background: #000;
 }
 
-/* Page background (set inline in Home.jsx) */
-.slm-page{
-  min-height:100dvh;
-  background-size:cover;
-  background-position:center;
-  background-attachment:fixed;
-  color:var(--text);
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, sans-serif;
+/* BACKGROUND IMAGE CONTROL */
+.app {
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
 }
 
-/* Header / Nav */
-.slm-header{
-  position:sticky; top:0; z-index:50;
-  display:flex; align-items:center; justify-content:space-between;
-  padding:12px 20px;
-  background:var(--bg-darker);
-  backdrop-filter: blur(6px);
-  border-bottom:1px solid var(--border);
-}
-.slm-header-left{ display:flex; align-items:center; gap:12px; }
-
-.slm-logo{ width:2in; height:auto; object-fit:contain; } /* exact 2" */
-
-.slm-brand{ font-weight:700; letter-spacing:.2px; opacity:.9; }
-
-.slm-nav{ display:flex; align-items:center; gap:10px; }
-.slm-tab{
-  background:transparent; color:var(--text);
-  border:1px solid transparent; padding:8px 12px; border-radius:10px; cursor:pointer;
-}
-.slm-tab.active, .slm-tab:hover{ border-color:var(--border); background:rgba(255,255,255,.10); }
-
-.slm-cta{
-  background:var(--accent); color:#111; padding:10px 14px; border-radius:999px; font-weight:700; text-decoration:none;
-}
-.slm-ghost{
-  background:rgba(255,255,255,.1); color:var(--text);
-  padding:10px 14px; border-radius:999px; border:1px solid var(--border); cursor:pointer;
+/* OVERLAY FIX */
+.hero__overlay {
+  background: rgba(0, 0, 0, 0.25) !important;  /* or use 'none' for zero overlay */
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 0;
 }
 
-/* Hero */
-.slm-hero{ text-align:center; padding:80px 20px 30px; position:relative; }
-.slm-ribbon{
-  margin:24px auto 0; padding:10px 14px; display:inline-block;
-  background:rgba(34,197,94,.18); border:1px dashed rgba(34,197,94,.4);
-  border-radius:12px; color:#dcfce7;
+/* REMOVE INLINE OVERRIDES */
+div.app[style] {
+  background: none !important;
+  background-image: none !important;
 }
 
-/* Main */
-.slm-content{ padding:26px 18px 60px; }
-
-/* Cards */
-.grid-cards{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; max-width:1200px; margin:0 auto; }
-.card{ background:rgba(0,0,0,.55); border:1px solid var(--border); border-radius:18px; overflow:hidden; box-shadow:0 10px 24px rgba(0,0,0,.25); }
-.card-img{ width:100%; height:200px; object-fit:cover; display:block; }
-.card-body{ padding:14px 16px 18px; }
-.card-body h3{ margin:0 0 6px; }
-
-/* Footer */
-.slm-footer{
-  border-top:1px solid var(--border);
-  background:var(--bg-darker);
-  padding:16px 20px;
-  display:flex; gap:12px; justify-content:space-between; align-items:center;
+/* HEADER BAR */
+.slm-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255,255,255,0.12);
 }
 
-/* Responsive */
-@media (max-width:900px){
-  .grid-cards{ grid-template-columns:1fr; }
+/* LOGO AREA */
+.slm-logo {
+  width: 2in;
+  height: auto;
+  object-fit: contain;
+}
+
+/* BRAND NAME */
+.slm-brand {
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  opacity: 0.9;
+}
+
+/* NAVIGATION BUTTONS */
+.slm-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.slm-tab {
+  background: transparent;
+  color: #fff;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+
+.slm-tab:hover,
+.slm-tab.active {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* MAIN CONTENT */
+.slm-page {
+  min-height: 100vh;
+  padding-top: 120px;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #fff;
+}
+
+/* GRID SECTION */
+.grid-cards {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding: 40px 0;
+}
+
+.card {
+  width: 300px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(0,0,0,0.6);
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+.card-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 16px;
+}
+
+.card-body h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.card-body p {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: #ddd;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: rgba(0,0,0,0.8);
+  color: #aaa;
+  font-size: 0.85rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* BUTTONS */
+button, .btn {
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn-primary {
+  background: #ff4d00;
+  color: #fff;
+  padding: 10px 20px;
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  background: #ff6828;
 }
