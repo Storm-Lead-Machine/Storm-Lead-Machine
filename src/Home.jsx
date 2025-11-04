@@ -13,6 +13,11 @@ export default function Home() {
       pricing: "/sky2.jpg",
       rules: "/sky3.jpg",
       contact: "/sky4.jpg",
+      const bgUrl = bgMap[tab] || "/sky5.jpg";
+
+return (
+  <div className="slm-page" style={{ backgroundImage: `url(${bgUrl})` }}>
+
     }),
     []
   );
