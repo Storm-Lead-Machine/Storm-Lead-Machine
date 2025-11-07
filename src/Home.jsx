@@ -1,11 +1,19 @@
-// src/Home.jsx
 import React, { useState, useMemo } from "react";
+
+// 🔁 Use your local images so they never 404
+// Put these files in: /src/assets/
+import hailImg from "./assets/hail-damage.jpg";
+import windImg from "./assets/wind-damage.jpg";
+import tornadoImg from "./assets/tornado-damage.jpg";
+
+// Your logo file (adjust the name if yours differs)
+import logo from "./assets/storm-lead-machine-logo.png";
 
 export default function Home() {
   const TABS = ["Lead Types", "Pricing", "Rules", "Contact"];
   const [active, setActive] = useState("Lead Types");
 
-  // Sky/storm images per tab (royalty-free Unsplash)
+  // Different sky images per tab (royalty-free)
   const bgMap = useMemo(
     () => ({
       "Lead Types":
@@ -25,18 +33,15 @@ export default function Home() {
   return (
     <div
       className="app"
-      style={{
-        backgroundImage: `url('${bgUrl}')`,
-      }}
+      style={{ backgroundImage: `url('${bgUrl}')` }}
     >
-      <header className="site-header">
+      {/* Header is on every page; it grows extra-large on the Home (Lead Types) tab */}
+      <header
+        className={`site-header ${active === "Lead Types" ? "site-header--home" : ""}`}
+      >
         <div className="brand">
-          <img
-            src="/assets/storm-lead-machine-logo.png"
-            alt="Storm Lead Machine"
-            className="brand__logo"
-          />
-          <span className="brand__name">Storm Lead Machine</span>
+          <img src={logo} alt="Storm Lead Machine logo" className="brand__logo" />
+          <span className="brand__title">Storm Lead Machine</span>
         </div>
 
         <nav className="nav">
@@ -69,19 +74,15 @@ export default function Home() {
         <div className="hero__content">
           <h1>Dominate Storm Markets. On-Demand.</h1>
           <p>
-            Exclusive storm leads where you want them — targeted by ZIP, roof-age filters, and fast
-            routing. We get you on the roof in front of the owner. <strong>You close it.</strong>
+            Exclusive storm leads where you want them — targeted by ZIP, roof-age filters, and fast routing.
+            We get you on the roof in front of the owner. <strong>You close it.</strong>
           </p>
           <div className="hero__actions">
             <a className="btn btn--primary" href="#lead-now" onClick={(e) => { e.preventDefault(); setActive("Pricing"); }}>
               Get Leads Now
             </a>
-            <button className="btn" onClick={() => setActive("Pricing")}>
-              View Pricing
-            </button>
-            <button className="btn" onClick={() => setActive("Lead Types")}>
-              See Lead Types
-            </button>
+            <button className="btn" onClick={() => setActive("Pricing")}>View Pricing</button>
+            <button className="btn" onClick={() => setActive("Lead Types")}>See Lead Types</button>
           </div>
         </div>
       </section>
@@ -110,17 +111,17 @@ function LeadTypes() {
 
       <div className="cards">
         <Card
-          img="https://images.unsplash.com/photo-1595435934249-5df1eb40f40b?q=80&w=1600&auto=format&fit=crop"
+          img={hailImg}
           title="Hail"
           text="Targeted hail zones by ZIP with roof-age filters."
         />
         <Card
-          img="https://images.unsplash.com/photo-1519680772-8b3a0b0e1f3a?q=80&w=1600&auto=format&fit=crop"
+          img={windImg}
           title="Wind"
           text="Fresh wind swaths with high-intent homeowners."
         />
         <Card
-          img="https://images.unsplash.com/photo-1486016006115-74a41448aea2?q=80&w=1600&auto=format&fit=crop"
+          img={tornadoImg}
           title="Tornado / Hurricanes"
           text="ZIP-precise disaster coverage for fast deployment and scale."
         />
