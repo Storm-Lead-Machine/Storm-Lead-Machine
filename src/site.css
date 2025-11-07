@@ -173,3 +173,15 @@ h3 { margin: .2rem 0 .5rem; }
 
 /* ----- Footer ----- */
 .footer { text-align: center; padding: 1.2rem; opacity: .9; }
+
+/* Guarantee the logo and title display large on every page */
+.brand__logo {
+  height: 192px !important; /* ~2 inches */
+  width: auto;
+  filter: drop-shadow(0 4px 18px rgba(0, 0, 0, 0.4));
+}
+.brand__title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+}
