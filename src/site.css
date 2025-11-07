@@ -31,8 +31,8 @@ body { margin: 0; color: #fff; background: #0b1220; font-family: ui-sans-serif, 
 .brand { display: flex; align-items: center; gap: .75rem; }
 
 /* Default header sizes (other tabs) */
-.brand__logo { height: 120px; width: auto; filter: drop-shadow(0 4px 18px rgba(0,0,0,.4)); }
-.brand__title {
+.brand_logo { height: 120px; width: auto; filter: drop-shadow(0 4px 18px rgba(0,0,0,.4)); }
+.brand_title {
   font-weight: 800;
   font-size: clamp(1.2rem, 2.2vw, 1.8rem);
   letter-spacing: .3px;
