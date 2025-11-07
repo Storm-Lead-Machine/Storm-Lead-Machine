@@ -1,177 +1,165 @@
-/* ===========================
-   STORM LEAD MACHINE SITE.CSS
-   =========================== */
+/* src/Site.css */
 
-/* GLOBAL RESET */
-html, body, #root, .app {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
-  color: #fff;
-  background: #000;
-}
+/* ----- Base / layout ----- */
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body { margin: 0; color: #fff; background: #0b1220; font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
 
-/* BACKGROUND IMAGE CONTROL */
 .app {
-  min-height: 100vh;
+  /* per-tab background is injected inline by Home.jsx */
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
+  background-attachment: fixed;   /* parallax */
+  min-height: 100%;
 }
 
-/* OVERLAY FIX */
+/* Dark overlay for readability in the hero */
 .hero__overlay {
-  background: rgba(0, 0, 0, 0.25) !important;  /* or use 'none' for zero overlay */
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.35) 40%, rgba(0,0,0,.55));
   pointer-events: none;
-  z-index: 0;
 }
 
-/* REMOVE INLINE OVERRIDES */
-div.app[style] {
-  background: none !important;
-  background-image: none !important;
+/* ----- Header / Branding ----- */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; padding: .6rem 1rem;
+  background: rgba(9, 13, 20, .65); backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(255,255,255,.08);
 }
 
-/* HEADER BAR */
-.slm-header {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 20px;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgba(255,255,255,0.12);
+.brand { display: flex; align-items: center; gap: .75rem; }
+.brand__name { font-weight: 700; letter-spacing: .2px; text-shadow: 0 1px 2px rgba(0,0,0,.5); }
+
+/* ~2 inches tall on desktop (~192px). Scales down on smaller screens */
+.brand__logo {
+  height: 192px;
+  width: auto;
+  aspect-ratio: auto;
+  filter: drop-shadow(0 4px 18px rgba(0,0,0,.4));
+}
+@media (max-width: 1100px) { .brand__logo { height: 150px; } }
+@media (max-width: 900px)  { .brand__logo { height: 120px; } }
+@media (max-width: 700px)  { .brand__logo { height: 96px; } }
+
+/* ----- Nav ----- */
+.nav { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }
+.nav__tab {
+  appearance: none; border: 1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.06);
+  color: #fff; padding: .5rem .8rem; border-radius: 999px; cursor: pointer;
+  transition: background .2s, border-color .2s, transform .05s;
+}
+.nav__tab:hover { background: rgba(255,255,255,.12); }
+.nav__tab:active { transform: translateY(1px); }
+.nav__tab.is-active { background: rgba(255,255,255,.22); border-color: rgba(255,255,255,.35); }
+
+.cta {
+  text-decoration: none; font-weight: 700;
+  background: linear-gradient(90deg, #ff6a00, #ff9a00);
+  color: #111; padding: .55rem .9rem; border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.18);
 }
 
-/* LOGO AREA */
-.slm-logo {
-  width: 2in;
-  height: auto;
-  object-fit: contain;
-}
-
-/* BRAND NAME */
-.slm-brand {
-  font-weight: 700;
-  letter-spacing: 0.2px;
-  opacity: 0.9;
-}
-
-/* NAVIGATION BUTTONS */
-.slm-nav {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.slm-tab {
-  background: transparent;
-  color: #fff;
-  border: 1px solid transparent;
-  border-radius: 10px;
-  padding: 8px 12px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: all 0.25s ease;
-}
-
-.slm-tab:hover,
-.slm-tab.active {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.25);
-}
-
-/* MAIN CONTENT */
-.slm-page {
-  min-height: 100vh;
-  padding-top: 120px;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  color: #fff;
-}
-
-/* GRID SECTION */
-.grid-cards {
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-  flex-wrap: wrap;
-  padding: 40px 0;
-}
-
-.card {
-  width: 300px;
-  border-radius: 16px;
-  overflow: hidden;
-  background: rgba(0,0,0,0.6);
-  border: 1px solid rgba(255,255,255,0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-}
-
-.card-img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-}
-
-.card-body {
-  padding: 16px;
-}
-
-.card-body h3 {
-  margin: 0;
-  font-size: 1.2rem;
-  font-weight: 600;
-}
-
-.card-body p {
-  margin-top: 8px;
-  font-size: 0.9rem;
-  color: #ddd;
-}
-
-/* FOOTER */
-footer {
+/* ----- Hero ----- */
+.hero {
+  position: relative;
+  min-height: 56vh;
+  display: grid; place-items: center;
   text-align: center;
-  padding: 20px;
-  background: rgba(0,0,0,0.8);
-  color: #aaa;
-  font-size: 0.85rem;
-  border-top: 1px solid rgba(255,255,255,0.1);
+  padding: 3rem 1rem 2rem;
+}
+.hero__content { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; }
+.hero h1 {
+  font-size: clamp(2.2rem, 5vw, 4.5rem);
+  font-weight: 800; letter-spacing: .3px;
+  text-shadow: 0 4px 22px rgba(0,0,0,.5);
+  margin: 0 0 .6rem 0;
+}
+.hero p { opacity: .9; margin: 0 auto 1rem; max-width: 900px; }
+.hero__actions { display: flex; gap: .6rem; justify-content: center; flex-wrap: wrap; }
+
+/* ----- Buttons ----- */
+.btn {
+  appearance: none; border: 1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.08); color: #fff;
+  padding: .6rem .9rem; border-radius: 10px; cursor: pointer;
+}
+.btn--primary {
+  background: linear-gradient(90deg, #ff6a00, #ff9a00);
+  color: #111; border-color: rgba(255,255,255,.25); font-weight: 700;
+}
+.btn--block { display: block; width: 100%; text-align: center; }
+
+/* ----- Page sections ----- */
+.page { padding: 2rem 1rem 3rem; max-width: 1200px; margin: 0 auto; }
+.section { background: rgba(7,10,18,.65); border: 1px solid rgba(255,255,255,.08); border-radius: 18px; padding: 1.2rem; }
+.section + .section { margin-top: 1rem; }
+
+h2 { margin: 0 0 .5rem 0; font-size: clamp(1.4rem, 3.5vw, 2rem); }
+h3 { margin: .2rem 0 .5rem; }
+
+.muted { color: #d7dbe3; opacity: .9; }
+
+/* ----- Cards (Lead Types) ----- */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: .9rem;
+  margin-top: .9rem;
+}
+.card {
+  border-radius: 16px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.04);
+  backdrop-filter: blur(2px);
+}
+.card__img { width: 100%; height: 180px; object-fit: cover; display: block; }
+.card__body { padding: .8rem; }
+
+/* ----- Pricing grid ----- */
+.grid.pricing {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem; margin-top: .8rem;
+}
+.pricing__col {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 14px; padding: .9rem;
 }
 
-/* BUTTONS */
-button, .btn {
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.25s ease;
+/* Lists */
+.list { margin: .3rem 0 0 1rem; padding: 0; }
+.list li { margin: .35rem 0; }
+
+/* ----- Contact ----- */
+.contact {
+  display: grid;
+  grid-template-columns: 1.1fr 1.4fr;
+  gap: 1rem; margin-top: .8rem;
+}
+@media (max-width: 900px) { .contact { grid-template-columns: 1fr; } }
+
+.contact__card {
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 14px; padding: 1rem;
+}
+.contact__form {
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 14px; padding: 1rem;
+  display: grid; gap: .6rem;
+}
+.contact__form label { display: grid; gap: .35rem; font-size: .95rem; }
+.contact__form input,
+.contact__form textarea {
+  width: 100%; padding: .65rem .7rem; border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(0,0,0,.25); color: #fff;
 }
 
-.btn-primary {
-  background: #ff4d00;
-  color: #fff;
-  padding: 10px 20px;
-  font-weight: 600;
-}
-
-.btn-primary:hover {
-  background: #ff6828;
-}
+/* ----- Footer ----- */
+.footer { text-align: center; padding: 1.2rem; opacity: .9; }
