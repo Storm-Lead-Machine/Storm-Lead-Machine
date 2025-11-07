@@ -19,8 +19,7 @@ body { margin: 0; color: #fff; background: #0b1220; font-family: ui-sans-serif, 
   background: linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.35) 40%, rgba(0,0,0,.55));
   pointer-events: none;
 }
-
-/* ----- Header / Branding ----- */
+/* Header tweaks to guarantee big logo + big title on Home */
 .site-header {
   position: sticky; top: 0; z-index: 50;
   display: flex; align-items: center; justify-content: space-between;
@@ -30,14 +29,25 @@ body { margin: 0; color: #fff; background: #0b1220; font-family: ui-sans-serif, 
 }
 
 .brand { display: flex; align-items: center; gap: .75rem; }
-.brand__name { font-weight: 700; letter-spacing: .2px; text-shadow: 0 1px 2px rgba(0,0,0,.5); }
 
-/* ~2 inches tall on desktop (~192px). Scales down on smaller screens */
-.brand__logo {
-  height: 192px;
-  width: auto;
-  aspect-ratio: auto;
-  filter: drop-shadow(0 4px 18px rgba(0,0,0,.4));
+/* Default header sizes (other tabs) */
+.brand__logo { height: 120px; width: auto; filter: drop-shadow(0 4px 18px rgba(0,0,0,.4)); }
+.brand__title {
+  font-weight: 800;
+  font-size: clamp(1.2rem, 2.2vw, 1.8rem);
+  letter-spacing: .3px;
+  text-shadow: 0 1px 2px rgba(0,0,0,.5);
+}
+
+/* SUPER SIZE on the home (Lead Types) view */
+.site-header--home .brand__logo { height: 192px; }         /* ~2 inches */
+.site-header--home .brand__title {
+  font-size: clamp(1.8rem, 3.8vw, 3rem);
+}
+
+/* Ensure hero isn’t hiding behind a tall header */
+.hero { margin-top: .5rem; }
+
 }
 @media (max-width: 1100px) { .brand__logo { height: 150px; } }
 @media (max-width: 900px)  { .brand__logo { height: 120px; } }
