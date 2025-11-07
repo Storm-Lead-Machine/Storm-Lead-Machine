@@ -1,19 +1,18 @@
-// src/Home.jsx
 import React, { useMemo, useState } from "react";
 
-/* Your local lead-type images in /src (match exact filenames) */
+/* Lead-type images (your local files in /src) */
 import hailImg from "./hail-damage.jpg";
 import windImg from "./wind-damage.jpg";
 import tornadoImg from "./tornado-damage.jpg";
 
-/* Your logo (with spaces in the filename) in /src */
+/* Logo (with spaces in filename) */
 import logo from "./Storm Lead Machine Logo.png";
 
 export default function Home() {
   const TABS = ["Lead Types", "Pricing", "Rules", "Contact"];
   const [active, setActive] = useState("Lead Types");
 
-  // Sky backgrounds per tab (Unsplash CDN)
+  // Sky backgrounds per tab (my images via Unsplash)
   const bgMap = useMemo(
     () => ({
       "Lead Types":
@@ -23,7 +22,7 @@ export default function Home() {
       Rules:
         "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1920&auto=format&fit=crop",
       Contact:
-        "https://images.unsplash.com/photo-1504384764586-bb4cdc1707b0?q=80&w=1920&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1504384764586-bb4cdc1707b0?q=80&w=1920&auto=format&fit=crop"
     }),
     []
   );
@@ -62,7 +61,6 @@ export default function Home() {
         </nav>
       </header>
 
-      {/* Hero */}
       <section className="hero">
         <div className="hero__overlay" />
         <div className="hero__content">
@@ -177,9 +175,7 @@ function Rules() {
       <ul className="list">
         <li><strong>Don’t pre-call the lead.</strong> You’re booked to show up and get on the roof.</li>
         <li><strong>Bad leads must be returned within 2 days</strong> to receive credit.</li>
-        <li>
-          If not returned in time, we <strong>automatically add 20% extra leads</strong> to help make up for it.
-        </li>
+        <li>If not returned in time, we <strong>automatically add 20% extra leads</strong> to help make up for it.</li>
       </ul>
     </section>
   );
