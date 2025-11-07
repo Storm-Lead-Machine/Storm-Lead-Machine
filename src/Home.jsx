@@ -1,10 +1,16 @@
 import React, { useMemo, useState } from "react";
 
+/* ✅ Use the images you already have in /src (per your repo screenshot) */
+import hailImg from "./hail-damage.jpg";
+import windImg from "./wind-damage.jpg";
+import tornadoImg from "./tornado-damage.jpg";
+/* Your logo (file has spaces; this import works fine) */
+import logo from "./Storm Lead Machine Logo.png";
+
 export default function Home() {
   const TABS = ["Lead Types", "Pricing", "Rules", "Contact"];
   const [active, setActive] = useState("Lead Types");
 
-  // Sky backgrounds per tab
   const bgMap = useMemo(
     () => ({
       "Lead Types":
@@ -18,18 +24,13 @@ export default function Home() {
     }),
     []
   );
-
   const bgUrl = bgMap[active];
 
   return (
     <div className="app" style={{ backgroundImage: `url('${bgUrl}')` }}>
       <header className={`site-header ${active === "Lead Types" ? "site-header--home" : ""}`}>
         <div className="brand">
-          <img
-            src="/Storm Lead Machine Logo.png"
-            alt="Storm Lead Machine"
-            className="brand__logo"
-          />
+          <img src={logo} alt="Storm Lead Machine" className="brand__logo" />
           <span className="brand__title">Storm Lead Machine</span>
         </div>
 
@@ -76,12 +77,8 @@ export default function Home() {
             >
               Get Leads Now
             </a>
-            <button className="btn" onClick={() => setActive("Pricing")}>
-              View Pricing
-            </button>
-            <button className="btn" onClick={() => setActive("Lead Types")}>
-              See Lead Types
-            </button>
+            <button className="btn" onClick={() => setActive("Pricing")}>View Pricing</button>
+            <button className="btn" onClick={() => setActive("Lead Types")}>See Lead Types</button>
           </div>
         </div>
       </section>
@@ -100,6 +97,8 @@ export default function Home() {
   );
 }
 
+/* -------- Sections -------- */
+
 function LeadTypes() {
   return (
     <section className="section">
@@ -107,13 +106,9 @@ function LeadTypes() {
       <p className="muted">Target exactly where you want to sell.</p>
 
       <div className="cards">
-        <Card img="/hail-damage.jpg" title="Hail" text="Targeted hail zones by ZIP with roof-age filters." />
-        <Card img="/wind-damage.jpg" title="Wind" text="Fresh wind swaths with high-intent homeowners." />
-        <Card
-          img="/tornado-damage.jpg"
-          title="Tornado / Hurricanes"
-          text="ZIP-precise disaster coverage for fast deployment and scale."
-        />
+        <Card img={hailImg} title="Hail" text="Targeted hail zones by ZIP with roof-age filters." />
+        <Card img={windImg} title="Wind" text="Fresh wind swaths with high-intent homeowners." />
+        <Card img={tornadoImg} title="Tornado / Hurricanes" text="ZIP-precise disaster coverage for fast deployment and scale." />
       </div>
     </section>
   );
@@ -150,13 +145,7 @@ function Pricing() {
             <li>5+ yr roofs: +$10/lead</li>
             <li>8+ yr roofs: +$25/lead</li>
           </ul>
-          <a
-            id="lead-now"
-            className="btn btn--primary btn--block"
-            href="https://square.link/u/RSfgAZHS"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a id="lead-now" className="btn btn--primary btn--block" href="https://square.link/u/RSfgAZHS" target="_blank" rel="noreferrer">
             Checkout — Get Leads Now
           </a>
         </div>
