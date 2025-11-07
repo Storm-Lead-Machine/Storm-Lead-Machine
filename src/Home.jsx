@@ -1,23 +1,32 @@
+// src/Home.jsx
 import React, { useMemo, useState } from "react";
 
-/* ✅ Use the images you already have in /src (per your repo screenshot) */
+/* Your local lead-type images in /src (match exact filenames) */
 import hailImg from "./hail-damage.jpg";
 import windImg from "./wind-damage.jpg";
 import tornadoImg from "./tornado-damage.jpg";
-/* Your logo (file has spaces; this import works fine) */
+
+/* Your logo (with spaces in the filename) in /src */
 import logo from "./Storm Lead Machine Logo.png";
 
 export default function Home() {
   const TABS = ["Lead Types", "Pricing", "Rules", "Contact"];
   const [active, setActive] = useState("Lead Types");
-  
-const bgMap = useMemo(() => ({
-  "Lead Types": "https://images.unsplash.com/photo-1500835556837-99ac94a94552?q=80&w=1920&auto=format&fit=crop",
-  Pricing:      "https://images.unsplash.com/photo-1499346030926-9a72daac6c63?q=80&w=1920&auto=format&fit=crop",
-  Rules:        "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1920&auto=format&fit=crop",
-  Contact:      "https://images.unsplash.com/photo-1504384764586-bb4cdc1707b0?q=80&w=1920&auto=format&fit=crop",
-}), []);
 
+  // Sky backgrounds per tab (Unsplash CDN)
+  const bgMap = useMemo(
+    () => ({
+      "Lead Types":
+        "https://images.unsplash.com/photo-1500835556837-99ac94a94552?q=80&w=1920&auto=format&fit=crop",
+      Pricing:
+        "https://images.unsplash.com/photo-1499346030926-9a72daac6c63?q=80&w=1920&auto=format&fit=crop",
+      Rules:
+        "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1920&auto=format&fit=crop",
+      Contact:
+        "https://images.unsplash.com/photo-1504384764586-bb4cdc1707b0?q=80&w=1920&auto=format&fit=crop",
+    }),
+    []
+  );
 
   const bgUrl = bgMap[active];
 
@@ -53,6 +62,7 @@ const bgMap = useMemo(() => ({
         </nav>
       </header>
 
+      {/* Hero */}
       <section className="hero">
         <div className="hero__overlay" />
         <div className="hero__content">
@@ -92,7 +102,7 @@ const bgMap = useMemo(() => ({
   );
 }
 
-/* -------- Sections -------- */
+/* ---------- Sections ---------- */
 
 function LeadTypes() {
   return (
@@ -103,7 +113,11 @@ function LeadTypes() {
       <div className="cards">
         <Card img={hailImg} title="Hail" text="Targeted hail zones by ZIP with roof-age filters." />
         <Card img={windImg} title="Wind" text="Fresh wind swaths with high-intent homeowners." />
-        <Card img={tornadoImg} title="Tornado / Hurricanes" text="ZIP-precise disaster coverage for fast deployment and scale." />
+        <Card
+          img={tornadoImg}
+          title="Tornado / Hurricanes"
+          text="ZIP-precise disaster coverage for fast deployment and scale."
+        />
       </div>
     </section>
   );
@@ -140,7 +154,14 @@ function Pricing() {
             <li>5+ yr roofs: +$10/lead</li>
             <li>8+ yr roofs: +$25/lead</li>
           </ul>
-          <a id="lead-now" className="btn btn--primary btn--block" href="https://square.link/u/RSfgAZHS" target="_blank" rel="noreferrer">
+
+          <a
+            id="lead-now"
+            className="btn btn--primary btn--block"
+            href="https://square.link/u/RSfgAZHS"
+            target="_blank"
+            rel="noreferrer"
+          >
             Checkout — Get Leads Now
           </a>
         </div>
@@ -156,7 +177,9 @@ function Rules() {
       <ul className="list">
         <li><strong>Don’t pre-call the lead.</strong> You’re booked to show up and get on the roof.</li>
         <li><strong>Bad leads must be returned within 2 days</strong> to receive credit.</li>
-        <li>If not returned in time, we <strong>automatically add 20% extra leads</strong> to make up for it.</li>
+        <li>
+          If not returned in time, we <strong>automatically add 20% extra leads</strong> to help make up for it.
+        </li>
       </ul>
     </section>
   );
@@ -167,11 +190,13 @@ function Contact() {
     <section className="section">
       <h2>Contact Us</h2>
       <p className="muted">We usually reply the same day.</p>
+
       <div className="contact">
         <div className="contact__card">
           <p><strong>Phone:</strong> 833-9MACHIN (622-446)</p>
           <p><strong>Email:</strong> <a href="mailto:stormleadmachine@gmail.com">stormleadmachine@gmail.com</a></p>
         </div>
+
         <form
           className="contact__form"
           onSubmit={(e) => {
@@ -179,14 +204,24 @@ function Contact() {
             const name = e.currentTarget.name.value;
             const email = e.currentTarget.email.value;
             const msg = encodeURIComponent(e.currentTarget.message.value);
-            window.location.href = `mailto:stormleadmachine@gmail.com?subject=Lead%20Inquiry%20from%20${encodeURIComponent(
-              name || "Website"
-            )}&body=From:%20${encodeURIComponent(email)}%0D%0A%0D%0A${msg}`;
+            window.location.href =
+              `mailto:stormleadmachine@gmail.com?subject=Lead%20Inquiry%20from%20${encodeURIComponent(
+                name || "Website"
+              )}&body=From:%20${encodeURIComponent(email)}%0D%0A%0D%0A${msg}`;
           }}
         >
-          <label>Name<input name="name" type="text" required placeholder="Your name" /></label>
-          <label>Email<input name="email" type="email" required placeholder="you@company.com" /></label>
-          <label>Message<textarea name="message" rows={4} required placeholder="Tell us what markets you want…" /></label>
+          <label>
+            Name
+            <input name="name" type="text" placeholder="Your name" required />
+          </label>
+          <label>
+            Email
+            <input name="email" type="email" placeholder="you@company.com" required />
+          </label>
+          <label>
+            Message
+            <textarea name="message" rows={4} placeholder="Tell us what markets you want…" required />
+          </label>
           <button className="btn btn--primary" type="submit">Send</button>
         </form>
       </div>
