@@ -1,19 +1,10 @@
-import React, { useState, useMemo } from "react";
-
-// 🔁 Use your local images so they never 404
-// Put these files in: /src/assets/
-import hailImg from "./assets/hail-damage.jpg";
-import windImg from "./assets/wind-damage.jpg";
-import tornadoImg from "./assets/tornado-damage.jpg";
-
-// Your logo file (adjust the name if yours differs)
-import logo from "./assets/storm-lead-machine-logo.png";
+import React, { useMemo, useState } from "react";
 
 export default function Home() {
   const TABS = ["Lead Types", "Pricing", "Rules", "Contact"];
   const [active, setActive] = useState("Lead Types");
 
-  // Different sky images per tab (royalty-free)
+  // Sky backgrounds per tab
   const bgMap = useMemo(
     () => ({
       "Lead Types":
@@ -31,16 +22,14 @@ export default function Home() {
   const bgUrl = bgMap[active];
 
   return (
-    <div
-      className="app"
-      style={{ backgroundImage: `url('${bgUrl}')` }}
-    >
-      {/* Header is on every page; it grows extra-large on the Home (Lead Types) tab */}
-      <header
-        className={`site-header ${active === "Lead Types" ? "site-header--home" : ""}`}
-      >
+    <div className="app" style={{ backgroundImage: `url('${bgUrl}')` }}>
+      <header className={`site-header ${active === "Lead Types" ? "site-header--home" : ""}`}>
         <div className="brand">
-          <img src={logo} alt="Storm Lead Machine logo" className="brand__logo" />
+          <img
+            src="/Storm Lead Machine Logo.png"
+            alt="Storm Lead Machine"
+            className="brand__logo"
+          />
           <span className="brand__title">Storm Lead Machine</span>
         </div>
 
@@ -68,21 +57,31 @@ export default function Home() {
         </nav>
       </header>
 
-      {/* Hero */}
       <section className="hero">
         <div className="hero__overlay" />
         <div className="hero__content">
           <h1>Dominate Storm Markets. On-Demand.</h1>
           <p>
-            Exclusive storm leads where you want them — targeted by ZIP, roof-age filters, and fast routing.
-            We get you on the roof in front of the owner. <strong>You close it.</strong>
+            Exclusive storm leads where you want them — targeted by ZIP, roof-age filters, and fast
+            routing. We get you on the roof in front of the owner. <strong>You close it.</strong>
           </p>
           <div className="hero__actions">
-            <a className="btn btn--primary" href="#lead-now" onClick={(e) => { e.preventDefault(); setActive("Pricing"); }}>
+            <a
+              className="btn btn--primary"
+              href="#lead-now"
+              onClick={(e) => {
+                e.preventDefault();
+                setActive("Pricing");
+              }}
+            >
               Get Leads Now
             </a>
-            <button className="btn" onClick={() => setActive("Pricing")}>View Pricing</button>
-            <button className="btn" onClick={() => setActive("Lead Types")}>See Lead Types</button>
+            <button className="btn" onClick={() => setActive("Pricing")}>
+              View Pricing
+            </button>
+            <button className="btn" onClick={() => setActive("Lead Types")}>
+              See Lead Types
+            </button>
           </div>
         </div>
       </section>
@@ -101,8 +100,6 @@ export default function Home() {
   );
 }
 
-/* ---------- Sections ---------- */
-
 function LeadTypes() {
   return (
     <section className="section">
@@ -110,18 +107,10 @@ function LeadTypes() {
       <p className="muted">Target exactly where you want to sell.</p>
 
       <div className="cards">
+        <Card img="/hail-damage.jpg" title="Hail" text="Targeted hail zones by ZIP with roof-age filters." />
+        <Card img="/wind-damage.jpg" title="Wind" text="Fresh wind swaths with high-intent homeowners." />
         <Card
-          img={hailImg}
-          title="Hail"
-          text="Targeted hail zones by ZIP with roof-age filters."
-        />
-        <Card
-          img={windImg}
-          title="Wind"
-          text="Fresh wind swaths with high-intent homeowners."
-        />
-        <Card
-          img={tornadoImg}
+          img="/tornado-damage.jpg"
           title="Tornado / Hurricanes"
           text="ZIP-precise disaster coverage for fast deployment and scale."
         />
@@ -161,7 +150,6 @@ function Pricing() {
             <li>5+ yr roofs: +$10/lead</li>
             <li>8+ yr roofs: +$25/lead</li>
           </ul>
-
           <a
             id="lead-now"
             className="btn btn--primary btn--block"
@@ -184,10 +172,7 @@ function Rules() {
       <ul className="list">
         <li><strong>Don’t pre-call the lead.</strong> You’re booked to show up and get on the roof.</li>
         <li><strong>Bad leads must be returned within 2 days</strong> to receive credit.</li>
-        <li>
-          If you return within 2 days and a lead is verified bad, we’ll make it right. If not returned in time, we{" "}
-          <strong>automatically add 20% extra leads</strong> to help make up for it.
-        </li>
+        <li>If not returned in time, we <strong>automatically add 20% extra leads</strong> to make up for it.</li>
       </ul>
     </section>
   );
@@ -198,13 +183,11 @@ function Contact() {
     <section className="section">
       <h2>Contact Us</h2>
       <p className="muted">We usually reply the same day.</p>
-
       <div className="contact">
         <div className="contact__card">
           <p><strong>Phone:</strong> 833-9MACHIN (622-446)</p>
           <p><strong>Email:</strong> <a href="mailto:stormleadmachine@gmail.com">stormleadmachine@gmail.com</a></p>
         </div>
-
         <form
           className="contact__form"
           onSubmit={(e) => {
@@ -217,18 +200,9 @@ function Contact() {
             )}&body=From:%20${encodeURIComponent(email)}%0D%0A%0D%0A${msg}`;
           }}
         >
-          <label>
-            Name
-            <input name="name" type="text" placeholder="Your name" required />
-          </label>
-          <label>
-            Email
-            <input name="email" type="email" placeholder="you@company.com" required />
-          </label>
-          <label>
-            Message
-            <textarea name="message" rows={4} placeholder="Tell us what markets you want…" required />
-          </label>
+          <label>Name<input name="name" type="text" required placeholder="Your name" /></label>
+          <label>Email<input name="email" type="email" required placeholder="you@company.com" /></label>
+          <label>Message<textarea name="message" rows={4} required placeholder="Tell us what markets you want…" /></label>
           <button className="btn btn--primary" type="submit">Send</button>
         </form>
       </div>
