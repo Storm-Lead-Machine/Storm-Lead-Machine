@@ -1,9 +1,9 @@
 import React, { useMemo, useState } from "react";
 
 /* Lead-type images (your local files in /src) */
-import hailImg from "./hail-damage.jpg";
-import windImg from "./wind-damage.jpg";
-import tornadoImg from "./tornado-damage.jpg";
++ const hailImg = "/hail-damage.jpg";
++ const windImg = "/wind-damage.jpg";
++ const tornadoImg = "/tornado-damage.jpg";
 
 /* Logo (with spaces in filename) */
 import logo from "./Storm Lead Machine Logo.png";
