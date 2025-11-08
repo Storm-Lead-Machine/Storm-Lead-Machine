@@ -1,5 +1,6 @@
 // src/Home.NEW.jsx
 import React, { useMemo, useState } from "react";
+import logo from "./Storm Lead Machine Logo.png"; // exact name + spaces + case
 
 /* Card images — hosted (no local imports) */
 const HAIL_IMG =
@@ -36,15 +37,15 @@ export default function Home() {
         minHeight: "100vh",
       }}
     >
-      <header className={`site-header ${active === "Lead Types" ? "site-header--home" : ""}`}>
-        <div className="container">
-          <div className="brand">Storm Lead Machine</div>
-          <nav className="nav">
-            {TABS.map((t) => (
-              <button
-                key={t}
-                className={`pill ${t === active ? "is-active" : ""}`}
-                onClick={() => setActive(t)}
+      <header className="site-header">
+  <div className="brand">
+    <img src={logo} alt="Storm Lead Machine Logo" />
+    <span>Storm Lead Machine</span>
+  </div>
+
+  {/* keep the rest of your header/nav/buttons exactly as-is */}
+</header>
+
               >
                 {t}
               </button>
