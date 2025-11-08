@@ -1,71 +1,66 @@
+// src/Home.NEW.jsx
 import React, { useMemo, useState } from "react";
 
-
+/* Card images — hosted (no local imports) */
 const HAIL_IMG =
-  "https://images.unsplash.com/photo-1611902197736-68d9a9086f2b?q=80&w=1600&auto=format&fit=crop"; // hail on shingles
-
+  "https://images.unsplash.com/photo-1611902197736-d8a9b986f2fb?q=80&w=1600&auto=format&fit=crop";       // hail on shingles
 const WIND_IMG =
-  "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1600&auto=format&fit=crop"; // damaged roof/wind
-
+  "https://images.unsplash.com/photo-1508434380890-c894fcc6538d?q=80&w=1600&auto=format&fit=crop";      // wind-stressed roof/siding vibe
 const TORNADO_IMG =
-  "https://images.unsplash.com/photo-1465447142348-e9952c393450?q=80&w=1600&auto=format&fit=crop"; // tornado/supercell
+  "https://images.unsplash.com/photo-1465447124348-e9952c393450?q=80&w=1600&auto=format&fit=crop";      // tornado/supercell
+
+/* Sky backgrounds per tab — also hosted */
+const SKY_BG = {
+  "Lead Types":
+    "https://images.unsplash.com/photo-1508835054689-7d0f58a0d6d0?q=80&w=1920&auto=format&fit=crop",
+  Pricing:
+    "https://images.unsplash.com/photo-1499346030926-9a72daac663c?q=80&w=1920&auto=format&fit=crop",
+  Rules:
+    "https://images.unsplash.com/photo-1504384308090-c894fcc6538d?q=80&w=1920&auto=format&fit=crop",
+  Contact:
+    "https://images.unsplash.com/photo-154231483481-068cd1deebfe?q=80&w=1920&auto=format&fit=crop",
+};
 
 export default function Home() {
   const TABS = ["Lead Types", "Pricing", "Rules", "Contact"];
   const [active, setActive] = useState("Lead Types");
-
-  // Cloudy sky backgrounds per tab (also hosted)
-  const bgUrl = useMemo(() => {
-    const map = {
-      "Lead Types":
-        "https://images.unsplash.com/photo-1508830524289-0adcbe822b40?q=80&w=1920&auto=format&fit=crop",
-      Pricing:
-        "https://images.unsplash.com/photo-1499346030926-9a72daac6c3a?q=80&w=1920&auto=format&fit=crop",
-      Rules:
-        "https://images.unsplash.com/photo-1504384308090-c894fac6938d?q=80&w=1920&auto=format&fit=crop",
-      Contact:
-        "https://images.unsplash.com/photo-154231483481-068cdd1eebef?q=80&w=1920&auto=format&fit=crop",
-    };
-    return map[active];
-  }, [active]);
+  const bgUrl = useMemo(() => SKY_BG[active], [active]);
 
   return (
     <div
       className="app"
       style={{
-        backgroundImage: `url("${bgUrl}")`,
+        backgroundImage: `url('${bgUrl}')`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         minHeight: "100vh",
       }}
     >
-      <header className={`site-header ${active === "Lead Types" ? "home" : ""}`}>
-        <div className="brand">
-          <span className="brand_logo" aria-hidden="true">⚡</span>
-          <span className="brand_title">Storm Lead Machine</span>
+      <header className={`site-header ${active === "Lead Types" ? "site-header--home" : ""}`}>
+        <div className="container">
+          <div className="brand">Storm Lead Machine</div>
+          <nav className="nav">
+            {TABS.map((t) => (
+              <button
+                key={t}
+                className={`pill ${t === active ? "is-active" : ""}`}
+                onClick={() => setActive(t)}
+              >
+                {t}
+              </button>
+            ))}
+            <a className="cta" href="#get-leads">Get Leads Now</a>
+          </nav>
         </div>
-
-        <nav className="nav">
-          {TABS.map((t) => (
-            <button
-              key={t}
-              className={`nav_btn ${t === active ? "is-active" : ""}`}
-              onClick={() => setActive(t)}
-            >
-              {t}
-            </button>
-          ))}
-          <a className="cta" href="#pricingTop">Get Leads Now</a>
-        </nav>
       </header>
 
       {active === "Lead Types" && <LeadTypes />}
       {active === "Pricing" && <Pricing />}
       {active === "Rules" && <Rules />}
       {active === "Contact" && <Contact />}
-      
-      <footer className="footer">
-        <p>© {new Date().getFullYear()} Storm Lead Machine. All rights reserved.</p>
+
+      <footer className="site-footer">
+        © {new Date().getFullYear()} Storm Lead Machine. All rights reserved.
       </footer>
     </div>
   );
@@ -80,12 +75,26 @@ function LeadTypes() {
       <p className="muted">Target exactly where you want to sell.</p>
 
       <div className="cards">
-        <Card img={HAIL_IMG} title="Hail"
-              text="Targeted hail zones by ZIP with roof-age filters." />
-        <Card img={WIND_IMG} title="Wind"
-              text="Fresh wind swaths with high-intent homeowners." />
-        <Card img={TORNADO_IMG} title="Tornado / Hurricanes"
-              text="ZIP-precise disaster coverage for fast deployment and scale." />
+        {/* Hail */}
+        <Card
+          img={HAIL_IMG}
+          title="Hail"
+          text="Targeted hail zones by ZIP with roof-age filters."
+        />
+
+        {/* Wind */}
+        <Card
+          img={WIND_IMG}
+          title="Wind"
+          text="Fresh wind swaths with high-intent homeowners."
+        />
+
+        {/* Tornado / Hurricanes */}
+        <Card
+          img={TORNADO_IMG}
+          title="Tornado / Hurricanes"
+          text="ZIP-precise disaster coverage for fast deployment and scale."
+        />
       </div>
     </section>
   );
@@ -93,21 +102,21 @@ function LeadTypes() {
 
 function Pricing() {
   return (
-    <section className="section" id="pricingTop">
+    <section className="section" id="pricing">
       <h2>Pricing</h2>
-
-      <div className="pricing">
-        <div className="col">
-          <h3>Residential Leads</h3>
+      <div className="pricing-grid">
+        <div className="price-card">
+          <h3>Residential</h3>
           <ul>
             <li>25 leads — $120/lead — $3,000</li>
             <li>50 leads — $115/lead — $5,750</li>
             <li>100 leads — $110/lead — $11,000</li>
             <li>200 leads — $105/lead — $21,000</li>
           </ul>
+          <p className="muted">Roof-age filters: +$10 (5+ yrs), +$25 (8+ yrs)</p>
         </div>
-        <div className="col">
-          <h3>Commercial Leads</h3>
+        <div className="price-card">
+          <h3>Commercial</h3>
           <ul>
             <li>5 leads — $300/lead — $1,500</li>
             <li>20 leads — $290/lead — $5,800</li>
@@ -115,14 +124,6 @@ function Pricing() {
             <li>50 leads — $275/lead — $13,750</li>
           </ul>
         </div>
-      </div>
-
-      <div className="filters">
-        <p><strong>Filters</strong></p>
-        <ul>
-          <li>5+ yr old roofs only — +$10/lead</li>
-          <li>8+ yr old roofs only — +$25/lead</li>
-        </ul>
       </div>
     </section>
   );
@@ -134,9 +135,11 @@ function Rules() {
       <h2>Rules</h2>
       <ul className="rules">
         <li>Do not call the leads ahead of time before you go.</li>
-        <li>Bad leads must be returned within 2 days to receive credit.</li>
-        <li>If not returned in 2 days, we automatically give 20% extra leads to help make up for bad ones.</li>
-        <li>We get you on the roof in front of the owner in the ZIP codes you want; you close it from there.</li>
+        <li>
+          Bad leads must be returned within <strong>2 days</strong>. Otherwise, we
+          automatically give <strong>20% extra</strong> to help make up for bad leads.
+        </li>
+        <li>We get you on the roof in the ZIP codes you want—you close it.</li>
       </ul>
     </section>
   );
@@ -146,22 +149,31 @@ function Contact() {
   return (
     <section className="section">
       <h2>Contact</h2>
-      <p>Phone: 833-9MACHIN (622-446)</p>
-      <p>Email: stormleadmachine@gmail.com</p>
+      <p>
+        Phone: <strong>833-9MACHIN (622-446)</strong> &nbsp;•&nbsp; Email:{" "}
+        <strong>stormleadmachine@gmail.com</strong>
+      </p>
     </section>
   );
 }
 
-/* ---------- Small Card component ---------- */
+/* ---------- Reusable ---------- */
+
 function Card({ img, title, text }) {
   return (
-    <article className="card">
-      <img className="card_img" src={img} alt={title} loading="lazy" />
-      <div className="card_body">
+    <div className="card">
+      <img
+        src={img}
+        alt={title}
+        className="card-img"
+        loading="lazy"
+        width="1280"
+        height="720"
+      />
+      <div className="card-body">
         <h3>{title}</h3>
         <p className="muted">{text}</p>
       </div>
-    </article>
+    </div>
   );
 }
-
