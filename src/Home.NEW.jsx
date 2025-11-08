@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from "react";
 
+
 /* Hosted images so the build never fails on local assets */
 const HAIL_IMG =
   "https://images.unsplash.com/photo-1611902197376-d8a9a9886f2b?q=80&w=1600&auto=format&fit=crop";
