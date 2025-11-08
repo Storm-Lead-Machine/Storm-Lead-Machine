@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 
-// ✅ Replace your current 3 image constants with these
+
 const HAIL_IMG =
   "https://images.unsplash.com/photo-1611902197736-68d9a9086f2b?q=80&w=1600&auto=format&fit=crop"; // hail on shingles
 
