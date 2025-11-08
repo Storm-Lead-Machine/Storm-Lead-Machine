@@ -1,18 +1,16 @@
 import React, { useMemo, useState } from "react";
-
-/* Lead-type images (your local files in /src) */
-+ const hailImg = "/hail-damage.jpg";
-+ const windImg = "/wind-damage.jpg";
-+ const tornadoImg = "/tornado-damage.jpg";
-
-/* Logo (with spaces in filename) */
 import logo from "./Storm Lead Machine Logo.png";
+
+/* Use images from the public folder */
+const hailImg = "/hail-damage.jpg";
+const windImg = "/wind-damage.jpg";
+const tornadoImg = "/tornado-damage.jpg";
 
 export default function Home() {
   const TABS = ["Lead Types", "Pricing", "Rules", "Contact"];
   const [active, setActive] = useState("Lead Types");
 
-  // Sky backgrounds per tab (my images via Unsplash)
+  // Background images for each tab
   const bgMap = useMemo(
     () => ({
       "Lead Types":
@@ -22,7 +20,7 @@ export default function Home() {
       Rules:
         "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1920&auto=format&fit=crop",
       Contact:
-        "https://images.unsplash.com/photo-1504384764586-bb4cdc1707b0?q=80&w=1920&auto=format&fit=crop"
+        "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1920&auto=format&fit=crop",
     }),
     []
   );
@@ -30,209 +28,167 @@ export default function Home() {
   const bgUrl = bgMap[active];
 
   return (
-    <div className="app" style={{ backgroundImage: `url('${bgUrl}')` }}>
-      <header className={`site-header ${active === "Lead Types" ? "site-header--home" : ""}`}>
-        <div className="brand">
-          <img src={logo} alt="Storm Lead Machine" className="brand__logo" />
-          <span className="brand__title">Storm Lead Machine</span>
-        </div>
+    <div
+      className="app"
+      style={{
+        backgroundImage: `url('${bgUrl}')`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        minHeight: "100vh",
+      }}
+    >
+      <header
+        className={`site-header ${
+          active === "Lead Types" ? "site-header--home" : ""
+        }`}
+      >
+        <img
+          src={logo}
+          alt="Storm Lead Machine Logo"
+          style={{
+            width: "120px",
+            height: "120px",
+            margin: "10px",
+          }}
+        />
+        <h1
+          style={{
+            color: "white",
+            fontSize: "2rem",
+            textShadow: "2px 2px 4px black",
+          }}
+        >
+          Storm Lead Machine
+        </h1>
 
-        <nav className="nav">
-          {TABS.map((t) => (
+        <nav style={{ marginTop: "20px" }}>
+          {TABS.map((tab) => (
             <button
-              key={t}
-              className={`nav__tab ${active === t ? "is-active" : ""}`}
-              onClick={() => setActive(t)}
+              key={tab}
+              onClick={() => setActive(tab)}
+              style={{
+                background: active === tab ? "#ff0000" : "#00000099",
+                color: "white",
+                padding: "10px 20px",
+                margin: "0 5px",
+                border: "none",
+                borderRadius: "8px",
+                cursor: "pointer",
+              }}
             >
-              {t}
+              {tab}
             </button>
           ))}
-          <a
-            className="cta"
-            href="#lead-now"
-            onClick={(e) => {
-              e.preventDefault();
-              setActive("Pricing");
-              document.getElementById("pricingTop")?.scrollIntoView({ behavior: "smooth" });
-            }}
-          >
-            Get Leads Now
-          </a>
         </nav>
       </header>
 
-      <section className="hero">
-        <div className="hero__overlay" />
-        <div className="hero__content">
-          <h1>Dominate Storm Markets. On-Demand.</h1>
-          <p>
-            Exclusive storm leads where you want them — targeted by ZIP, roof-age filters, and fast
-            routing. We get you on the roof in front of the owner. <strong>You close it.</strong>
-          </p>
-          <div className="hero__actions">
-            <a
-              className="btn btn--primary"
-              href="#lead-now"
-              onClick={(e) => {
-                e.preventDefault();
-                setActive("Pricing");
+      <main
+        style={{
+          backgroundColor: "rgba(0,0,0,0.6)",
+          color: "white",
+          padding: "40px",
+          margin: "40px auto",
+          maxWidth: "900px",
+          borderRadius: "12px",
+        }}
+      >
+        {active === "Lead Types" && (
+          <>
+            <h2>Storm Lead Types</h2>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr 1fr",
+                gap: "20px",
+                marginTop: "20px",
               }}
             >
-              Get Leads Now
-            </a>
-            <button className="btn" onClick={() => setActive("Pricing")}>View Pricing</button>
-            <button className="btn" onClick={() => setActive("Lead Types")}>See Lead Types</button>
-          </div>
-        </div>
-      </section>
+              <div>
+                <img
+                  src={hailImg}
+                  alt="Hail damage"
+                  style={{ width: "100%", borderRadius: "10px" }}
+                />
+                <h3>Hail Leads</h3>
+                <p>Targeted hail zones with verified roof damage data.</p>
+              </div>
+              <div>
+                <img
+                  src={windImg}
+                  alt="Wind damage"
+                  style={{ width: "100%", borderRadius: "10px" }}
+                />
+                <h3>Wind Leads</h3>
+                <p>High-quality windstorm opportunities ready to close.</p>
+              </div>
+              <div>
+                <img
+                  src={tornadoImg}
+                  alt="Tornado damage"
+                  style={{ width: "100%", borderRadius: "10px" }}
+                />
+                <h3>Tornado & Hurricane Leads</h3>
+                <p>Exclusive data from major storm events nationwide.</p>
+              </div>
+            </div>
+          </>
+        )}
 
-      <main className="page">
-        {active === "Lead Types" && <LeadTypes />}
-        {active === "Pricing" && <Pricing />}
-        {active === "Rules" && <Rules />}
-        {active === "Contact" && <Contact />}
+        {active === "Pricing" && (
+          <>
+            <h2>Pricing</h2>
+            <p>
+              Residential Leads
+              <br />
+              25 leads - $120 per lead - $3,000
+              <br />
+              50 leads - $115 per lead - $5,750
+              <br />
+              100 leads - $110 per lead - $11,000
+              <br />
+              200 leads - $105 per lead - $21,000
+              <br />
+              <br />
+              Commercial Leads
+              <br />
+              5 leads - $300 per lead - $1,500
+              <br />
+              20 leads - $290 per lead - $5,800
+              <br />
+              30 leads - $285 per lead - $8,550
+              <br />
+              50 leads - $275 per lead - $13,750
+            </p>
+          </>
+        )}
+
+        {active === "Rules" && (
+          <>
+            <h2>Rules</h2>
+            <p>
+              Leads must be returned within 2 days to receive credit.
+              <br />
+              If not returned within that window, we automatically give 20% extra
+              to make up for potential bad leads.
+              <br />
+              Do not call leads ahead of time — we get you on the roof in front
+              of the owner in your target ZIP codes.
+            </p>
+          </>
+        )}
+
+        {active === "Contact" && (
+          <>
+            <h2>Contact Us</h2>
+            <p>
+              📞 833-9MACHIN (622-446)
+              <br />
+              ✉️ stormleadmachine@gmail.com
+            </p>
+          </>
+        )}
       </main>
-
-      <footer className="footer">
-        <p>© {new Date().getFullYear()} Storm Lead Machine. All rights reserved.</p>
-      </footer>
     </div>
   );
 }
 
-/* ---------- Sections ---------- */
-
-function LeadTypes() {
-  return (
-    <section className="section">
-      <h2>Storm Lead Types</h2>
-      <p className="muted">Target exactly where you want to sell.</p>
-
-      <div className="cards">
-        <Card img={hailImg} title="Hail" text="Targeted hail zones by ZIP with roof-age filters." />
-        <Card img={windImg} title="Wind" text="Fresh wind swaths with high-intent homeowners." />
-        <Card
-          img={tornadoImg}
-          title="Tornado / Hurricanes"
-          text="ZIP-precise disaster coverage for fast deployment and scale."
-        />
-      </div>
-    </section>
-  );
-}
-
-function Pricing() {
-  return (
-    <section className="section" id="pricingTop">
-      <h2>Pricing</h2>
-      <p className="muted">Transparent. Scalable. Built for closers.</p>
-
-      <div className="grid pricing">
-        <div className="pricing__col">
-          <h3>Residential Leads</h3>
-          <ul className="list">
-            <li>25 leads — <strong>$120</strong>/lead — $3,000</li>
-            <li>50 leads — <strong>$115</strong>/lead — $5,750</li>
-            <li>100 leads — <strong>$110</strong>/lead — $11,000</li>
-            <li>200 leads — <strong>$105</strong>/lead — $21,000</li>
-          </ul>
-        </div>
-        <div className="pricing__col">
-          <h3>Commercial Leads</h3>
-          <ul className="list">
-            <li>5 leads — <strong>$300</strong>/lead — $1,500</li>
-            <li>20 leads — <strong>$290</strong>/lead — $5,800</li>
-            <li>30 leads — <strong>$285</strong>/lead — $8,550</li>
-            <li>50 leads — <strong>$275</strong>/lead — $13,750</li>
-          </ul>
-        </div>
-        <div className="pricing__col">
-          <h3>Filters</h3>
-          <ul className="list">
-            <li>5+ yr roofs: +$10/lead</li>
-            <li>8+ yr roofs: +$25/lead</li>
-          </ul>
-
-          <a
-            id="lead-now"
-            className="btn btn--primary btn--block"
-            href="https://square.link/u/RSfgAZHS"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Checkout — Get Leads Now
-          </a>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Rules() {
-  return (
-    <section className="section">
-      <h2>Rules</h2>
-      <ul className="list">
-        <li><strong>Don’t pre-call the lead.</strong> You’re booked to show up and get on the roof.</li>
-        <li><strong>Bad leads must be returned within 2 days</strong> to receive credit.</li>
-        <li>If not returned in time, we <strong>automatically add 20% extra leads</strong> to help make up for it.</li>
-      </ul>
-    </section>
-  );
-}
-
-function Contact() {
-  return (
-    <section className="section">
-      <h2>Contact Us</h2>
-      <p className="muted">We usually reply the same day.</p>
-
-      <div className="contact">
-        <div className="contact__card">
-          <p><strong>Phone:</strong> 833-9MACHIN (622-446)</p>
-          <p><strong>Email:</strong> <a href="mailto:stormleadmachine@gmail.com">stormleadmachine@gmail.com</a></p>
-        </div>
-
-        <form
-          className="contact__form"
-          onSubmit={(e) => {
-            e.preventDefault();
-            const name = e.currentTarget.name.value;
-            const email = e.currentTarget.email.value;
-            const msg = encodeURIComponent(e.currentTarget.message.value);
-            window.location.href =
-              `mailto:stormleadmachine@gmail.com?subject=Lead%20Inquiry%20from%20${encodeURIComponent(
-                name || "Website"
-              )}&body=From:%20${encodeURIComponent(email)}%0D%0A%0D%0A${msg}`;
-          }}
-        >
-          <label>
-            Name
-            <input name="name" type="text" placeholder="Your name" required />
-          </label>
-          <label>
-            Email
-            <input name="email" type="email" placeholder="you@company.com" required />
-          </label>
-          <label>
-            Message
-            <textarea name="message" rows={4} placeholder="Tell us what markets you want…" required />
-          </label>
-          <button className="btn btn--primary" type="submit">Send</button>
-        </form>
-      </div>
-    </section>
-  );
-}
-
-function Card({ img, title, text }) {
-  return (
-    <div className="card">
-      <img src={img} alt={title} className="card__img" />
-      <div className="card__body">
-        <h3>{title}</h3>
-        <p className="muted">{text}</p>
-      </div>
-    </div>
-  );
-}
