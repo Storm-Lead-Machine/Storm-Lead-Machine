@@ -1,165 +1,129 @@
-/* ===== Base ===== */
-:root {
-  --bg: #0b1020;
-  --card: rgba(30, 35, 55, 0.6);
-  --card-border: rgba(255,255,255,0.12);
-  --text: #e7ecff;
-  --muted: #b7c1e1;
-  --accent: #ff8a1f;
-}
-
+/* Reset-ish */
 * { box-sizing: border-box; }
 html, body, #root { height: 100%; }
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color: #fff; }
+
+/* App background */
+.app {
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
-a { color: inherit; text-decoration: none; }
-.section { padding: 56px 24px; max-width: 1200px; margin: 0 auto; }
-.section-head h2 { font-size: 2rem; margin: 0 0 4px; }
-.section-head p { color: var(--muted); margin: 0 0 16px; }
-
-/* ===== Header / Brand ===== */
+/* Header */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 50;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 10px 18px;
-  background: linear-gradient(180deg, rgba(6,8,16,0.88), rgba(6,8,16,0.35));
   backdrop-filter: blur(6px);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  background: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.25));
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  padding: 16px 24px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 20px;
 }
 
-header .brand {
+/* Brand area: 2-inch logo + 2-inch title */
+.brand {
   display: flex;
   align-items: center;
   gap: 14px;
 }
-
 .brand img {
-  width: 2in;      /* EXACT size requirement */
-  height: 2in;     /* EXACT size requirement */
+  width: 2in;
+  height: 2in;
   object-fit: contain;
-  display: block;
   border-radius: 8px;
 }
-
 .site-title {
-  font-size: 2in;        /* EXACT size requirement */
+  font-size: 2in;         /* 2-inch tall text */
   line-height: 0.9;
   font-weight: 900;
-  letter-spacing: -0.5px;
-  color: #fff;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.45);
+  letter-spacing: -1px;
   white-space: nowrap;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.6);
 }
 
-.site-nav {
+/* Pills / CTA */
+.pill-nav {
   display: flex;
+  gap: 10px;
   align-items: center;
-  gap: 12px;
+  justify-content: flex-end;
   flex-wrap: wrap;
 }
-.site-nav a {
-  padding: 8px 12px;
+.pill {
+  appearance: none;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  padding: 10px 16px;
   border-radius: 999px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
+  cursor: pointer;
   font-weight: 600;
-  color: #eaf0ff;
 }
-.site-nav a.cta {
-  background: var(--accent);
-  color: #1c1206;
-  border-color: transparent;
-}
-.site-nav a:hover { transform: translateY(-1px); transition: 120ms; }
+.pill.active { background: rgba(255,255,255,0.22); }
+.pill:hover { background: rgba(255,255,255,0.18); }
 
-/* ===== Hero ===== */
-.hero {
-  position: relative;
-  isolation: isolate;
-  min-height: 46vh;
-  display: grid;
-  place-items: center;
-  padding: 56px 24px 24px;
-  background:
-    linear-gradient(180deg, rgba(10,14,28,.55), rgba(10,14,28,.75)),
-    url("https://images.unsplash.com/photo-1504386106331-3e4e71712b38?q=80&w=1920&auto=format&fit=crop") center/cover no-repeat;
+.cta {
+  background: #ff8a00;
+  color: #000;
+  font-weight: 800;
+  padding: 12px 18px;
+  border-radius: 12px;
+  text-decoration: none;
+  border: 2px solid #000;
 }
-.hero-content {
+
+/* Card grid */
+.card-grid {
   max-width: 1100px;
-  text-align: center;
-}
-.hero h1 {
-  margin: 0 0 10px;
-  font-size: clamp(28px, 5vw, 56px);
-}
-.hero p { color: var(--muted); margin: 0 auto 16px; max-width: 900px; }
-.hero .hero-actions {
-  display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;
-}
-.hero .cta, .hero .ghost {
-  padding: 10px 16px; border-radius: 10px; font-weight: 700;
-}
-.hero .cta { background: var(--accent); color: #1c1206; }
-.hero .ghost { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); }
-
-/* ===== Lead Types ===== */
-.lead-types .grid {
+  margin: 36px auto 48px;
+  padding: 0 16px;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0,1fr));
-  gap: 16px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
 }
-.lead-card {
-  background: var(--card);
-  border: 1px solid var(--card-border);
-  border-radius: 14px;
+.card {
+  background: rgba(0,0,0,0.5);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.35);
 }
-.lead-card img.card-photo {
+.card-img {
   width: 100%;
-  height: 12rem;
+  height: 180px;
   object-fit: cover;
   display: block;
 }
-.lead-card .card-body {
-  padding: 14px 16px 18px;
+.card-body { padding: 16px; }
+.card-body h3 { margin: 0 0 8px; }
+
+/* Slab sections */
+.slab {
+  max-width: 900px;
+  margin: 36px auto 48px;
+  padding: 16px;
+  background: rgba(0,0,0,0.5);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 16px;
 }
-.lead-card h3 { margin: 0 0 6px; }
-.lead-card p { color: var(--muted); margin: 0; }
 
-/* ===== Rules ===== */
-.rules { margin: 8px 0 0 18px; color: var(--muted); }
-.rules li { margin-bottom: 6px; }
-
-/* ===== Footer ===== */
-.footer {
-  padding: 40px 24px 56px;
+/* Footer */
+.site-footer {
   text-align: center;
-  color: var(--muted);
-  border-top: 1px solid rgba(255,255,255,0.08);
-  margin-top: 40px;
+  padding: 24px 12px 40px;
+  color: rgba(255,255,255,0.9);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.45);
 }
 
-/* ===== Responsive ===== */
-@media (max-width: 1100px) {
-  .site-title { font-size: 1.6in; }
+/* (Optional) shrink huge title on small screens so it doesn’t overflow */
+@media (max-width: 1200px) {
+  .site-title { font-size: clamp(42px, 10vw, 2in); }
+  .card-grid { grid-template-columns: 1fr; }
+  .brand img { width: 1.5in; height: 1.5in; }
 }
-@media (max-width: 900px) {
-  .lead-types .grid { grid-template-columns: 1fr; }
-}
-@media (max-width: 768px) {
-  .brand img { width: 1.2in; height: 1.2in; }
-  .site-title { font-size: 1.2in; }
-  .site-nav { gap: 8px; }
-}
-
