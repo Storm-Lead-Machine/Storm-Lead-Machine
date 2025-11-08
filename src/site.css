@@ -377,3 +377,20 @@ img {
   color: #cfd6dc;
   font-size: 0.95rem;
 }
+/* --- Logo placement + sizing --- */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: white;
+}
+
+.brand img {
+  width: 2in;     /* exactly 2 inches wide */
+  height: 2in;    /* exactly 2 inches tall */
+  object-fit: contain;
+  margin-right: 8px;
+  border-radius: 8px;
+}
