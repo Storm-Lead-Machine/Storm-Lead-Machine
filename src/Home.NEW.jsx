@@ -1,6 +1,7 @@
 // src/Home.NEW.jsx
 import React, { useMemo, useState } from "react";
 
+
 export default function Home() {
   // Hosted images (no local imports)
   const HAIL_IMG =
