@@ -1,12 +1,14 @@
 import React, { useMemo, useState } from "react";
 
-/** Card art — hosted URLs (no local imports at all) */
+// ✅ Replace your current 3 image constants with these
 const HAIL_IMG =
-  "https://images.unsplash.com/photo-1523978591478-c753949ff840?q=80&w=1600&auto=format&fit=crop";       // hail on shingles
+  "https://images.unsplash.com/photo-1611902197736-68d9a9086f2b?q=80&w=1600&auto=format&fit=crop"; // hail on shingles
+
 const WIND_IMG =
-  "https://images.unsplash.com/photo-1482190253456-5655af888cc4?q=80&w=1600&auto=format&fit=crop";       // wind-stressed roof/siding
+  "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1600&auto=format&fit=crop"; // damaged roof/wind
+
 const TORNADO_IMG =
-  "https://images.unsplash.com/photo-1465447142348-e9952c393405?q=80&w=1600&auto=format&fit=crop";       // supercell
+  "https://images.unsplash.com/photo-1465447142348-e9952c393450?q=80&w=1600&auto=format&fit=crop"; // tornado/supercell
 
 export default function Home() {
   const TABS = ["Lead Types", "Pricing", "Rules", "Contact"];
