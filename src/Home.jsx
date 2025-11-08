@@ -1,16 +1,21 @@
 import React, { useMemo, useState } from "react";
+
+// Your logo (file exists in /src)
 import logo from "./Storm Lead Machine Logo.png";
 
-/* Use images from the public folder */
-const hailImg = "/hail-damage.jpg";
-const windImg = "/wind-damage.jpg";
-const tornadoImg = "/tornado-damage.jpg";
+/* Card images — use hosted URLs (no local imports) */
+const hailImg =
+  "https://images.unsplash.com/photo-1523978591478-c753949ff840?q=80&w=1600&auto=format&fit=crop"; // hail on shingles
+const windImg =
+  "https://images.unsplash.com/photo-1482192505345-5655af888cc4?q=80&w=1600&auto=format&fit=crop"; // wind-stressed roof/siding vibe
+const tornadoImg =
+  "https://images.unsplash.com/photo-1465447142348-e9952c393450?q=80&w=1600&auto=format&fit=crop"; // tornado/supercell
 
 export default function Home() {
   const TABS = ["Lead Types", "Pricing", "Rules", "Contact"];
   const [active, setActive] = useState("Lead Types");
 
-  // Background images for each tab
+  // Different sky backgrounds per tab (also hosted)
   const bgMap = useMemo(
     () => ({
       "Lead Types":
@@ -20,7 +25,7 @@ export default function Home() {
       Rules:
         "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1920&auto=format&fit=crop",
       Contact:
-        "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1920&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1920&auto=format&fit=crop"
     }),
     []
   );
@@ -34,101 +39,158 @@ export default function Home() {
         backgroundImage: `url('${bgUrl}')`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        minHeight: "100vh",
+        minHeight: "100vh"
       }}
     >
+      {/* Header */}
       <header
-        className={`site-header ${
-          active === "Lead Types" ? "site-header--home" : ""
-        }`}
+        className={`site-header ${active === "Lead Types" ? "site-header--home" : ""}`}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "14px",
+          padding: "14px 18px",
+          background: "linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.20))"
+        }}
       >
         <img
           src={logo}
-          alt="Storm Lead Machine Logo"
+          alt="Storm Lead Machine logo"
           style={{
-            width: "120px",
-            height: "120px",
-            margin: "10px",
+            height: "192px", // ~2 inches on typical displays
+            width: "auto",
+            filter: "drop-shadow(0 8px 18px rgba(0,0,0,.45))"
           }}
         />
-        <h1
-          style={{
-            color: "white",
-            fontSize: "2rem",
-            textShadow: "2px 2px 4px black",
-          }}
-        >
-          Storm Lead Machine
-        </h1>
+        <div>
+          <h1
+            style={{
+              margin: 0,
+              color: "white",
+              fontWeight: 800,
+              fontSize: "clamp(2.25rem, 4vw, 3rem)", // large, responsive
+              textShadow: "0 2px 4px rgba(0,0,0,.6)"
+            }}
+          >
+            Storm Lead Machine
+          </h1>
 
-        <nav style={{ marginTop: "20px" }}>
-          {TABS.map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActive(tab)}
-              style={{
-                background: active === tab ? "#ff0000" : "#00000099",
-                color: "white",
-                padding: "10px 20px",
-                margin: "0 5px",
-                border: "none",
-                borderRadius: "8px",
-                cursor: "pointer",
-              }}
-            >
-              {tab}
-            </button>
-          ))}
-        </nav>
+          {/* Tabs */}
+          <nav style={{ marginTop: 14 }}>
+            {TABS.map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActive(tab)}
+                style={{
+                  background: active === tab ? "#ff4d00" : "rgba(0,0,0,.65)",
+                  color: "white",
+                  padding: "10px 16px",
+                  marginRight: 8,
+                  border: "none",
+                  borderRadius: 10,
+                  cursor: "pointer",
+                  fontWeight: 600
+                }}
+              >
+                {tab}
+              </button>
+            ))}
+          </nav>
+        </div>
       </header>
 
+      {/* Main content surface */}
       <main
         style={{
-          backgroundColor: "rgba(0,0,0,0.6)",
+          backgroundColor: "rgba(0,0,0,.55)",
           color: "white",
-          padding: "40px",
-          margin: "40px auto",
-          maxWidth: "900px",
-          borderRadius: "12px",
+          padding: 32,
+          margin: "32px auto",
+          maxWidth: 1100,
+          borderRadius: 14,
+          boxShadow: "0 12px 30px rgba(0,0,0,.35)",
+          backdropFilter: "blur(2px)"
         }}
       >
         {active === "Lead Types" && (
           <>
-            <h2>Storm Lead Types</h2>
+            <h2 style={{ marginTop: 0 }}>Storm Lead Types</h2>
+            <p style={{ opacity: 0.9, marginTop: 8 }}>
+              Target exactly where you want to sell.
+            </p>
+
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "1fr 1fr 1fr",
-                gap: "20px",
-                marginTop: "20px",
+                gridTemplateColumns: "repeat(3, 1fr)",
+                gap: 20,
+                marginTop: 20
               }}
             >
-              <div>
+              {/* Hail */}
+              <div
+                style={{
+                  borderRadius: 14,
+                  overflow: "hidden",
+                  background: "rgba(0,0,0,.35)",
+                  border: "1px solid rgba(255,255,255,.08)"
+                }}
+              >
                 <img
                   src={hailImg}
                   alt="Hail damage"
-                  style={{ width: "100%", borderRadius: "10px" }}
+                  style={{ width: "100%", height: 180, objectFit: "cover", display: "block" }}
                 />
-                <h3>Hail Leads</h3>
-                <p>Targeted hail zones with verified roof damage data.</p>
+                <div style={{ padding: 16 }}>
+                  <h3 style={{ margin: "0 0 8px" }}>Hail</h3>
+                  <p style={{ margin: 0, opacity: 0.9 }}>
+                    Targeted hail zones by ZIP with roof-age filters.
+                  </p>
+                </div>
               </div>
-              <div>
+
+              {/* Wind */}
+              <div
+                style={{
+                  borderRadius: 14,
+                  overflow: "hidden",
+                  background: "rgba(0,0,0,.35)",
+                  border: "1px solid rgba(255,255,255,.08)"
+                }}
+              >
                 <img
                   src={windImg}
                   alt="Wind damage"
-                  style={{ width: "100%", borderRadius: "10px" }}
+                  style={{ width: "100%", height: 180, objectFit: "cover", display: "block" }}
                 />
-                <h3>Wind Leads</h3>
-                <p>High-quality windstorm opportunities ready to close.</p>
+                <div style={{ padding: 16 }}>
+                  <h3 style={{ margin: "0 0 8px" }}>Wind</h3>
+                  <p style={{ margin: 0, opacity: 0.9 }}>
+                    Fresh wind swaths with high-intent homeowners.
+                  </p>
+                </div>
               </div>
-              <div>
+
+              {/* Tornado / Hurricanes */}
+              <div
+                style={{
+                  borderRadius: 14,
+                  overflow: "hidden",
+                  background: "rgba(0,0,0,.35)",
+                  border: "1px solid rgba(255,255,255,.08)"
+                }}
+              >
                 <img
                   src={tornadoImg}
-                  alt="Tornado damage"
-                  style={{ width: "100%", borderRadius: "10px" }}
+                  alt="Tornado / Hurricanes"
+                  style={{ width: "100%", height: 180, objectFit: "cover", display: "block" }}
                 />
-                <h3>Tornado & Hurricane Leads</h3>
-                <p>Exclusive data from major storm events nationwide.</p>
+                <div style={{ padding: 16 }}>
+                  <h3 style={{ margin: "0 0 8px" }}>Tornado / Hurricanes</h3>
+                  <p style={{ margin: 0, opacity: 0.9 }}>
+                    ZIP-precise disaster coverage for fast deployment and scale.
+                  </p>
+                </div>
               </div>
             </div>
           </>
@@ -136,53 +198,39 @@ export default function Home() {
 
         {active === "Pricing" && (
           <>
-            <h2>Pricing</h2>
-            <p>
-              Residential Leads
-              <br />
-              25 leads - $120 per lead - $3,000
-              <br />
-              50 leads - $115 per lead - $5,750
-              <br />
-              100 leads - $110 per lead - $11,000
-              <br />
-              200 leads - $105 per lead - $21,000
-              <br />
-              <br />
-              Commercial Leads
-              <br />
-              5 leads - $300 per lead - $1,500
-              <br />
-              20 leads - $290 per lead - $5,800
-              <br />
-              30 leads - $285 per lead - $8,550
-              <br />
-              50 leads - $275 per lead - $13,750
+            <h2 style={{ marginTop: 0 }}>Pricing</h2>
+            <p style={{ lineHeight: 1.6 }}>
+              <strong>Residential Leads</strong><br />
+              25 leads — $120 per lead — $3,000<br />
+              50 leads — $115 per lead — $5,750<br />
+              100 leads — $110 per lead — $11,000<br />
+              200 leads — $105 per lead — $21,000<br /><br />
+              <strong>Commercial Leads</strong><br />
+              5 leads — $300 per lead — $1,500<br />
+              20 leads — $290 per lead — $5,800<br />
+              30 leads — $285 per lead — $8,550<br />
+              50 leads — $275 per lead — $13,750
             </p>
           </>
         )}
 
         {active === "Rules" && (
           <>
-            <h2>Rules</h2>
-            <p>
-              Leads must be returned within 2 days to receive credit.
-              <br />
-              If not returned within that window, we automatically give 20% extra
-              to make up for potential bad leads.
-              <br />
-              Do not call leads ahead of time — we get you on the roof in front
-              of the owner in your target ZIP codes.
+            <h2 style={{ marginTop: 0 }}>Rules</h2>
+            <p style={{ lineHeight: 1.6 }}>
+              Bad leads must be returned within <strong>2 days</strong> to receive credit. If not,
+              we automatically give <strong>20% extra</strong> to help make up for bad leads.
+              Do not call leads ahead of time — we get you on the roof in front of the owner in the
+              ZIP codes you want, and <strong>you close it</strong>.
             </p>
           </>
         )}
 
         {active === "Contact" && (
           <>
-            <h2>Contact Us</h2>
-            <p>
-              📞 833-9MACHIN (622-446)
-              <br />
+            <h2 style={{ marginTop: 0 }}>Contact Us</h2>
+            <p style={{ lineHeight: 1.6 }}>
+              📞 833-9MACHIN (622-446)<br />
               ✉️ stormleadmachine@gmail.com
             </p>
           </>
