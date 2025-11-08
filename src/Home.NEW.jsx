@@ -8,6 +8,7 @@ const WIND_IMG =
 const TORNADO_IMG =
   "https://images.unsplash.com/photo-1478826160983-e6db8fa0df3a?q=80&w=1600&auto=format&fit=crop";       // tornado / supercell skyline
 
+
 export default function Home() {
   return (
     <div className="app">
