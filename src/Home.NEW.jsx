@@ -1,12 +1,12 @@
 import React, { useMemo, useState } from "react";
-
-/* Use reliable hosted images + no-referrer to avoid any hotlink blocks */
+// Replace these three constants in Home.NEW.jsx if needed:
 const HAIL_IMG =
-  "https://images.unsplash.com/photo-1611902197376-d8a9a9886f2b?auto=format&fit=crop&w=1600&q=80";
+  "https://upload.wikimedia.org/wikipedia/commons/6/6b/Hail-damaged_window.jpg";
 const WIND_IMG =
-  "https://images.unsplash.com/photo-1540438438080-c894fcc6538d?auto=format&fit=crop&w=1600&q=80";
+  "https://upload.wikimedia.org/wikipedia/commons/3/3a/Wind_damage_roof.jpg";
 const TORNADO_IMG =
-  "https://images.unsplash.com/photo-1465544712438-e9952c39345a?auto=format&fit=crop&w=1600&q=80";
+  "https://upload.wikimedia.org/wikipedia/commons/0/08/Tornado_damage_example.jpg";
+
 
 /* Sky backgrounds for tabs (also hosted) */
 const SKY = {
