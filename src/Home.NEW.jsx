@@ -1,48 +1,47 @@
 import React, { useMemo, useState } from "react";
 
-
-/* Hosted images so the build never fails on local assets */
+/* Use reliable hosted images + no-referrer to avoid any hotlink blocks */
 const HAIL_IMG =
-  "https://images.unsplash.com/photo-1611902197376-d8a9a9886f2b?q=80&w=1600&auto=format&fit=crop";
+  "https://images.unsplash.com/photo-1611902197376-d8a9a9886f2b?auto=format&fit=crop&w=1600&q=80";
 const WIND_IMG =
-  "https://images.unsplash.com/photo-1540438438080-c894fcc6538d?q=80&w=1600&auto=format&fit=crop";
+  "https://images.unsplash.com/photo-1540438438080-c894fcc6538d?auto=format&fit=crop&w=1600&q=80";
 const TORNADO_IMG =
-  "https://images.unsplash.com/photo-1465544712438-e9952c39345a?q=80&w=1600&auto=format&fit=crop";
+  "https://images.unsplash.com/photo-1465544712438-e9952c39345a?auto=format&fit=crop&w=1600&q=80";
 
 /* Sky backgrounds for tabs (also hosted) */
 const SKY = {
   "Lead Types":
-    "https://images.unsplash.com/photo-1508838555687-99ac94a95522?q=80&w=1920&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1508838555687-99ac94a95522?auto=format&fit=crop&w=1920&q=80",
   Pricing:
-    "https://images.unsplash.com/photo-1499364039626-9a72adace663?q=80&w=1920&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1499364039626-9a72adace663?auto=format&fit=crop&w=1920&q=80",
   Rules:
-    "https://images.unsplash.com/photo-1504384380890-c894fcc6538d?q=80&w=1920&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1504384380890-c894fcc6538d?auto=format&fit=crop&w=1920&q=80",
   Contact:
-    "https://images.unsplash.com/photo-154231483481-06cdd1eebe1f?q=80&w=1920&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-154231483481-06cdd1eebe1f?auto=format&fit=crop&w=1920&q=80",
 };
+const SKY_FALLBACK =
+  "https://images.unsplash.com/photo-1499364039626-9a72adace663?auto=format&fit=crop&w=1920&q=80";
 
 export default function Home() {
   const TABS = ["Lead Types", "Pricing", "Rules", "Contact"];
   const [active, setActive] = useState("Lead Types");
-  const bgUrl = useMemo(() => SKY[active], [active]);
+
+  const bgUrl = useMemo(() => SKY[active] || SKY_FALLBACK, [active]);
 
   return (
     <div className="app" style={{ backgroundImage: `url('${bgUrl}')` }}>
-      {/* Header with 2-inch logo and 2-inch title */}
-      <header className={`site-header ${active === "Lead Types" ? "site-header--home" : ""}`}>
+      {/* Header */}
+      <header className="site-header">
         <div className="brand">
           <img
             src="/Storm-Lead-Machine-Logo.png"
             alt="Storm Lead Machine Logo"
-            onError={(e) => {
-              // Fallback if someone didn’t rename the logo
-              e.currentTarget.src = "/Storm%20Lead%20Machine%20Logo.png";
-            }}
+            onError={(e) => (e.currentTarget.src = "/Storm%20Lead%20Machine%20Logo.png")}
           />
           <div className="site-title">Storm Lead Machine</div>
         </div>
 
-        <nav className="pill-nav">
+        <nav className="pill-nav" aria-label="Primary">
           {TABS.map((t) => (
             <button
               key={t}
@@ -60,27 +59,39 @@ export default function Home() {
       {/* Lead Types */}
       {active === "Lead Types" && (
         <section id="lead-types" className="card-grid">
-          {/* Hail */}
           <div className="card">
-            <img src={HAIL_IMG} alt="Hail damage" className="card-img" />
+            <img
+              src={HAIL_IMG}
+              referrerPolicy="no-referrer"
+              alt="Hail damage"
+              className="card-img"
+            />
             <div className="card-body">
               <h3>Hail</h3>
               <p>Targeted hail zones by ZIP with roof-age filters.</p>
             </div>
           </div>
 
-          {/* Wind */}
           <div className="card">
-            <img src={WIND_IMG} alt="Wind damage" className="card-img" />
+            <img
+              src={WIND_IMG}
+              referrerPolicy="no-referrer"
+              alt="Wind damage"
+              className="card-img"
+            />
             <div className="card-body">
               <h3>Wind</h3>
               <p>Fresh wind swaths with high-intent homeowners.</p>
             </div>
           </div>
 
-          {/* Tornado / Hurricanes */}
           <div className="card">
-            <img src={TORNADO_IMG} alt="Tornado / supercell" className="card-img" />
+            <img
+              src={TORNADO_IMG}
+              referrerPolicy="no-referrer"
+              alt="Tornado / supercell"
+              className="card-img"
+            />
             <div className="card-body">
               <h3>Tornado / Hurricanes</h3>
               <p>ZIP-precise disaster coverage for fast deployment and scale.</p>
@@ -93,7 +104,7 @@ export default function Home() {
       {active === "Pricing" && (
         <section className="slab">
           <h2>Pricing</h2>
-          <p>Same tiers as before—drop in your exact table here.</p>
+          <p>Drop your tiered pricing here.</p>
         </section>
       )}
 
@@ -104,7 +115,7 @@ export default function Home() {
           <ul>
             <li>Do not call the lead ahead of time before you go.</li>
             <li>Bad leads must be returned within 2 days.</li>
-            <li>If not returned in 2 days, we automatically give 20% extra to make up for bad leads.</li>
+            <li>If not returned in 2 days, we automatically provide 20% extra to offset bad leads.</li>
           </ul>
         </section>
       )}
