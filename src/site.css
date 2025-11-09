@@ -1,7 +1,11 @@
-/* Reset-ish */
+/* Base */
 * { box-sizing: border-box; }
 html, body, #root { height: 100%; }
-body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color: #fff; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: #fff;
+}
 
 /* App background */
 .app {
@@ -19,19 +23,15 @@ body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial
   backdrop-filter: blur(6px);
   background: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.25));
   border-bottom: 1px solid rgba(255,255,255,0.12);
-  padding: 16px 24px;
+  padding: 10px 20px;
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
-  gap: 20px;
+  gap: 16px;
 }
 
-/* Brand area: 2-inch logo + 2-inch title */
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
+/* Brand area: keep logo 2in, clamp title so it never explodes */
+.brand { display: flex; align-items: center; gap: 12px; }
 .brand img {
   width: 2in;
   height: 2in;
@@ -39,10 +39,11 @@ body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial
   border-radius: 8px;
 }
 .site-title {
-  font-size: 2in;         /* 2-inch tall text */
-  line-height: 0.9;
+  /* Big but sane: 48px–120px range */
+  font-size: clamp(48px, 6vw, 120px);
+  line-height: 0.95;
   font-weight: 900;
-  letter-spacing: -1px;
+  letter-spacing: -0.5px;
   white-space: nowrap;
   text-shadow: 0 2px 12px rgba(0,0,0,0.6);
 }
@@ -58,12 +59,12 @@ body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial
 .pill {
   appearance: none;
   border: 1px solid rgba(255,255,255,0.18);
-  background: rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.10);
   color: #fff;
   padding: 10px 16px;
   border-radius: 999px;
   cursor: pointer;
-  font-weight: 600;
+  font-weight: 700;
 }
 .pill.active { background: rgba(255,255,255,0.22); }
 .pill:hover { background: rgba(255,255,255,0.18); }
@@ -80,15 +81,15 @@ body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial
 
 /* Card grid */
 .card-grid {
-  max-width: 1100px;
-  margin: 36px auto 48px;
+  max-width: 1150px;
+  margin: 28px auto 48px;
   padding: 0 16px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 18px;
 }
 .card {
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.55);
   border: 1px solid rgba(255,255,255,0.15);
   border-radius: 16px;
   overflow: hidden;
@@ -96,7 +97,7 @@ body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial
 }
 .card-img {
   width: 100%;
-  height: 180px;
+  height: 200px;
   object-fit: cover;
   display: block;
 }
@@ -106,9 +107,9 @@ body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial
 /* Slab sections */
 .slab {
   max-width: 900px;
-  margin: 36px auto 48px;
+  margin: 28px auto 48px;
   padding: 16px;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.55);
   border: 1px solid rgba(255,255,255,0.15);
   border-radius: 16px;
 }
@@ -121,9 +122,8 @@ body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial
   text-shadow: 0 1px 3px rgba(0,0,0,0.45);
 }
 
-/* (Optional) shrink huge title on small screens so it doesn’t overflow */
+/* Responsive */
 @media (max-width: 1200px) {
-  .site-title { font-size: clamp(42px, 10vw, 2in); }
+  .brand img { width: 1.6in; height: 1.6in; }
   .card-grid { grid-template-columns: 1fr; }
-  .brand img { width: 1.5in; height: 1.5in; }
 }
