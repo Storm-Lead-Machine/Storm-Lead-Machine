@@ -1,129 +1,133 @@
-/* Base */
+/* ---------- Reset + Base ---------- */
 * { box-sizing: border-box; }
 html, body, #root { height: 100%; }
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  color: #fff;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  color: #0f172a;
 }
 
-/* App background */
-.app {
-  min-height: 100vh;
+/* ---------- Layout ---------- */
+.page {
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
 }
 
-/* Header */
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  backdrop-filter: blur(6px);
-  background: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.25));
-  border-bottom: 1px solid rgba(255,255,255,0.12);
-  padding: 10px 20px;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
+/* Use your existing /public images */
+.bg-hail    { background-image: linear-gradient(#00000066,#00000066), url("/sky1.jpg"); }
+.bg-wind    { background-image: linear-gradient(#00000066,#00000066), url("/sky2.jpg"); }
+.bg-tornado { background-image: linear-gradient(#00000066,#00000066), url("/sky3.jpg"); }
+.bg-pricing { background-image: linear-gradient(#00000066,#00000066), url("/sky4.jpg"); }
+.bg-contact { background-image: linear-gradient(#00000066,#00000066), url("/sky5.jpg"); }
+
+/* ---------- Header ---------- */
+.header {
+  display: flex;
+  flex-wrap: wrap;
   gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  backdrop-filter: blur(4px);
 }
 
-/* Brand area: keep logo 2in, clamp title so it never explodes */
-.brand { display: flex; align-items: center; gap: 12px; }
-.brand img {
-  width: 2in;
+.brand { display: flex; align-items: center; gap: 16px; }
+
+.logo {
+  width: 2in;   /* requested size */
   height: 2in;
   object-fit: contain;
-  border-radius: 8px;
 }
+
 .site-title {
-  /* Big but sane: 48px–120px range */
-  font-size: clamp(48px, 6vw, 120px);
-  line-height: 0.95;
-  font-weight: 900;
-  letter-spacing: -0.5px;
-  white-space: nowrap;
-  text-shadow: 0 2px 12px rgba(0,0,0,0.6);
-}
-
-/* Pills / CTA */
-.pill-nav {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  justify-content: flex-end;
-  flex-wrap: wrap;
-}
-.pill {
-  appearance: none;
-  border: 1px solid rgba(255,255,255,0.18);
-  background: rgba(255,255,255,0.10);
+  font-size: clamp(32px, 5vw, 72px);
+  line-height: 1;
   color: #fff;
-  padding: 10px 16px;
-  border-radius: 999px;
-  cursor: pointer;
-  font-weight: 700;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  margin: 0;
 }
-.pill.active { background: rgba(255,255,255,0.22); }
-.pill:hover { background: rgba(255,255,255,0.18); }
 
-.cta {
-  background: #ff8a00;
-  color: #000;
-  font-weight: 800;
+/* ---------- Tabs ---------- */
+.tabs { display: flex; gap: 10px; flex-wrap: wrap; }
+.tab {
+  appearance: none;
+  border: 1px solid #ffffff80;
+  background: #ffffff1a;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(2px);
+}
+.tab:hover { background: #ffffff33; }
+.tab.active { background: #fff; color: #0f172a; }
+
+/* ---------- Main ---------- */
+.content { padding: 24px; display: grid; place-items: center; }
+
+.card {
+  width: min(1100px, 95vw);
+  background: #ffffffee;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+}
+
+.card-hero {
+  display: block;
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+}
+
+.card-body { padding: 24px; }
+.card-title { margin: 0 0 12px 0; font-size: 32px; }
+
+.bullets { margin: 0; padding-left: 18px; }
+.bullets li { margin: 6px 0; }
+
+/* Rules */
+.rules {
+  margin-top: 18px;
+  background: #f8fafc;
+  border: 1px dashed #94a3b8;
+  border-radius: 14px;
+  padding: 14px 16px;
+}
+.rules h3 { margin: 0 0 6px 0; font-size: 18px; }
+
+/* Pricing */
+.pricing .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  margin-top: 8px;
+}
+.prices { margin: 8px 0 0 0; padding-left: 18px; }
+.prices li { margin: 6px 0; }
+
+.cta-row { margin-top: 18px; }
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 700;
   padding: 12px 18px;
   border-radius: 12px;
-  text-decoration: none;
-  border: 2px solid #000;
+  border: 1px solid #0ea5e9;
+  background: #38bdf8;
+  color: #083344;
 }
+.btn:hover { filter: brightness(0.95); }
 
-/* Card grid */
-.card-grid {
-  max-width: 1150px;
-  margin: 28px auto 48px;
-  padding: 0 16px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-}
-.card {
-  background: rgba(0,0,0,0.55);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 8px 28px rgba(0,0,0,0.35);
-}
-.card-img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  display: block;
-}
-.card-body { padding: 16px; }
-.card-body h3 { margin: 0 0 8px; }
+/* Contact */
+.contact-line { margin: 6px 0; }
+.muted { color: #64748b; }
 
-/* Slab sections */
-.slab {
-  max-width: 900px;
-  margin: 28px auto 48px;
-  padding: 16px;
-  background: rgba(0,0,0,0.55);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 16px;
-}
-
-/* Footer */
-.site-footer {
-  text-align: center;
-  padding: 24px 12px 40px;
-  color: rgba(255,255,255,0.9);
-  text-shadow: 0 1px 3px rgba(0,0,0,0.45);
-}
-
-/* Responsive */
-@media (max-width: 1200px) {
-  .brand img { width: 1.6in; height: 1.6in; }
-  .card-grid { grid-template-columns: 1fr; }
-}
+/* ---------- Footer ---------- */
+.footer { color: #e2e8f0; text-align: center; padding: 16px; }
