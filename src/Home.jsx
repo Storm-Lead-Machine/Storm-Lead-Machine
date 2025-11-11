@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 const TABS = [
   { key: "hail", label: "Hail Leads" },
@@ -10,6 +10,10 @@ const TABS = [
 
 export default function Home() {
   const [active, setActive] = useState("hail");
+  const [animKey, setAnimKey] = useState(0);
+  const [boot, setBoot] = useState(false);
+
+  useEffect(() => { setBoot(true); }, []);
 
   const bgClass = useMemo(() => {
     switch (active) {
@@ -23,15 +27,10 @@ export default function Home() {
   }, [active]);
 
   return (
-    <div className={`page ${bgClass}`}>
+    <div className={`page ${bgClass} ${boot ? "fade-in" : "fade-start"}`}>
       <header className="header">
         <div className="brand">
-          {/* Your logo in /public (space in file name is URL-encoded) */}
-          <img
-            src="/Storm%20Lead%20Machine%20Logo.png"
-            alt="Storm Lead Machine logo"
-            className="logo"
-          />
+          <img src="/logo.png" alt="Storm Lead Machine logo" className="logo" />
           <h1 className="site-title">Storm Lead Machine</h1>
         </div>
 
@@ -40,7 +39,7 @@ export default function Home() {
             <button
               key={t.key}
               className={`tab ${active === t.key ? "active" : ""}`}
-              onClick={() => setActive(t.key)}
+              onClick={() => { setActive(t.key); setAnimKey(k => k + 1); }}
             >
               {t.label}
             </button>
@@ -49,47 +48,52 @@ export default function Home() {
       </header>
 
       <main className="content">
-        {active === "hail" && (
-          <SectionLead
-            title="Hail Leads"
-            imgSrc="/hail.jpg"
-            bullets={[
-              "Targeted hail zones by ZIP with roof-age filters.",
-              "Verified homeowner & inspection on calendar.",
-              "Exclusive — never shared.",
-            ]}
-            rules
-          />
-        )}
+        <div key={animKey} className="fade-swap">
+          {active === "hail" && (
+            <SectionLead
+              title="Hail Leads"
+              base="/hail.jpg"
+              retina="/hail@2x.jpg"        // lowercase h (matches repo)
+              bullets={[
+                "Targeted hail zones by ZIP with roof-age filters.",
+                "Verified homeowner & inspection on calendar.",
+                "Exclusive — never shared.",
+              ]}
+              rules
+            />
+          )}
 
-        {active === "wind" && (
-          <SectionLead
-            title="Wind Leads"
-            imgSrc="/wind.jpg"
-            bullets={[
-              "Fresh wind swaths with high-intent homeowners.",
-              "Decision maker present.",
-              "Fast routing to keep crews busy.",
-            ]}
-            rules
-          />
-        )}
+          {active === "wind" && (
+            <SectionLead
+              title="Wind Leads"
+              base="/wind.jpg"
+              retina="/Wind@2x.jpg"        // capital W (matches repo)
+              bullets={[
+                "Fresh wind swaths with high-intent homeowners.",
+                "Decision maker present.",
+                "Fast routing to keep crews busy.",
+              ]}
+              rules
+            />
+          )}
 
-        {active === "tornado" && (
-          <SectionLead
-            title="Tornado & Hurricane Leads"
-            imgSrc="/tornado.jpg"
-            bullets={[
-              "CAT events nationwide.",
-              "Appointments set in your chosen ZIPs.",
-              "You close — we feed the roof.",
-            ]}
-            rules
-          />
-        )}
+          {active === "tornado" && (
+            <SectionLead
+              title="Tornado & Hurricane Leads"
+              base="/tornado.jpg"
+              retina="/Tornado@2x.jpg"     // capital T (matches repo)
+              bullets={[
+                "CAT events nationwide.",
+                "Appointments set in your chosen ZIPs.",
+                "You close — we feed the roof.",
+              ]}
+              rules
+            />
+          )}
 
-        {active === "pricing" && <Pricing />}
-        {active === "contact" && <Contact />}
+          {active === "pricing" && <Pricing />}
+          {active === "contact" && <Contact />}
+        </div>
       </main>
 
       <footer className="footer">
@@ -99,16 +103,20 @@ export default function Home() {
   );
 }
 
-function SectionLead({ title, imgSrc, bullets, rules }) {
+function SectionLead({ title, base, retina, bullets, rules }) {
   return (
     <section className="card">
-      <img src={imgSrc} alt={`${title} damage`} className="card-hero" />
+      <img
+        src={base}
+        srcSet={`${base} 1x, ${retina} 2x`}
+        alt={`${title} damage`}
+        className="card-hero"
+        loading="eager"
+        decoding="async"
+      />
       <div className="card-body">
         <h2 className="card-title">{title}</h2>
-        <ul className="bullets">
-          {bullets.map((b, i) => <li key={i}>{b}</li>)}
-        </ul>
-
+        <ul className="bullets">{bullets.map((b, i) => <li key={i}>{b}</li>)}</ul>
         {rules && (
           <div className="rules">
             <h3>Rules</h3>
@@ -131,6 +139,10 @@ function Pricing() {
       <div className="card-body">
         <h2 className="card-title">Pricing</h2>
 
+        <div className="trial-banner">
+          Start today with a <strong>10 lead trial package for $1000</strong>.
+        </div>
+
         <div className="grid">
           <div>
             <h3>Residential Leads</h3>
@@ -141,7 +153,6 @@ function Pricing() {
               <li>200 leads — $105 per lead — $21,000</li>
             </ul>
           </div>
-
           <div>
             <h3>Commercial Leads</h3>
             <ul className="prices">
@@ -151,7 +162,6 @@ function Pricing() {
               <li>50 leads — $275 per lead — $13,750</li>
             </ul>
           </div>
-
           <div>
             <h3>Filters</h3>
             <ul className="prices">
@@ -176,12 +186,8 @@ function Contact() {
     <section className="card">
       <div className="card-body">
         <h2 className="card-title">Contact Us</h2>
-        <p className="contact-line">
-          Phone: <a href="tel:+183369622446">833-9MACHIN (622446)</a>
-        </p>
-        <p className="contact-line">
-          Email: <a href="mailto:stormleadmachine@gmail.com">stormleadmachine@gmail.com</a>
-        </p>
+        <p className="contact-line">Phone: <a href="tel:+183369622446">833-9MACHIN (622446)</a></p>
+        <p className="contact-line">Email: <a href="mailto:stormleadmachine@gmail.com">stormleadmachine@gmail.com</a></p>
         <p className="muted">Serving contractors nationwide with exclusive storm appointments.</p>
       </div>
     </section>
