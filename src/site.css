@@ -7,7 +7,7 @@ body {
   color: #0f172a;
 }
 
-/* ---------- Layout ---------- */
+/* ---------- Page & Backgrounds ---------- */
 .page {
   min-height: 100%;
   display: grid;
@@ -15,14 +15,21 @@ body {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  transition: background-image 300ms ease-in-out;
 }
 
-/* Use your existing /public images */
+/* use your existing sky images */
 .bg-hail    { background-image: linear-gradient(#00000066,#00000066), url("/sky1.jpg"); }
 .bg-wind    { background-image: linear-gradient(#00000066,#00000066), url("/sky2.jpg"); }
 .bg-tornado { background-image: linear-gradient(#00000066,#00000066), url("/sky3.jpg"); }
 .bg-pricing { background-image: linear-gradient(#00000066,#00000066), url("/sky4.jpg"); }
 .bg-contact { background-image: linear-gradient(#00000066,#00000066), url("/sky5.jpg"); }
+
+/* ---------- Global fades ---------- */
+.fade-start { opacity: 0; }
+.fade-in    { opacity: 1; transition: opacity 450ms ease-in; }
+.fade-swap  { animation: fadeSwap 380ms ease-in; }
+@keyframes fadeSwap { from { opacity: 0 } to { opacity: 1 } }
 
 /* ---------- Header ---------- */
 .header {
@@ -34,14 +41,8 @@ body {
   padding: 16px 24px;
   backdrop-filter: blur(4px);
 }
-
 .brand { display: flex; align-items: center; gap: 16px; }
-
-.logo {
-  width: 2in;   /* requested size */
-  height: 2in;
-  object-fit: contain;
-}
+.logo { width: 2in; height: 2in; object-fit: contain; }
 
 .site-title {
   font-size: clamp(32px, 5vw, 72px);
@@ -63,11 +64,12 @@ body {
   font-weight: 600;
   cursor: pointer;
   backdrop-filter: blur(2px);
+  transition: transform 120ms ease, background 120ms ease;
 }
-.tab:hover { background: #ffffff33; }
+.tab:hover { background: #ffffff33; transform: translateY(-1px); }
 .tab.active { background: #fff; color: #0f172a; }
 
-/* ---------- Main ---------- */
+/* ---------- Content & Cards ---------- */
 .content { padding: 24px; display: grid; place-items: center; }
 
 .card {
@@ -82,8 +84,9 @@ body {
 .card-hero {
   display: block;
   width: 100%;
-  height: 320px;
+  height: 420px;            /* taller hero reduces perceived blur */
   object-fit: cover;
+  image-rendering: auto;
 }
 
 .card-body { padding: 24px; }
@@ -112,6 +115,15 @@ body {
 .prices { margin: 8px 0 0 0; padding-left: 18px; }
 .prices li { margin: 6px 0; }
 
+.trial-banner {
+  margin: 8px 0 16px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: #e0f2fe;
+  border: 1px solid #38bdf8;
+}
+
+/* CTA */
 .cta-row { margin-top: 18px; }
 .btn {
   display: inline-block;
@@ -122,8 +134,9 @@ body {
   border: 1px solid #0ea5e9;
   background: #38bdf8;
   color: #083344;
+  transition: transform 120ms ease, filter 120ms ease;
 }
-.btn:hover { filter: brightness(0.95); }
+.btn:hover { filter: brightness(0.95); transform: translateY(-1px); }
 
 /* Contact */
 .contact-line { margin: 6px 0; }
