@@ -49,11 +49,12 @@ export default function Home() {
 
       <main className="content">
         <div key={animKey} className="fade-swap">
+
           {active === "hail" && (
             <SectionLead
               title="Hail Leads"
-              base="/hail.jpg"
-              retina="/hail@2x.jpg"        // lowercase h (matches repo)
+              base="/hail@2x.jpg"       // HIGH-RES DEFAULT
+              retina="/hail.jpg"        // fallback
               bullets={[
                 "Targeted hail zones by ZIP with roof-age filters.",
                 "Verified homeowner & inspection on calendar.",
@@ -66,8 +67,8 @@ export default function Home() {
           {active === "wind" && (
             <SectionLead
               title="Wind Leads"
-              base="/wind.jpg"
-              retina="/Wind@2x.jpg"        // capital W (matches repo)
+              base="/Wind@2x.jpg"       // MATCHES EXACT FILENAME (capital W)
+              retina="/wind.jpg"
               bullets={[
                 "Fresh wind swaths with high-intent homeowners.",
                 "Decision maker present.",
@@ -80,8 +81,8 @@ export default function Home() {
           {active === "tornado" && (
             <SectionLead
               title="Tornado & Hurricane Leads"
-              base="/tornado.jpg"
-              retina="/Tornado@2x.jpg"     // capital T (matches repo)
+              base="/Tornado@2x.jpg"    // MATCHES EXACT FILENAME (capital T)
+              retina="/tornado.jpg"
               bullets={[
                 "CAT events nationwide.",
                 "Appointments set in your chosen ZIPs.",
@@ -93,6 +94,7 @@ export default function Home() {
 
           {active === "pricing" && <Pricing />}
           {active === "contact" && <Contact />}
+
         </div>
       </main>
 
@@ -116,7 +118,11 @@ function SectionLead({ title, base, retina, bullets, rules }) {
       />
       <div className="card-body">
         <h2 className="card-title">{title}</h2>
-        <ul className="bullets">{bullets.map((b, i) => <li key={i}>{b}</li>)}</ul>
+
+        <ul className="bullets">
+          {bullets.map((b, i) => <li key={i}>{b}</li>)}
+        </ul>
+
         {rules && (
           <div className="rules">
             <h3>Rules</h3>
@@ -144,6 +150,7 @@ function Pricing() {
         </div>
 
         <div className="grid">
+
           <div>
             <h3>Residential Leads</h3>
             <ul className="prices">
@@ -153,6 +160,7 @@ function Pricing() {
               <li>200 leads — $105 per lead — $21,000</li>
             </ul>
           </div>
+
           <div>
             <h3>Commercial Leads</h3>
             <ul className="prices">
@@ -162,6 +170,7 @@ function Pricing() {
               <li>50 leads — $275 per lead — $13,750</li>
             </ul>
           </div>
+
           <div>
             <h3>Filters</h3>
             <ul className="prices">
@@ -169,6 +178,7 @@ function Pricing() {
               <li>8+ yr old roofs only: +$25/lead</li>
             </ul>
           </div>
+
         </div>
 
         <div className="cta-row">
@@ -176,6 +186,7 @@ function Pricing() {
             Get leads now
           </a>
         </div>
+
       </div>
     </section>
   );
@@ -186,10 +197,15 @@ function Contact() {
     <section className="card">
       <div className="card-body">
         <h2 className="card-title">Contact Us</h2>
-        <p className="contact-line">Phone: <a href="tel:+183369622446">833-9MACHIN (622446)</a></p>
-        <p className="contact-line">Email: <a href="mailto:stormleadmachine@gmail.com">stormleadmachine@gmail.com</a></p>
+        <p className="contact-line">
+          Phone: <a href="tel:+183369622446">833-9MACHIN (622446)</a>
+        </p>
+        <p className="contact-line">
+          Email: <a href="mailto:stormleadmachine@gmail.com">stormleadmachine@gmail.com</a>
+        </p>
         <p className="muted">Serving contractors nationwide with exclusive storm appointments.</p>
       </div>
     </section>
   );
 }
+
