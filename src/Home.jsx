@@ -30,7 +30,7 @@ export default function Home() {
     <div className={`page ${bgClass} ${boot ? "fade-in" : "fade-start"}`}>
       <header className="header">
         <div className="brand">
-          <img src="/logo.png" alt="Storm Lead Machine logo" className="sml-logo" />
+     <img src="/logo.png" alt="Storm Lead Machine logo" className="sml-logo" />
 
           <h1 className="site-title">Storm Lead Machine</h1>
         </div>
