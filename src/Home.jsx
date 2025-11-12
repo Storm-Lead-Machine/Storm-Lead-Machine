@@ -114,7 +114,7 @@ export default function Home() {
         {active === "pricing" && <Pricing />}
         {active === "contact" && <Contact />}
       </main>
-      {/* --- Footer --- */}
+           {/* --- Footer --- */}
       <footer className="footer">
         <p>© 2025 Storm Lead Machine • "Can't Stop the Machine"</p>
       </footer>
@@ -174,4 +174,3 @@ function Contact() {
     </section>
   );
 }
-
