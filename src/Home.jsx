@@ -64,11 +64,11 @@ export default function Home() {
             />
           )}
 
-         {active === "wind" && (
+        {active === "wind" && (
   <SectionLead
     title="Wind Leads"
     base="/wind-damage.jpg"
-    retina="/wind.jpg"
+    retina="/wind-damage.jpg"
     bullets={[
       "Fresh wind swaths with high-intent homeowners.",
       "Decision maker present.",
@@ -81,7 +81,7 @@ export default function Home() {
   <SectionLead
     title="Tornado & Hurricane Leads"
     base="/tornado-damage.jpg"
-    retina="/tornado.jpg"
+    retina="/tornado-damage.jpg"
     bullets={[
       "CAT events nationwide.",
       "Appointments set in your chosen ZIPs.",
@@ -89,8 +89,6 @@ export default function Home() {
     ]}
   />
 )}
-
-
           {active === "pricing" && <Pricing />}
           {active === "contact" && <Contact />}
         </div>
