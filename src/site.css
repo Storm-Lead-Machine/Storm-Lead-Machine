@@ -42,7 +42,9 @@ body {
   backdrop-filter: blur(4px);
 }
 .brand { display: flex; align-items: center; gap: 16px; }
-.logo { width: 2in; height: 2in; object-fit: contain; }
+.sml-logo { height: 192px; width: auto; }
+@media (max-width: 768px) { .sml-logo { height: 120px; } }
+
 
 .site-title {
   font-size: clamp(32px, 5vw, 72px);
