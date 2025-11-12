@@ -52,7 +52,7 @@ export default function Home() {
           {active === "hail" && (
             <SectionLead
               title="Hail Leads"
-              base="/hail@2x.jpg"     /* use HD by default */
+              base="/hail-damage.jpg"     /* use HD by default */
               retina="/hail.jpg"
               bullets={[
                 "Targeted hail zones by ZIP with roof-age filters.",
@@ -66,7 +66,7 @@ export default function Home() {
           {active === "wind" && (
             <SectionLead
               title="Wind Leads"
-              base="/Wind@2x.jpg"     /* matches exact filename (capital W) */
+              base="/wind-damage.jpg"     /* matches exact filename (capital W) */
               retina="/wind.jpg"
               bullets={[
                 "Fresh wind swaths with high-intent homeowners.",
@@ -80,7 +80,7 @@ export default function Home() {
           {active === "tornado" && (
             <SectionLead
               title="Tornado & Hurricane Leads"
-              base="/Tornado@2x.jpg"  /* matches exact filename (capital T) */
+              base="/tornado-damage.jpg"  /* matches exact filename (capital T) */
               retina="/tornado.jpg"
               bullets={[
                 "CAT events nationwide.",
