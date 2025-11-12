@@ -113,10 +113,14 @@ export default function Home() {
       {/* Footer */}
       <footer className="footer">
         <p>&copy; 2025 Storm Lead Machine &bull; Can&apos;t Stop the Machine</p>
-      </footer>
+           </footer>
     </div>
   );
 }
+
+function SectionLead(...
+...
+function Contact() { ... }
 
 /* ---------- Reusable Sections ---------- */
 
