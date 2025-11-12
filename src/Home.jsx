@@ -71,46 +71,45 @@ export default function Home() {
         </nav>
       </header>
 
-      {/* Content */}
-      <main className="content fade-swap">
-        {active === "hail" && (
-          <SectionLead
-            title="Hail Leads"
-            img={hailImg}
-            bullets={[
-              "Targeted hail zones by ZIP with roof-age filters.",
-              "Verified homeowner & inspection on calendar.",
-              "Exclusive — never shared.",
-            ]}
-            rules={rules}
-          />
-        )}
+  {active === "hail" && (
+  <SectionLead
+    title="Hail Leads"
+    img={hailimg}
+    bullets={[
+      "Targeted hail zones by ZIP with roof-age filters.",
+      "Verified homeowner & inspection on calendar.",
+      "Exclusive — never shared.",
+    ]}
+    rules={rules}
+  />
+)}
 
-        {active === "wind" && (
-          <SectionLead
-            title="Wind Leads"
-            img={windImg}
-            bullets={[
-              "Fresh wind swaths with high-intent homeowners.",
-              "Decision maker present.",
-              "Fast routing to keep crews busy.",
-            ]}
-            rules={rules}
-          />
-        )}
+{active === "wind" && (
+  <SectionLead
+    title="Wind Leads"
+    img={windimg}
+    bullets={[
+      "Fresh wind swaths with high-intent homeowners.",
+      "Decision maker present.",
+      "Fast routing to keep crews busy.",
+    ]}
+    rules={rules}
+  />
+)}
 
-        {active === "tornado" && (
-          <SectionLead
-            title="Tornado & Hurricane Leads"
-            img={tornadoImg}
-            bullets={[
-              "CAT events nationwide.",
-              "Appointments set in your chosen ZIPs.",
-              "You close — we feed the roof.",
-            ]}
-            rules={rules}
-          />
-        )}
+{active === "tornado" && (
+  <SectionLead
+    title="Tornado & Hurricane Leads"
+    img={tornadoimg}
+    bullets={[
+      "CAT events nationwide.",
+      "Appointments set in your chosen ZIPs.",
+      "You close — we feed the roof.",
+    ]}
+    rules={rules}
+  />
+)}
+
 
         {active === "pricing" && <Pricing />}
         {active === "contact" && <Contact />}
@@ -132,16 +131,13 @@ function SectionLead({ title, img, bullets, rules }) {
       <img src={img} alt={title} className="lead-img" />
       <div className="lead-content">
         <h2>{title}</h2>
-        <ul>
-          {bullets.map((b, i) => (
-            <li key={i}>{b}</li>
-          ))}
-        </ul>
+        <ul>{bullets.map((b, i) => <li key={i}>{b}</li>)}</ul>
         {rules}
       </div>
     </section>
   );
 }
+
 
 function Pricing() {
   return (
