@@ -42,8 +42,8 @@ body {
   backdrop-filter: blur(4px);
 }
 .brand { display: flex; align-items: center; gap: 16px; }
-.sml-logo { height: 192px; width: auto; }
-@media (max-width: 768px) { .sml-logo { height: 120px; } }
+.header .sml-logo { height: 192px !important; width: auto; display: block; }
+@media (max-width: 768px) { .header .sml-logo { height: 120px !important; } }
 
 
 .site-title {
