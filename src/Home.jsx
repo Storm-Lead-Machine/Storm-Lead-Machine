@@ -68,7 +68,7 @@ export default function Home() {
   <SectionLead
     title="Wind Leads"
     base="/wind-damage.jpg"
-    retina="/wind-damage.jpg"
+    retina="/wind.jpg"
     bullets={[
       "Fresh wind swaths with high-intent homeowners.",
       "Decision maker present.",
@@ -81,7 +81,7 @@ export default function Home() {
   <SectionLead
     title="Tornado & Hurricane Leads"
     base="/tornado-damage.jpg"
-    retina="/tornado-damage.jpg"
+    retina="/tornado.jpg"
     bullets={[
       "CAT events nationwide.",
       "Appointments set in your chosen ZIPs.",
