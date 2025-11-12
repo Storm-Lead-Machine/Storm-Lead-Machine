@@ -114,8 +114,7 @@ export default function Home() {
         {active === "pricing" && <Pricing />}
         {active === "contact" && <Contact />}
       </main>
-
-      {/* Footer */}
+      {/* --- Footer --- */}
       <footer className="footer">
         <p>© 2025 Storm Lead Machine • "Can't Stop the Machine"</p>
       </footer>
@@ -131,13 +130,16 @@ function SectionLead({ title, img, bullets, rules }) {
       <img src={img} alt={title} className="lead-img" />
       <div className="lead-content">
         <h2>{title}</h2>
-        <ul>{bullets.map((b, i) => <li key={i}>{b}</li>)}</ul>
+        <ul>
+          {bullets.map((b, i) => (
+            <li key={i}>{b}</li>
+          ))}
+        </ul>
         {rules}
       </div>
     </section>
   );
 }
-
 
 function Pricing() {
   return (
@@ -165,8 +167,11 @@ function Contact() {
         Call <strong>833-9MACHIN (622-446)</strong>
         <br />
         Email:{" "}
-        <a href="mailto:stormleadmachine@gmail.com">stormleadmachine@gmail.com</a>
+        <a href="mailto:stormleadmachine@gmail.com">
+          stormleadmachine@gmail.com
+        </a>
       </p>
     </section>
   );
 }
+
