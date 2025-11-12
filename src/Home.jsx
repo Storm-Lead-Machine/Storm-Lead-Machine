@@ -1,5 +1,11 @@
 import React, { useState, useEffect, useMemo } from "react";
 
+// Import images from src/assets (fingerprinted by Vite)
+import smlLogo from "./assets/Logo.png";
+import hailImg from "./assets/hail-damage.jpg";
+import windImg from "./assets/wind-damage.jpg";
+import tornadoImg from "./assets/tornado-damage.jpg";
+
 const TABS = [
   { key: "hail", label: "Hail Leads" },
   { key: "wind", label: "Wind Leads" },
@@ -10,24 +16,18 @@ const TABS = [
 
 export default function Home() {
   const [active, setActive] = useState("hail");
-  const [animKey, setAnimKey] = useState(0);
   const [boot, setBoot] = useState(false);
 
   useEffect(() => setBoot(true), []);
+
   const bgClass = useMemo(() => {
     switch (active) {
-      case "hail":
-        return "bg-hail";
-      case "wind":
-        return "bg-wind";
-      case "tornado":
-        return "bg-tornado";
-      case "pricing":
-        return "bg-pricing";
-      case "contact":
-        return "bg-contact";
-      default:
-        return "bg-hail";
+      case "hail": return "bg-hail";
+      case "wind": return "bg-wind";
+      case "tornado": return "bg-tornado";
+      case "pricing": return "bg-pricing";
+      case "contact": return "bg-contact";
+      default: return "bg-hail";
     }
   }, [active]);
 
@@ -47,33 +47,28 @@ export default function Home() {
     <div className={`page ${bgClass} ${boot ? "fade-in" : "fade-start"}`}>
       <header className="header">
         <div className="brand">
-          <img
-            src="/logo.png?v=9"
-            alt="Storm Lead Machine logo"
-            className="sml-logo"
-          />
+          <img src={smlLogo} alt="Storm Lead Machine logo" className="sml-logo" />
           <h1 className="site-title">Storm Lead Machine</h1>
         </div>
 
         <nav className="tabs">
-          {TABS.map((tab) => (
+          {TABS.map((t) => (
             <button
-              key={tab.key}
-              onClick={() => setActive(tab.key)}
-              className={`tab ${active === tab.key ? "active" : ""}`}
+              key={t.key}
+              onClick={() => setActive(t.key)}
+              className={`tab ${active === t.key ? "active" : ""}`}
             >
-              {tab.label}
+              {t.label}
             </button>
           ))}
         </nav>
       </header>
 
-      <main key={animKey} className="content fade-swap">
+      <main className="content fade-swap">
         {active === "hail" && (
           <SectionLead
             title="Hail Leads"
-            base="/hail-damage.jpg?v=9"
-            retina="/hail-damage.jpg?v=9"
+            img={hailImg}
             bullets={[
               "Targeted hail zones by ZIP with roof-age filters.",
               "Verified homeowner & inspection on calendar.",
@@ -86,8 +81,7 @@ export default function Home() {
         {active === "wind" && (
           <SectionLead
             title="Wind Leads"
-            base="/wind-damage.jpg?v=9"
-            retina="/wind-damage.jpg?v=9"
+            img={windImg}
             bullets={[
               "Fresh wind swaths with high-intent homeowners.",
               "Decision maker present.",
@@ -100,8 +94,7 @@ export default function Home() {
         {active === "tornado" && (
           <SectionLead
             title="Tornado & Hurricane Leads"
-            base="/tornado-damage.jpg?v=9"
-            retina="/tornado-damage.jpg?v=9"
+            img={tornadoImg}
             bullets={[
               "CAT events nationwide.",
               "Appointments set in your chosen ZIPs.",
@@ -116,58 +109,4 @@ export default function Home() {
       </main>
 
       <footer className="footer">
-        <p>© 2025 Storm Lead Machine • “Can’t Stop the Machine”</p>
-      </footer>
-    </div>
-  );
-}
-
-// ----- Section Component -----
-function SectionLead({ title, base, retina, bullets, rules }) {
-  return (
-    <section className="lead-section">
-      <img src={base} srcSet={`${retina} 2x`} alt={title} className="lead-img" />
-      <div className="lead-content">
-        <h2>{title}</h2>
-        <ul>
-          {bullets.map((b, i) => (
-            <li key={i}>{b}</li>
-          ))}
-        </ul>
-        {rules}
-      </div>
-    </section>
-  );
-}
-
-// ----- Pricing -----
-function Pricing() {
-  return (
-    <section className="pricing">
-      <h2>Pricing</h2>
-      <ul>
-        <li>25 Residential Leads – $3,000</li>
-        <li>50 Residential Leads – $5,750</li>
-        <li>100 Residential Leads – $11,000</li>
-        <li>200 Residential Leads – $21,000</li>
-        <li>5 Commercial Leads – $1,500</li>
-        <li>20 Commercial Leads – $5,800</li>
-        <li>30 Commercial Leads – $8,550</li>
-        <li>50 Commercial Leads – $13,750</li>
-      </ul>
-    </section>
-  );
-}
-
-// ----- Contact -----
-function Contact() {
-  return (
-    <section className="contact">
-      <h2>Contact Us</h2>
-      <p>
-        Call us at <strong>833-9MACHIN (622-446)</strong><br />
-        Email: <a href="mailto:stormleadmachine@gmail.com">stormleadmachine@gmail.com</a>
-      </p>
-    </section>
-  );
-}
+        <p>© 2025 Storm Lead Machine • “Can’t St
