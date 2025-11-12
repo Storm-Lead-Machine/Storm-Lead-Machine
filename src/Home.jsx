@@ -63,33 +63,32 @@ export default function Home() {
             />
           )}
 
-          {active === "wind" && (
-            <SectionLead
-              title="Wind Leads"
-              base="/wind-damage.jpg"     /* matches exact filename (capital W) */
-              retina="/wind.jpg"
-              bullets={[
-                "Fresh wind swaths with high-intent homeowners.",
-                "Decision maker present.",
-                "Fast routing to keep crews busy.",
-              ]}
-              rules
-            />
-          )}
+         {active === "wind" && (
+  <SectionLead
+    title="Wind Leads"
+    base="/wind-damage.jpg"
+    retina="/wind-damage.jpg"
+    bullets={[
+      "Fresh wind swaths with high-intent homeowners.",
+      "Decision maker present.",
+      "Fast routing to keep crews busy.",
+    ]}
+  />
+)}
 
-          {active === "tornado" && (
-            <SectionLead
-              title="Tornado & Hurricane Leads"
-              base="/tornado-damage.jpg"  /* matches exact filename (capital T) */
-              retina="/tornado.jpg"
-              bullets={[
-                "CAT events nationwide.",
-                "Appointments set in your chosen ZIPs.",
-                "You close — we feed the roof.",
-              ]}
-              rules
-            />
-          )}
+{active === "tornado" && (
+  <SectionLead
+    title="Tornado & Hurricane Leads"
+    base="/tornado-damage.jpg"
+    retina="/tornado-damage.jpg"
+    bullets={[
+      "CAT events nationwide.",
+      "Appointments set in your chosen ZIPs.",
+      "You close – we feed the roof.",
+    ]}
+  />
+)}
+
 
           {active === "pricing" && <Pricing />}
           {active === "contact" && <Contact />}
