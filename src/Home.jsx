@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
-// Import images from src/assets (fingerprinted by Vite)
-import smlLogo from "./assets/Logo.png";
+// Images fingerprinted by Vite (no /public paths, no cache weirdness)
+import smlLogo from "./assets/logo.png";
 import hailImg from "./assets/hail-damage.jpg";
 import windImg from "./assets/wind-damage.jpg";
 import tornadoImg from "./assets/tornado-damage.jpg";
@@ -22,12 +22,18 @@ export default function Home() {
 
   const bgClass = useMemo(() => {
     switch (active) {
-      case "hail": return "bg-hail";
-      case "wind": return "bg-wind";
-      case "tornado": return "bg-tornado";
-      case "pricing": return "bg-pricing";
-      case "contact": return "bg-contact";
-      default: return "bg-hail";
+      case "hail":
+        return "bg-hail";
+      case "wind":
+        return "bg-wind";
+      case "tornado":
+        return "bg-tornado";
+      case "pricing":
+        return "bg-pricing";
+      case "contact":
+        return "bg-contact";
+      default:
+        return "bg-hail";
     }
   }, [active]);
 
@@ -45,6 +51,7 @@ export default function Home() {
 
   return (
     <div className={`page ${bgClass} ${boot ? "fade-in" : "fade-start"}`}>
+      {/* Header */}
       <header className="header">
         <div className="brand">
           <img src={smlLogo} alt="Storm Lead Machine logo" className="sml-logo" />
@@ -64,6 +71,7 @@ export default function Home() {
         </nav>
       </header>
 
+      {/* Content */}
       <main className="content fade-swap">
         {active === "hail" && (
           <SectionLead
@@ -108,9 +116,9 @@ export default function Home() {
         {active === "contact" && <Contact />}
       </main>
 
-          {/* --- Footer --- */}
+      {/* Footer */}
       <footer className="footer">
-        <p>© 2025 Storm Lead Machine • “Can’t Stop the Machine”</p>
+        <p>© 2025 Storm Lead Machine • "Can't Stop the Machine"</p>
       </footer>
     </div>
   );
@@ -125,7 +133,9 @@ function SectionLead({ title, img, bullets, rules }) {
       <div className="lead-content">
         <h2>{title}</h2>
         <ul>
-          {bullets.map((b, i) => <li key={i}>{b}</li>)}
+          {bullets.map((b, i) => (
+            <li key={i}>{b}</li>
+          ))}
         </ul>
         {rules}
       </div>
@@ -156,10 +166,11 @@ function Contact() {
     <section className="contact">
       <h2>Contact Us</h2>
       <p>
-        Call <strong>833-9MACHIN (622-446)</strong><br />
-        Email: <a href="mailto:stormleadmachine@gmail.com">stormleadmachine@gmail.com</a>
+        Call <strong>833-9MACHIN (622-446)</strong>
+        <br />
+        Email:{" "}
+        <a href="mailto:stormleadmachine@gmail.com">stormleadmachine@gmail.com</a>
       </p>
     </section>
   );
 }
-
