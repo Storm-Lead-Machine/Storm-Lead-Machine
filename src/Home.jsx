@@ -108,5 +108,58 @@ export default function Home() {
         {active === "contact" && <Contact />}
       </main>
 
+          {/* --- Footer --- */}
       <footer className="footer">
-        <p>© 2025 Storm Lead Machine • “Can’t St
+        <p>© 2025 Storm Lead Machine • “Can’t Stop the Machine”</p>
+      </footer>
+    </div>
+  );
+}
+
+/* ---------- Reusable Sections ---------- */
+
+function SectionLead({ title, img, bullets, rules }) {
+  return (
+    <section className="lead-section">
+      <img src={img} alt={title} className="lead-img" />
+      <div className="lead-content">
+        <h2>{title}</h2>
+        <ul>
+          {bullets.map((b, i) => <li key={i}>{b}</li>)}
+        </ul>
+        {rules}
+      </div>
+    </section>
+  );
+}
+
+function Pricing() {
+  return (
+    <section className="pricing">
+      <h2>Pricing</h2>
+      <ul>
+        <li>25 Residential Leads – $3,000</li>
+        <li>50 Residential Leads – $5,750</li>
+        <li>100 Residential Leads – $11,000</li>
+        <li>200 Residential Leads – $21,000</li>
+        <li>5 Commercial Leads – $1,500</li>
+        <li>20 Commercial Leads – $5,800</li>
+        <li>30 Commercial Leads – $8,550</li>
+        <li>50 Commercial Leads – $13,750</li>
+      </ul>
+    </section>
+  );
+}
+
+function Contact() {
+  return (
+    <section className="contact">
+      <h2>Contact Us</h2>
+      <p>
+        Call <strong>833-9MACHIN (622-446)</strong><br />
+        Email: <a href="mailto:stormleadmachine@gmail.com">stormleadmachine@gmail.com</a>
+      </p>
+    </section>
+  );
+}
+
