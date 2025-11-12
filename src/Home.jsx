@@ -124,8 +124,7 @@ function Contact() { ... }
 
 /* ---------- Reusable Sections ---------- */
 
-function SectionLead({ title, img, bullets, rules }) {
-  return (
+function SectionLead(){return null}
     <section className="lead-section">
       <img src={img} alt={title} className="lead-img" />
       <div className="lead-content">
@@ -141,8 +140,7 @@ function SectionLead({ title, img, bullets, rules }) {
   );
 }
 
-function Pricing() {
-  return (
+function Pricing(){return null}
     <section className="pricing">
       <h2>Pricing</h2>
       <ul>
@@ -159,8 +157,7 @@ function Pricing() {
   );
 }
 
-function Contact() {
-  return (
+function Contact(){return null}
     <section className="contact">
       <h2>Contact Us</h2>
       <p>
