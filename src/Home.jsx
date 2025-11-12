@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 
-// Images fingerprinted by Vite (no /public paths, no cache weirdness)
+// Fingerprinted images from src/assets
 import smlLogo from "./assets/logo.png";
 import hailImg from "./assets/hail-damage.jpg";
 import windImg from "./assets/wind-damage.jpg";
@@ -22,18 +22,12 @@ export default function Home() {
 
   const bgClass = useMemo(() => {
     switch (active) {
-      case "hail":
-        return "bg-hail";
-      case "wind":
-        return "bg-wind";
-      case "tornado":
-        return "bg-tornado";
-      case "pricing":
-        return "bg-pricing";
-      case "contact":
-        return "bg-contact";
-      default:
-        return "bg-hail";
+      case "hail": return "bg-hail";
+      case "wind": return "bg-wind";
+      case "tornado": return "bg-tornado";
+      case "pricing": return "bg-pricing";
+      case "contact": return "bg-contact";
+      default: return "bg-hail";
     }
   }, [active]);
 
@@ -43,7 +37,7 @@ export default function Home() {
       <ul>
         <li><strong>Do not call</strong> the appointment ahead of time — just go.</li>
         <li>Bad leads must be <strong>returned within 2 days</strong> to receive credit.</li>
-        <li>If a credit isn’t applicable, we automatically add <strong>20% extra</strong> to help make up for bad leads.</li>
+        <li>If a credit is not applicable, we automatically add <strong>20% extra</strong> to help make up for bad leads.</li>
         <li>We get you on the roof in the ZIPs you want. <strong>You close it from there.</strong></li>
       </ul>
     </div>
@@ -71,52 +65,54 @@ export default function Home() {
         </nav>
       </header>
 
-  {active === "hail" && (
-  <SectionLead
-    title="Hail Leads"
-    img={hailimg}
-    bullets={[
-      "Targeted hail zones by ZIP with roof-age filters.",
-      "Verified homeowner & inspection on calendar.",
-      "Exclusive — never shared.",
-    ]}
-    rules={rules}
-  />
-)}
+      {/* Content */}
+      <main className="content fade-swap">
+        {active === "hail" && (
+          <SectionLead
+            title="Hail Leads"
+            img={hailImg}
+            bullets={[
+              "Targeted hail zones by ZIP with roof-age filters.",
+              "Verified homeowner & inspection on calendar.",
+              "Exclusive — never shared.",
+            ]}
+            rules={rules}
+          />
+        )}
 
-{active === "wind" && (
-  <SectionLead
-    title="Wind Leads"
-    img={windimg}
-    bullets={[
-      "Fresh wind swaths with high-intent homeowners.",
-      "Decision maker present.",
-      "Fast routing to keep crews busy.",
-    ]}
-    rules={rules}
-  />
-)}
+        {active === "wind" && (
+          <SectionLead
+            title="Wind Leads"
+            img={windImg}
+            bullets={[
+              "Fresh wind swaths with high-intent homeowners.",
+              "Decision maker present.",
+              "Fast routing to keep crews busy.",
+            ]}
+            rules={rules}
+          />
+        )}
 
-{active === "tornado" && (
-  <SectionLead
-    title="Tornado & Hurricane Leads"
-    img={tornadoimg}
-    bullets={[
-      "CAT events nationwide.",
-      "Appointments set in your chosen ZIPs.",
-      "You close — we feed the roof.",
-    ]}
-    rules={rules}
-  />
-)}
-
+        {active === "tornado" && (
+          <SectionLead
+            title="Tornado & Hurricane Leads"
+            img={tornadoImg}
+            bullets={[
+              "CAT events nationwide.",
+              "Appointments set in your chosen ZIPs.",
+              "You close — we feed the roof.",
+            ]}
+            rules={rules}
+          />
+        )}
 
         {active === "pricing" && <Pricing />}
         {active === "contact" && <Contact />}
       </main>
-           {/* --- Footer --- */}
+
+      {/* Footer */}
       <footer className="footer">
-        <p>© 2025 Storm Lead Machine • "Can't Stop the Machine"</p>
+        <p>&copy; 2025 Storm Lead Machine &bull; Can&apos;t Stop the Machine</p>
       </footer>
     </div>
   );
@@ -166,10 +162,7 @@ function Contact() {
       <p>
         Call <strong>833-9MACHIN (622-446)</strong>
         <br />
-        Email:{" "}
-        <a href="mailto:stormleadmachine@gmail.com">
-          stormleadmachine@gmail.com
-        </a>
+        Email: <a href="mailto:stormleadmachine@gmail.com">stormleadmachine@gmail.com</a>
       </p>
     </section>
   );
