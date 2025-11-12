@@ -54,7 +54,7 @@ export default function Home() {
             <SectionLead
               title="Hail Leads"
               base="/hail-damage.jpg"     /* use HD by default */
-              retina="/hail.jpg"
+              retina="/hail-damage.jpg"
               bullets={[
                 "Targeted hail zones by ZIP with roof-age filters.",
                 "Verified homeowner & inspection on calendar.",
