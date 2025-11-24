@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function Home() {
+  const [activeTab, setActiveTab] = useState("hail");
   const stripeLink = "https://buy.stripe.com/14AfZh5sUapQ2hP9IH6Vq00";
+
+  const skyByTab = {
+    hail: "/sky1.jpg",
+    wind: "/sky2.jpg",
+    tornado: "/sky3.jpg",
+    pricing: "/sky2.jpg",
+    contact: "/sky1.jpg",
+  };
 
   const pageStyle = {
     fontFamily:
@@ -27,13 +36,6 @@ export default function Home() {
     marginTop: "30px",
     marginBottom: "30px",
   });
-
-  const cardRowStyle = {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-    gap: "24px",
-    marginTop: "30px",
-  };
 
   const cardStyle = {
     background: "#020617",
@@ -73,20 +75,6 @@ export default function Home() {
     lineHeight: 1.6,
   };
 
-  const heroWrapper = {
-    display: "flex",
-    flexDirection: "column",
-    gap: "30px",
-  };
-
-  const heroTop = {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    gap: "24px",
-    flexWrap: "wrap",
-  };
-
   const logoStyle = {
     height: "90px",
     width: "90px",
@@ -95,7 +83,7 @@ export default function Home() {
 
   const imageStyle = {
     width: "100%",
-    maxHeight: "220px",
+    maxHeight: "260px",
     objectFit: "cover",
     borderRadius: "16px",
     border: "1px solid rgba(148,163,184,0.6)",
@@ -134,11 +122,37 @@ export default function Home() {
     flexWrap: "wrap",
   };
 
-  const navLinkBase = {
-    color: "#e5e7eb",
+  const tabStyle = (tab) => ({
+    color: activeTab === tab ? "#020617" : "#e5e7eb",
     textDecoration: "none",
     padding: "6px 14px",
     borderRadius: "999px",
+    border: "1px solid rgba(148,163,184,0.7)",
+    background:
+      activeTab === tab ? "#fbbf24" : "rgba(15,23,42,0.9)",
+    cursor: "pointer",
+  });
+
+  const tableContainer = {
+    marginTop: "24px",
+    textAlign: "left",
+  };
+
+  const tableTitle = {
+    fontSize: "20px",
+    fontWeight: 700,
+    marginBottom: "6px",
+  };
+
+  const table = {
+    width: "100%",
+    borderCollapse: "collapse",
+    fontSize: "14px",
+  };
+
+  const thtd = {
+    border: "1px solid rgba(148,163,184,0.6)",
+    padding: "8px 10px",
   };
 
   return (
@@ -151,40 +165,35 @@ export default function Home() {
             <span style={{ fontWeight: 700 }}>Storm Lead Machine</span>
           </div>
           <nav style={navLinks}>
-            <a href="#hail" style={{ ...navLinkBase, background: "rgba(15,23,42,0.9)" }}>
+            <button style={tabStyle("hail")} onClick={() => setActiveTab("hail")}>
               Hail Leads
-            </a>
-            <a href="#wind" style={navLinkBase}>
+            </button>
+            <button style={tabStyle("wind")} onClick={() => setActiveTab("wind")}>
               Wind Leads
-            </a>
-            <a href="#tornado" style={navLinkBase}>
+            </button>
+            <button style={tabStyle("tornado")} onClick={() => setActiveTab("tornado")}>
               Tornado / Hurricanes
-            </a>
-            <a href="#pricing" style={navLinkBase}>
+            </button>
+            <button style={tabStyle("pricing")} onClick={() => setActiveTab("pricing")}>
               Pricing
-            </a>
-            <a href="#contact" style={navLinkBase}>
+            </button>
+            <button style={tabStyle("contact")} onClick={() => setActiveTab("contact")}>
               Contact Us
-            </a>
+            </button>
           </nav>
         </div>
       </header>
 
-      {/* HERO – sky1 */}
-      <section style={sectionWithBg("/sky1.jpg")}>
-        <div style={heroWrapper}>
-          <div style={heroTop}>
-            <img src="/Logo.png" alt="Storm Lead Machine" style={logoStyle} />
-            <div>
-              <h1 style={headingStyle}>Storm Lead Machine</h1>
-              <p style={textMuted}>
-                Can’t Stop The Machine. We deliver homeowner storm damage leads directly
-                to your business.
-              </p>
-            </div>
-          </div>
-
+      {/* HERO (always on top) */}
+      <section style={sectionBase}>
+        <div style={{ display: "flex", gap: "24px", flexWrap: "wrap", alignItems: "center" }}>
+          <img src="/Logo.png" alt="Storm Lead Machine" style={logoStyle} />
           <div>
+            <h1 style={headingStyle}>Storm Lead Machine</h1>
+            <p style={textMuted}>
+              Can’t Stop The Machine. We deliver homeowner storm damage leads directly
+              to your business.
+            </p>
             <a
               href={stripeLink}
               target="_blank"
@@ -197,127 +206,227 @@ export default function Home() {
         </div>
       </section>
 
-      {/* HAIL – sky2 */}
-      <section id="hail" style={sectionWithBg("/sky2.jpg")}>
-        <h2 style={sectionTitle}>Hail Leads</h2>
-        <div style={cardStyle}>
-          <img src="/hail-damage.jpg" alt="Hail damage" style={imageStyle} />
-          <h3 style={subHeadingStyle}>Hail Damage Leads</h3>
-          <p style={textMuted}>
-            Homeowners in confirmed hail swaths with visible or suspected roof damage.
-            Filter by roof age and ZIP codes to match your ideal targets.
-          </p>
-        </div>
-      </section>
+      {/* ACTIVE TAB CONTENT – feels like separate pages */}
+      <main style={sectionWithBg(skyByTab[activeTab])}>
+        {activeTab === "hail" && (
+          <div>
+            <h2 style={sectionTitle}>Hail Leads</h2>
+            <div style={cardStyle}>
+              <img src="/hail-damage.jpg" alt="Hail damage" style={imageStyle} />
+              <h3 style={subHeadingStyle}>Hail Damage Leads</h3>
+              <p style={textMuted}>
+                Homeowners in confirmed hail swaths with visible or suspected roof
+                damage. Filter by roof age and ZIP codes to match your ideal targets.
+              </p>
+            </div>
+          </div>
+        )}
 
-      {/* WIND – sky3 */}
-      <section id="wind" style={sectionWithBg("/sky3.jpg")}>
-        <h2 style={sectionTitle}>Wind Leads</h2>
-        <div style={cardStyle}>
-          <img src="/wind-damage.jpg" alt="Wind damage" style={imageStyle} />
-          <h3 style={subHeadingStyle}>Wind Damage Leads</h3>
-          <p style={textMuted}>
-            High wind events with missing shingles, creased tabs, and siding damage.
-            Perfect for repair and full replacement opportunities.
-          </p>
-        </div>
-      </section>
+        {activeTab === "wind" && (
+          <div>
+            <h2 style={sectionTitle}>Wind Leads</h2>
+            <div style={cardStyle}>
+              <img src="/wind-damage.jpg" alt="Wind damage" style={imageStyle} />
+              <h3 style={subHeadingStyle}>Wind Damage Leads</h3>
+              <p style={textMuted}>
+                High wind events with missing shingles, creased tabs, and siding
+                damage. Perfect for repair and full replacement opportunities.
+              </p>
+            </div>
+          </div>
+        )}
 
-      {/* TORNADO / HURRICANES – sky1 */}
-      <section id="tornado" style={sectionWithBg("/sky1.jpg")}>
-        <h2 style={sectionTitle}>Tornado / Hurricanes</h2>
-        <div style={cardStyle}>
-          <img
-            src="/tornado-damage.jpg"
-            alt="Tornado and hurricane damage"
-            style={imageStyle}
-          />
-          <h3 style={subHeadingStyle}>Tornado &amp; Hurricane Leads</h3>
-          <p style={textMuted}>
-            Severe storm impact zones with heavy roof and structure damage. High
-            close-rate markets for hungry storm teams.
-          </p>
-        </div>
-      </section>
+        {activeTab === "tornado" && (
+          <div>
+            <h2 style={sectionTitle}>Tornado / Hurricanes</h2>
+            <div style={cardStyle}>
+              <img
+                src="/tornado-damage.jpg"
+                alt="Tornado and hurricane damage"
+                style={imageStyle}
+              />
+              <h3 style={subHeadingStyle}>Tornado &amp; Hurricane Leads</h3>
+              <p style={textMuted}>
+                Severe storm impact zones with heavy roof and structure damage. High
+                close-rate markets for hungry storm teams.
+              </p>
+            </div>
+          </div>
+        )}
 
-      {/* PRICING – change to 10 leads, sky2 */}
-      <section id="pricing" style={sectionWithBg("/sky2.jpg")}>
-        <h2 style={sectionTitle}>10 Lead Trial Package</h2>
-        <div
-          style={{
-            ...cardStyle,
-            maxWidth: "520px",
-            margin: "0 auto",
-            textAlign: "center",
-            background: "rgba(2,6,23,0.96)",
-          }}
-        ><h3 className="text-2xl font-bold mb-4">
-  10 Residential Leads – Trial
-</h3>
-<p className="text-3xl font-extrabold text-amber-400 mb-4">
-  $1,000
-</p>
-<p className="text-slate-200 mb-6">
-  We get you in front of qualified homeowners in active storm zones.
-  You close the deals – we keep the machine running.
-</p>
+        {activeTab === "pricing" && (
+          <div>
+            <h2 style={sectionTitle}>10 Lead Trial Package</h2>
 
+            {/* Trial card */}
+            <div
+              style={{
+                ...cardStyle,
+                maxWidth: "520px",
+                margin: "0 auto 30px",
+                textAlign: "center",
+                background: "rgba(2,6,23,0.96)",
+              }}
+            >
+              <h3
+                style={{
+                  fontSize: "26px",
+                  fontWeight: 800,
+                  marginBottom: "10px",
+                }}
+              >
+                10 Residential Leads – Trial
+              </h3>
 
-          <p style={textMuted}>
-            We get you in front of qualified homeowners in active storm zones. You close
-            the deals – we keep the machine running.
-          </p>
+              <p
+                style={{
+                  fontSize: "30px",
+                  fontWeight: 800,
+                  color: "#fbbf24",
+                  marginBottom: "14px",
+                }}
+              >
+                $1,000
+              </p>
 
-          <a
-            href={stripeLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={buttonStyle}
-          >
-            Pay &amp; Start Trial
-          </a>
-        </div>
-      </section>
+              <p style={textMuted}>
+                We get you in front of qualified homeowners in active storm zones.
+                You close the deals – we keep the machine running.
+              </p>
 
-      {/* HOW IT WORKS – same dark bg */}
-      <section style={sectionBase}>
-        <h2 style={sectionTitle}>How Our Leads Work</h2>
-        <div
-          style={{
-            ...cardStyle,
-            maxWidth: "700px",
-            margin: "0 auto",
-            background: "rgba(15,23,42,0.96)",
-          }}
-        >
-          <ul
-            style={{
-              ...textMuted,
-              listStyle: "disc",
-              paddingLeft: "22px",
-              marginBottom: 0,
-            }}
-          >
-            <li>We get you face-to-face with homeowners in storm-affected ZIP codes.</li>
-            <li>Do not call the leads ahead of time before you go.</li>
-            <li>Bad leads must be returned within 2 days for credit.</li>
-            <li>
-              If leads are not returned within 2 days, we automatically give you{" "}
-              <strong>20% extra leads</strong> to help make up for any bad data.
-            </li>
-          </ul>
-        </div>
-      </section>
+              <a
+                href={stripeLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={buttonStyle}
+              >
+                Pay &amp; Start Trial
+              </a>
+            </div>
 
-      {/* CONTACT – sky3 */}
-      <section id="contact" style={sectionWithBg("/sky3.jpg")}>
-        <h2 style={sectionTitle}>Contact Us</h2>
-        <p style={{ ...textMuted, textAlign: "center" }}>
-          Phone: 833-9MACHIN (622-446)
-          <br />
-          Email: stormleadmachine@gmail.com
-        </p>
-      </section>
+            {/* Full pricing tables */}
+            <div style={cardStyle}>
+              {/* Residential */}
+              <div style={tableContainer}>
+                <div style={tableTitle}>Residential Leads</div>
+                <table style={table}>
+                  <thead>
+                    <tr>
+                      <th style={thtd}>Package</th>
+                      <th style={thtd}>Price per Lead</th>
+                      <th style={thtd}>Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style={thtd}>25 leads</td>
+                      <td style={thtd}>$120</td>
+                      <td style={thtd}>$3,000</td>
+                    </tr>
+                    <tr>
+                      <td style={thtd}>50 leads</td>
+                      <td style={thtd}>$115</td>
+                      <td style={thtd}>$5,750</td>
+                    </tr>
+                    <tr>
+                      <td style={thtd}>100 leads</td>
+                      <td style={thtd}>$110</td>
+                      <td style={thtd}>$11,000</td>
+                    </tr>
+                    <tr>
+                      <td style={thtd}>200 leads</td>
+                      <td style={thtd}>$105</td>
+                      <td style={thtd}>$21,000</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Commercial */}
+              <div style={tableContainer}>
+                <div style={tableTitle}>Commercial Leads</div>
+                <table style={table}>
+                  <thead>
+                    <tr>
+                      <th style={thtd}>Package</th>
+                      <th style={thtd}>Price per Lead</th>
+                      <th style={thtd}>Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style={thtd}>5 leads</td>
+                      <td style={thtd}>$300</td>
+                      <td style={thtd}>$1,500</td>
+                    </tr>
+                    <tr>
+                      <td style={thtd}>20 leads</td>
+                      <td style={thtd}>$290</td>
+                      <td style={thtd}>$5,800</td>
+                    </tr>
+                    <tr>
+                      <td style={thtd}>30 leads</td>
+                      <td style={thtd}>$285</td>
+                      <td style={thtd}>$8,550</td>
+                    </tr>
+                    <tr>
+                      <td style={thtd}>50 leads</td>
+                      <td style={thtd}>$275</td>
+                      <td style={thtd}>$13,750</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {activeTab === "contact" && (
+          <div>
+            <h2 style={sectionTitle}>Contact Us</h2>
+            <div
+              style={{
+                ...cardStyle,
+                maxWidth: "700px",
+                margin: "0 auto",
+                background: "rgba(15,23,42,0.96)",
+                textAlign: "center",
+              }}
+            >
+              <p style={{ ...textMuted, fontSize: "18px" }}>
+                Ready to load your storm pipeline? Reach out to the Machine.
+              </p>
+              <p style={{ marginTop: "16px" }}>
+                <strong>Phone:</strong> 833-9MACHIN (622-446)
+                <br />
+                <strong>Email:</strong> stormleadmachine@gmail.com
+              </p>
+
+              <div style={{ marginTop: "24px", textAlign: "left" }}>
+                <h3 style={{ ...subHeadingStyle, fontSize: "20px" }}>
+                  Lead Rules
+                </h3>
+                <ul
+                  style={{
+                    ...textMuted,
+                    listStyle: "disc",
+                    paddingLeft: "22px",
+                    marginBottom: 0,
+                  }}
+                >
+                  <li>We get you face-to-face with homeowners in storm-affected ZIP codes.</li>
+                  <li>Do not call the leads ahead of time before you go.</li>
+                  <li>Bad leads must be returned within 2 days for credit.</li>
+                  <li>
+                    If leads are not returned within 2 days, we automatically give you{" "}
+                    <strong>20% extra leads</strong> to help make up for any bad data.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        )}
+      </main>
     </div>
   );
 }
