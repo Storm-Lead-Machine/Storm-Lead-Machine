@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 
+
 export default function Home() {
   const [activeTab, setActiveTab] = useState("hail");
 
+  
   const stripeLink = "https://buy.stripe.com/14AfZh5sUapQ2hP9IH6Vq00";
 
+  
   // Background images per tab – these match files I see in your /public folder
   const bgByTab = {
     hail: "/hail-leads.jpg",
