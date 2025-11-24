@@ -1,170 +1,131 @@
-import React, { useEffect, useMemo, useState } from "react";
-
-// Fingerprinted images from src/assets
-import smlLogo from "./assets/logo.png";
-import hailImg from "./assets/hail-damage.jpg";
-import windImg from "./assets/wind-damage.jpg";
-import tornadoImg from "./assets/tornado-damage.jpg";
-
-const TABS = [
-  { key: "hail", label: "Hail Leads" },
-  { key: "wind", label: "Wind Leads" },
-  { key: "tornado", label: "Tornado / Hurricanes" },
-  { key: "pricing", label: "Pricing" },
-  { key: "contact", label: "Contact Us" },
-];
+import React from "react";
 
 export default function Home() {
-  const [active, setActive] = useState("hail");
-  const [boot, setBoot] = useState(false);
-
-  useEffect(() => setBoot(true), []);
-
-  const bgClass = useMemo(() => {
-    switch (active) {
-      case "hail": return "bg-hail";
-      case "wind": return "bg-wind";
-      case "tornado": return "bg-tornado";
-      case "pricing": return "bg-pricing";
-      case "contact": return "bg-contact";
-      default: return "bg-hail";
-    }
-  }, [active]);
-
-  const rules = (
-    <div className="rules">
-      <h3>Rules</h3>
-      <ul>
-        <li><strong>Do not call</strong> the appointment ahead of time — just go.</li>
-        <li>Bad leads must be <strong>returned within 2 days</strong> to receive credit.</li>
-        <li>If a credit is not applicable, we automatically add <strong>20% extra</strong> to help make up for bad leads.</li>
-        <li>We get you on the roof in the ZIPs you want. <strong>You close it from there.</strong></li>
-      </ul>
-    </div>
-  );
-
   return (
-    <div className={`page ${bgClass} ${boot ? "fade-in" : "fade-start"}`}>
-      {/* Header */}
-      <header className="header">
-        <div className="brand">
-          <img src={smlLogo} alt="Storm Lead Machine logo" className="sml-logo" />
-          <h1 className="site-title">Storm Lead Machine</h1>
+    <div className="min-h-screen bg-slate-900 text-white">
+
+      {/* HERO SECTION */}
+      <section className="flex flex-col items-center justify-center text-center px-6 py-20 bg-gradient-to-b from-slate-900 to-slate-800">
+        <img
+          src="/Logo.png"
+          alt="Storm Lead Machine Logo"
+          className="h-24 mb-6"
+        />
+
+        <h1 className="text-5xl font-extrabold mb-4">
+          Storm Lead Machine
+        </h1>
+
+        <p className="text-xl text-slate-300 max-w-2xl mb-8">
+          Can’t Stop The Machine. We deliver homeowner storm damage leads directly to your business.
+        </p>
+
+        <a
+          href="https://buy.stripe.com/14AfZh5sUapQ2hP9IH6Vq00"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center justify-center rounded-xl bg-amber-400 px-10 py-4 text-lg font-bold text-slate-900 shadow-lg hover:bg-amber-300 transition"
+        >
+          Get Leads Now
+        </a>
+      </section>
+
+      {/* SERVICES SECTION */}
+      <section className="py-20 px-6 bg-slate-800">
+        <h2 className="text-4xl font-bold text-center mb-16">
+          Storm Lead Types
+        </h2>
+
+        <div className="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+
+          {/* HAIL */}
+          <div className="bg-slate-900 rounded-2xl p-6 shadow-lg">
+            <img
+              src="/hail-damage.jpg"
+              className="h-48 w-full object-cover rounded-xl mb-6"
+              alt="Hail Damage"
+            />
+            <h3 className="text-2xl font-bold mb-2">Hail Damage Leads</h3>
+            <p className="text-slate-300">
+              Targeted homeowners hit by confirmed hail events and damaged roofs.
+            </p>
+          </div>
+
+          {/* WIND */}
+          <div className="bg-slate-900 rounded-2xl p-6 shadow-lg">
+            <img
+              src="/wind-damage.jpg"
+              className="h-48 w-full object-cover rounded-xl mb-6"
+              alt="Wind Damage"
+            />
+            <h3 className="text-2xl font-bold mb-2">Wind Damage Leads</h3>
+            <p className="text-slate-300">
+              Verified homeowners impacted by high-wind roof and siding damage.
+            </p>
+          </div>
+
+          {/* TORNADO */}
+          <div className="bg-slate-900 rounded-2xl p-6 shadow-lg">
+            <img
+              src="/tornado-damage.jpg"
+              className="h-48 w-full object-cover rounded-xl mb-6"
+              alt="Tornado Damage"
+            />
+            <h3 className="text-2xl font-bold mb-2">Tornado & Hurricane Leads</h3>
+            <p className="text-slate-300">
+              Storm-hit homeowner appointments scheduled directly to your calendar.
+            </p>
+          </div>
+
         </div>
+      </section>
 
-        <nav className="tabs">
-          {TABS.map((t) => (
-            <button
-              key={t.key}
-              onClick={() => setActive(t.key)}
-              className={`tab ${active === t.key ? "active" : ""}`}
-            >
-              {t.label}
-            </button>
-          ))}
-        </nav>
-      </header>
+      {/* PRICING SECTION */}
+      <section className="py-20 px-6 bg-slate-900">
+        <h2 className="text-4xl font-bold text-center mb-12">
+          Trial Package
+        </h2>
 
-      {/* Content */}
-      <main className="content fade-swap">
-        {active === "hail" && (
-          <SectionLead
-            title="Hail Leads"
-            img={hailImg}
-            bullets={[
-              "Targeted hail zones by ZIP with roof-age filters.",
-              "Verified homeowner & inspection on calendar.",
-              "Exclusive — never shared.",
-            ]}
-            rules={rules}
-          />
-        )}
+        <div className="max-w-xl mx-auto bg-slate-800 p-10 rounded-2xl text-center shadow-xl">
+          <h3 className="text-3xl font-bold mb-4">
+            25 Residential Leads
+          </h3>
 
-        {active === "wind" && (
-          <SectionLead
-            title="Wind Leads"
-            img={windImg}
-            bullets={[
-              "Fresh wind swaths with high-intent homeowners.",
-              "Decision maker present.",
-              "Fast routing to keep crews busy.",
-            ]}
-            rules={rules}
-          />
-        )}
+          <p className="text-2xl font-bold text-amber-400 mb-6">
+            $1,000 Trial
+          </p>
 
-        {active === "tornado" && (
-          <SectionLead
-            title="Tornado & Hurricane Leads"
-            img={tornadoImg}
-            bullets={[
-              "CAT events nationwide.",
-              "Appointments set in your chosen ZIPs.",
-              "You close — we feed the roof.",
-            ]}
-            rules={rules}
-          />
-        )}
+          <a
+            href="https://buy.stripe.com/14AfZh5sUapQ2hP9IH6Vq00"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center rounded-xl bg-amber-400 px-10 py-4 text-lg font-bold text-slate-900 shadow-lg hover:bg-amber-300 transition"
+          >
+            Pay & Start Trial
+          </a>
+        </div>
+      </section>
 
-        {active === "pricing" && <Pricing />}
-        {active === "contact" && <Contact />}
-      </main>
+      {/* RULES SECTION */}
+      <section className="py-20 px-6 bg-slate-800">
+        <h2 className="text-4xl font-bold text-center mb-10">
+          How Our Leads Work
+        </h2>
+        <div className="max-w-4xl mx-auto text-slate-300 text-lg space-y-4">
+          <p>• We get you face-to-face with homeowners in storm-affected zip codes.</p>
+          <p>• Do NOT call leads ahead of time before your appointment.</p>
+          <p>• Bad leads must be returned within 2 days.</p>
+          <p>• Leads not returned within 2 days automatically receive 20% extra to make up for any bad data.</p>
+        </div>
+      </section>
 
-      {/* Footer */}
-      <footer className="footer">
-        <p>&copy; 2025 Storm Lead Machine &bull; Can&apos;t Stop the Machine</p>
-           </footer>
+      {/* CONTACT SECTION */}
+      <section className="py-20 px-6 bg-slate-900 text-center">
+        <h2 className="text-4xl font-bold mb-6">Contact</h2>
+        <p className="text-lg text-slate-300">Phone: 833-9-MACHIN (622-446)</p>
+        <p className="text-lg text-slate-300">Email: stormleadmachine@gmail.com</p>
+      </section>
+
     </div>
-  );
-}
-
-function SectionLead(...
-...
-function Contact() { ... }
-
-/* ---------- Reusable Sections ---------- */
-
-function SectionLead(){return null}
-    <section className="lead-section">
-      <img src={img} alt={title} className="lead-img" />
-      <div className="lead-content">
-        <h2>{title}</h2>
-        <ul>
-          {bullets.map((b, i) => (
-            <li key={i}>{b}</li>
-          ))}
-        </ul>
-        {rules}
-      </div>
-    </section>
-  );
-}
-
-function Pricing(){return null}
-    <section className="pricing">
-      <h2>Pricing</h2>
-      <ul>
-        <li>25 Residential Leads – $3,000</li>
-        <li>50 Residential Leads – $5,750</li>
-        <li>100 Residential Leads – $11,000</li>
-        <li>200 Residential Leads – $21,000</li>
-        <li>5 Commercial Leads – $1,500</li>
-        <li>20 Commercial Leads – $5,800</li>
-        <li>30 Commercial Leads – $8,550</li>
-        <li>50 Commercial Leads – $13,750</li>
-      </ul>
-    </section>
-  );
-}
-
-function Contact(){return null}
-    <section className="contact">
-      <h2>Contact Us</h2>
-      <p>
-        Call <strong>833-9MACHIN (622-446)</strong>
-        <br />
-        Email: <a href="mailto:stormleadmachine@gmail.com">stormleadmachine@gmail.com</a>
-      </p>
-    </section>
   );
 }
