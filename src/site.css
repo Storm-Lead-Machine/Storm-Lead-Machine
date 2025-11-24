@@ -1,182 +1,64 @@
-/* ---------- Reset + Base ---------- */
-* { box-sizing: border-box; }
-html, body, #root { height: 100%; }
 body {
   margin: 0;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-  color: #0f172a;
+  font-family: Arial, sans-serif;
+  color: white;
 }
 
-/* ---------- Page & Backgrounds ---------- */
 .page {
-  min-height: 100%;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
-  transition: background-image 300ms ease-in-out;
+  padding: 40px;
 }
 
-/* use your existing sky images */
-.bg-hail    { background-image: linear-gradient(#00000066,#00000066), url("/sky1.jpg"); }
-.bg-wind    { background-image: linear-gradient(#00000066,#00000066), url("/sky2.jpg"); }
-.bg-tornado { background-image: linear-gradient(#00000066,#00000066), url("/sky3.jpg"); }
-.bg-pricing { background-image: linear-gradient(#00000066,#00000066), url("/sky4.jpg"); }
-.bg-contact { background-image: linear-gradient(#00000066,#00000066), url("/sky5.jpg"); }
+.home-bg { background-image: url("/sky1.jpg"); }
+.hail-bg { background-image: url("/hail-bg.jpg"); }
+.wind-bg { background-image: url("/wind-bg.jpg"); }
+.tornado-bg { background-image: url("/tornado-bg.jpg"); }
+.pricing-bg { background-image: url("/sky2.jpg"); }
+.contact-bg { background-image: url("/sky3.jpg"); }
 
-/* ---------- Global fades ---------- */
-.fade-start { opacity: 0; }
-.fade-in    { opacity: 1; transition: opacity 450ms ease-in; }
-.fade-swap  { animation: fadeSwap 380ms ease-in; }
-@keyframes fadeSwap { from { opacity: 0 } to { opacity: 1 } }
+.logo {
+  height: 80px;
+}
 
-/* ---------- Header ---------- */
 .header {
   display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 24px;
-  backdrop-filter: blur(4px);
-}
-.brand { display: flex; align-items: center; gap: 16px; }
-.header .sml-logo { height: 192px !important; width: auto; display: block; }
-@media (max-width: 768px) { .header .sml-logo { height: 120px !important; } }
-
-
-.site-title {
-  font-size: clamp(32px, 5vw, 72px);
-  line-height: 1;
-  color: #fff;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
-  margin: 0;
 }
 
-/* ---------- Tabs ---------- */
-.tabs { display: flex; gap: 10px; flex-wrap: wrap; }
-.tab {
-  appearance: none;
-  border: 1px solid #ffffff80;
-  background: #ffffff1a;
-  color: #fff;
-  padding: 10px 14px;
-  border-radius: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  backdrop-filter: blur(2px);
-  transition: transform 120ms ease, background 120ms ease;
-}
-.tab:hover { background: #ffffff33; transform: translateY(-1px); }
-.tab.active { background: #fff; color: #0f172a; }
-
-/* ---------- Content & Cards ---------- */
-.content { padding: 24px; display: grid; place-items: center; }
-
-.card {
-  width: min(1100px, 95vw);
-  background: #ffffffee;
-  border: 1px solid #e2e8f0;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.25);
-}
-
-.card-hero {
-  display: block;
-  width: 100%;
-  height: 420px;            /* taller hero reduces perceived blur */
-  object-fit: cover;
-  image-rendering: auto;
-}
-
-.card-body { padding: 24px; }
-.card-title { margin: 0 0 12px 0; font-size: 32px; }
-
-.bullets { margin: 0; padding-left: 18px; }
-.bullets li { margin: 6px 0; }
-
-/* Rules */
-.rules {
-  margin-top: 18px;
-  background: #f8fafc;
-  border: 1px dashed #94a3b8;
-  border-radius: 14px;
-  padding: 14px 16px;
-}
-.rules h3 { margin: 0 0 6px 0; font-size: 18px; }
-
-/* Pricing */
-.pricing .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 18px;
-  margin-top: 8px;
-}
-.prices { margin: 8px 0 0 0; padding-left: 18px; }
-.prices li { margin: 6px 0; }
-
-.trial-banner {
-  margin: 8px 0 16px;
-  padding: 10px 14px;
-  border-radius: 12px;
-  background: #e0f2fe;
-  border: 1px solid #38bdf8;
-}
-
-/* CTA */
-.cta-row { margin-top: 18px; }
-.btn {
-  display: inline-block;
+nav a {
+  margin-left: 15px;
+  color: white;
   text-decoration: none;
-  font-weight: 700;
-  padding: 12px 18px;
-  border-radius: 12px;
-  border: 1px solid #0ea5e9;
-  background: #38bdf8;
-  color: #083344;
-  transition: transform 120ms ease, filter 120ms ease;
-}
-.btn:hover { filter: brightness(0.95); transform: translateY(-1px); }
-
-/* Contact */
-.contact-line { margin: 6px 0; }
-.muted { color: #64748b; }
-
-/* ---------- Footer ---------- */
-.footer { color: #e2e8f0; text-align: center; padding: 16px; }
-#hail {
-  background-image: linear-gradient(rgba(15,23,42,0.9), rgba(15,23,42,0.95)), url("/sky1.jpg");
-  background-size: cover;
-  background-position: center;
-  border-radius: 30px;
+  font-weight: bold;
 }
 
-#wind {
-  background-image: linear-gradient(rgba(15,23,42,0.9), rgba(15,23,42,0.95)), url("/sky2.jpg");
-  background-size: cover;
-  background-position: center;
-  border-radius: 30px;
+.hero {
+  margin-top: 100px;
 }
 
-#tornado {
-  background-image: linear-gradient(rgba(15,23,42,0.9), rgba(15,23,42,0.95)), url("/sky3.jpg");
-  background-size: cover;
-  background-position: center;
-  border-radius: 30px;
+.cta {
+  background: gold;
+  padding: 14px 25px;
+  border-radius: 20px;
+  display: inline-block;
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+  margin-top: 20px;
 }
 
-#pricing {
-  background-image: linear-gradient(rgba(15,23,42,0.9), rgba(15,23,42,0.95)), url("/sky2.jpg");
-  background-size: cover;
-  background-position: center;
-  border-radius: 30px;
+.hero-img {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 20px;
 }
 
-#contact {
-  background-image: linear-gradient(rgba(15,23,42,0.9), rgba(15,23,42,0.95)), url("/sky1.jpg");
-  background-size: cover;
-  background-position: center;
-  border-radius: 30px;
+.box {
+  background: rgba(0,0,0,0.6);
+  padding: 30px;
+  border-radius: 20px;
+  max-width: 600px;
 }
