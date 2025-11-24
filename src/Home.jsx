@@ -251,27 +251,17 @@ export default function Home() {
             textAlign: "center",
             background: "rgba(2,6,23,0.96)",
           }}
-        >
-          <h3
-            style={{
-              fontSize: "26px",
-              fontWeight: 800,
-              marginBottom: "10px",
-            }}
-          >
-            10 Residential Leads – Trial
-          </h3>
+        ><h3 className="text-2xl font-bold mb-4">
+  10 Residential Leads – Trial
+</h3>
+<p className="text-3xl font-extrabold text-amber-400 mb-4">
+  $1,000
+</p>
+<p className="text-slate-200 mb-6">
+  We get you in front of qualified homeowners in active storm zones.
+  You close the deals – we keep the machine running.
+</p>
 
-          <p
-            style={{
-              fontSize: "30px",
-              fontWeight: 800,
-              color: "#fbbf24",
-              marginBottom: "14px",
-            }}
-          >
-            $1,000
-          </p>
 
           <p style={textMuted}>
             We get you in front of qualified homeowners in active storm zones. You close

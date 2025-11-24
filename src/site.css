@@ -146,3 +146,37 @@ body {
 
 /* ---------- Footer ---------- */
 .footer { color: #e2e8f0; text-align: center; padding: 16px; }
+#hail {
+  background-image: linear-gradient(rgba(15,23,42,0.9), rgba(15,23,42,0.95)), url("/sky1.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 30px;
+}
+
+#wind {
+  background-image: linear-gradient(rgba(15,23,42,0.9), rgba(15,23,42,0.95)), url("/sky2.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 30px;
+}
+
+#tornado {
+  background-image: linear-gradient(rgba(15,23,42,0.9), rgba(15,23,42,0.95)), url("/sky3.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 30px;
+}
+
+#pricing {
+  background-image: linear-gradient(rgba(15,23,42,0.9), rgba(15,23,42,0.95)), url("/sky2.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 30px;
+}
+
+#contact {
+  background-image: linear-gradient(rgba(15,23,42,0.9), rgba(15,23,42,0.95)), url("/sky1.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 30px;
+}
