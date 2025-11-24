@@ -2,6 +2,7 @@ import React from "react";
 
 export default function Home() {
   const stripeLink = "https://buy.stripe.com/14AfZh5sUapQ2hP9IH6Vq00";
+
   const pageStyle = {
     fontFamily:
       "-apple-system, BlinkMacSystemFont, system-ui, Segoe UI, sans-serif",
@@ -19,7 +20,7 @@ export default function Home() {
 
   const sectionWithBg = (image) => ({
     ...sectionBase,
-    backgroundImage: `linear-gradient(rgba(15,23,42,0.9), rgba(15,23,42,0.95)), url(${image})`,
+    backgroundImage: `linear-gradient(rgba(15,23,42,0.92), rgba(15,23,42,0.96)), url(${image})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
     borderRadius: "30px",
@@ -128,27 +129,21 @@ export default function Home() {
 
   const navLinks = {
     display: "flex",
-    gap: "14px",
+    gap: "10px",
     fontSize: "14px",
+    flexWrap: "wrap",
   };
 
-  const navLink = {
+  const navLinkBase = {
     color: "#e5e7eb",
     textDecoration: "none",
     padding: "6px 14px",
     borderRadius: "999px",
-    border: "1px solid transparent",
-  };
-
-  const navLinkEmphasis = {
-    ...navLink,
-    borderColor: "rgba(148,163,184,0.7)",
-    backgroundColor: "rgba(15,23,42,0.9)",
   };
 
   return (
     <div style={pageStyle}>
-      {/* NAV BAR */}
+      {/* NAV WITH TABS */}
       <header style={navBar}>
         <div style={navInner}>
           <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
@@ -156,20 +151,26 @@ export default function Home() {
             <span style={{ fontWeight: 700 }}>Storm Lead Machine</span>
           </div>
           <nav style={navLinks}>
-            <a href="#lead-types" style={navLinkEmphasis}>
-              Lead Types
+            <a href="#hail" style={{ ...navLinkBase, background: "rgba(15,23,42,0.9)" }}>
+              Hail Leads
             </a>
-            <a href="#pricing" style={navLink}>
+            <a href="#wind" style={navLinkBase}>
+              Wind Leads
+            </a>
+            <a href="#tornado" style={navLinkBase}>
+              Tornado / Hurricanes
+            </a>
+            <a href="#pricing" style={navLinkBase}>
               Pricing
             </a>
-            <a href="#contact" style={navLink}>
+            <a href="#contact" style={navLinkBase}>
               Contact Us
             </a>
           </nav>
         </div>
       </header>
 
-      {/* HERO – sky1 background */}
+      {/* HERO – sky1 */}
       <section style={sectionWithBg("/sky1.jpg")}>
         <div style={heroWrapper}>
           <div style={heroTop}>
@@ -196,60 +197,51 @@ export default function Home() {
         </div>
       </section>
 
-      {/* STORM LEAD TYPES – sky2 background */}
-      <section id="lead-types" style={sectionWithBg("/sky2.jpg")}>
-        <h2 style={sectionTitle}>Storm Lead Types</h2>
-        <p
-          style={{
-            ...textMuted,
-            textAlign: "center",
-            maxWidth: "700px",
-            margin: "0 auto",
-          }}
-        >
-          Dialed-in storm damage appointments in the exact ZIP codes you want –
-          you close, we fill the pipeline.
-        </p>
-
-        <div style={cardRowStyle}>
-          {/* Hail */}
-          <div style={cardStyle}>
-            <img src="/hail-damage.jpg" alt="Hail damage" style={imageStyle} />
-            <h3 style={subHeadingStyle}>Hail Damage Leads</h3>
-            <p style={textMuted}>
-              Homeowners in confirmed hail swaths with visible or suspected roof damage.
-              Filter by roof age and ZIP codes.
-            </p>
-          </div>
-
-          {/* Wind */}
-          <div style={cardStyle}>
-            <img src="/wind-damage.jpg" alt="Wind damage" style={imageStyle} />
-            <h3 style={subHeadingStyle}>Wind Damage Leads</h3>
-            <p style={textMuted}>
-              High wind events causing missing shingles, creased tabs, and siding damage.
-              Perfect for repair and full replacement plays.
-            </p>
-          </div>
-
-          {/* Tornado */}
-          <div style={cardStyle}>
-            <img
-              src="/tornado-damage.jpg"
-              alt="Tornado and hurricane damage"
-              style={imageStyle}
-            />
-            <h3 style={subHeadingStyle}>Tornado &amp; Hurricane Leads</h3>
-            <p style={textMuted}>
-              Severe storm impact zones with heavy roof and structure damage – high
-              opportunity and high close rates.
-            </p>
-          </div>
+      {/* HAIL – sky2 */}
+      <section id="hail" style={sectionWithBg("/sky2.jpg")}>
+        <h2 style={sectionTitle}>Hail Leads</h2>
+        <div style={cardStyle}>
+          <img src="/hail-damage.jpg" alt="Hail damage" style={imageStyle} />
+          <h3 style={subHeadingStyle}>Hail Damage Leads</h3>
+          <p style={textMuted}>
+            Homeowners in confirmed hail swaths with visible or suspected roof damage.
+            Filter by roof age and ZIP codes to match your ideal targets.
+          </p>
         </div>
       </section>
 
-      {/* TRIAL PACKAGE / PRICING – sky3 background */}
-      <section id="pricing" style={sectionWithBg("/sky3.jpg")}>
+      {/* WIND – sky3 */}
+      <section id="wind" style={sectionWithBg("/sky3.jpg")}>
+        <h2 style={sectionTitle}>Wind Leads</h2>
+        <div style={cardStyle}>
+          <img src="/wind-damage.jpg" alt="Wind damage" style={imageStyle} />
+          <h3 style={subHeadingStyle}>Wind Damage Leads</h3>
+          <p style={textMuted}>
+            High wind events with missing shingles, creased tabs, and siding damage.
+            Perfect for repair and full replacement opportunities.
+          </p>
+        </div>
+      </section>
+
+      {/* TORNADO / HURRICANES – sky1 */}
+      <section id="tornado" style={sectionWithBg("/sky1.jpg")}>
+        <h2 style={sectionTitle}>Tornado / Hurricanes</h2>
+        <div style={cardStyle}>
+          <img
+            src="/tornado-damage.jpg"
+            alt="Tornado and hurricane damage"
+            style={imageStyle}
+          />
+          <h3 style={subHeadingStyle}>Tornado &amp; Hurricane Leads</h3>
+          <p style={textMuted}>
+            Severe storm impact zones with heavy roof and structure damage. High
+            close-rate markets for hungry storm teams.
+          </p>
+        </div>
+      </section>
+
+      {/* PRICING – change to 10 leads, sky2 */}
+      <section id="pricing" style={sectionWithBg("/sky2.jpg")}>
         <h2 style={sectionTitle}>10 Lead Trial Package</h2>
         <div
           style={{
@@ -297,7 +289,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* RULES / HOW IT WORKS – keep dark background */}
+      {/* HOW IT WORKS – same dark bg */}
       <section style={sectionBase}>
         <h2 style={sectionTitle}>How Our Leads Work</h2>
         <div
@@ -327,12 +319,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CONTACT – sky1 again */}
-      <section
-        id="contact"
-        style={sectionWithBg("/sky1.jpg")}
-      >
-        <h2 style={sectionTitle}>Contact</h2>
+      {/* CONTACT – sky3 */}
+      <section id="contact" style={sectionWithBg("/sky3.jpg")}>
+        <h2 style={sectionTitle}>Contact Us</h2>
         <p style={{ ...textMuted, textAlign: "center" }}>
           Phone: 833-9MACHIN (622-446)
           <br />
