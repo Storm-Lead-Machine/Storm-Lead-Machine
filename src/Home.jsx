@@ -1,5 +1,6 @@
 import React from "react";
 
+
 export default function Home() {
   const stripeLink = "https://buy.stripe.com/14AfZh5sUapQ2hP9IH6Vq00";
 
