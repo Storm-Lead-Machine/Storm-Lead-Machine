@@ -2,9 +2,10 @@ import React, { useState } from "react";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("hail");
+
   const stripeLink = "https://buy.stripe.com/14AfZh5sUapQ2hP9IH6Vq00";
 
-  // Use existing images in your /public folder for backgrounds
+  // Background images per tab – these match files I see in your /public folder
   const bgByTab = {
     hail: "/hail-leads.jpg",
     wind: "/wind-damage.jpg",
@@ -30,7 +31,7 @@ export default function Home() {
 
   const sectionWithBg = (image) => ({
     ...sectionBase,
-    backgroundImage: `linear-gradient(rgba(15,23,42,0.92), rgba(15,23,42,0.96)), url(${image})`,
+    backgroundImage: `linear-gradient(rgba(15,23,42,0.94), rgba(15,23,42,0.97)), url(${image})`,
     backgroundSize: "cover",
     backgroundPosition: "center",
     borderRadius: "30px",
@@ -57,6 +58,7 @@ export default function Home() {
     fontSize: "18px",
     textDecoration: "none",
     boxShadow: "0 12px 30px rgba(251,191,36,0.45)",
+    cursor: "pointer",
   };
 
   const headingStyle = {
@@ -161,7 +163,12 @@ export default function Home() {
       <header style={navBar}>
         <div style={navInner}>
           <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-            <img src="/Logo.png" alt="Storm Lead Machine" style={{ height: "40px" }} />
+            {/* logo file in /public: Storm Lead Machine Logo.png */}
+            <img
+              src="/Storm%20Lead%20Machine%20Logo.png"
+              alt="Storm Lead Machine"
+              style={{ height: "40px" }}
+            />
             <span style={{ fontWeight: 700 }}>Storm Lead Machine</span>
           </div>
           <nav style={navLinks}>
@@ -171,13 +178,22 @@ export default function Home() {
             <button style={tabStyle("wind")} onClick={() => setActiveTab("wind")}>
               Wind Leads
             </button>
-            <button style={tabStyle("tornado")} onClick={() => setActiveTab("tornado")}>
+            <button
+              style={tabStyle("tornado")}
+              onClick={() => setActiveTab("tornado")}
+            >
               Tornado / Hurricanes
             </button>
-            <button style={tabStyle("pricing")} onClick={() => setActiveTab("pricing")}>
+            <button
+              style={tabStyle("pricing")}
+              onClick={() => setActiveTab("pricing")}
+            >
               Pricing
             </button>
-            <button style={tabStyle("contact")} onClick={() => setActiveTab("contact")}>
+            <button
+              style={tabStyle("contact")}
+              onClick={() => setActiveTab("contact")}
+            >
               Contact Us
             </button>
           </nav>
@@ -186,13 +202,24 @@ export default function Home() {
 
       {/* HERO – always visible */}
       <section style={sectionBase}>
-        <div style={{ display: "flex", gap: "24px", flexWrap: "wrap", alignItems: "center" }}>
-          <img src="/Logo.png" alt="Storm Lead Machine" style={logoStyle} />
+        <div
+          style={{
+            display: "flex",
+            gap: "24px",
+            flexWrap: "wrap",
+            alignItems: "center",
+          }}
+        >
+          <img
+            src="/Storm%20Lead%20Machine%20Logo.png"
+            alt="Storm Lead Machine"
+            style={logoStyle}
+          />
           <div>
             <h1 style={headingStyle}>Storm Lead Machine</h1>
             <p style={textMuted}>
-              Can’t Stop The Machine. We deliver homeowner storm damage leads directly
-              to your business.
+              Can’t Stop The Machine. We deliver homeowner storm damage leads
+              directly to your business.
             </p>
             <a
               href={stripeLink}
@@ -206,8 +233,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* TAB CONTENT – feels like separate pages with different backgrounds */}
+      {/* TAB CONTENT – each tab feels like a separate page with its own background */}
       <main style={sectionWithBg(bgByTab[activeTab])}>
+        {/* HAIL PAGE */}
         {activeTab === "hail" && (
           <div>
             <h2 style={sectionTitle}>Hail Leads</h2>
@@ -222,6 +250,7 @@ export default function Home() {
           </div>
         )}
 
+        {/* WIND PAGE */}
         {activeTab === "wind" && (
           <div>
             <h2 style={sectionTitle}>Wind Leads</h2>
@@ -236,6 +265,7 @@ export default function Home() {
           </div>
         )}
 
+        {/* TORNADO / HURRICANE PAGE */}
         {activeTab === "tornado" && (
           <div>
             <h2 style={sectionTitle}>Tornado / Hurricanes</h2>
@@ -254,6 +284,7 @@ export default function Home() {
           </div>
         )}
 
+        {/* PRICING PAGE */}
         {activeTab === "pricing" && (
           <div>
             <h2 style={sectionTitle}>10 Lead Trial Package</h2>
@@ -290,8 +321,8 @@ export default function Home() {
               </p>
 
               <p style={textMuted}>
-                We get you in front of qualified homeowners in active storm zones.
-                You close the deals – we keep the machine running.
+                We get you in front of qualified homeowners in active storm zones. You
+                close the deals – we keep the machine running.
               </p>
 
               <a
@@ -304,7 +335,7 @@ export default function Home() {
               </a>
             </div>
 
-            {/* Full pricing tables */}
+            {/* Full pricing – Residential + Commercial */}
             <div style={cardStyle}>
               {/* Residential */}
               <div style={tableContainer}>
@@ -381,6 +412,7 @@ export default function Home() {
           </div>
         )}
 
+        {/* CONTACT PAGE */}
         {activeTab === "contact" && (
           <div>
             <h2 style={sectionTitle}>Contact Us</h2>
@@ -414,7 +446,10 @@ export default function Home() {
                     marginBottom: 0,
                   }}
                 >
-                  <li>We get you face-to-face with homeowners in storm-affected ZIP codes.</li>
+                  <li>
+                    We get you face-to-face with homeowners in storm-affected ZIP
+                    codes.
+                  </li>
                   <li>Do not call the leads ahead of time before you go.</li>
                   <li>Bad leads must be returned within 2 days for credit.</li>
                   <li>
