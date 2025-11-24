@@ -62,3 +62,43 @@ nav a {
   border-radius: 20px;
   max-width: 600px;
 }
+/* ===== Motion / Fade Animations ===== */
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatPulse {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeInUp 0.8s ease-out both;
+}
+
+.fade-in-slow {
+  animation: fadeInUp 1.2s ease-out both;
+}
+
+.card-fade {
+  animation: fadeInUp 0.9s ease-out both;
+}
+
+.hero-pulse {
+  animation: floatPulse 3s ease-in-out infinite;
+}
