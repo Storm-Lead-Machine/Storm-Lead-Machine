@@ -4,12 +4,13 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState("hail");
   const stripeLink = "https://buy.stripe.com/14AfZh5sUapQ2hP9IH6Vq00";
 
-  const skyByTab = {
-    hail: "/sky1.jpg",
-    wind: "/sky2.jpg",
-    tornado: "/sky3.jpg",
-    pricing: "/sky2.jpg",
-    contact: "/sky1.jpg",
+  // Use existing images in your /public folder for backgrounds
+  const bgByTab = {
+    hail: "/hail-leads.jpg",
+    wind: "/wind-damage.jpg",
+    tornado: "/tornado-damage.jpg",
+    pricing: "/hail-damage.jpg",
+    contact: "/wind-damage.jpg",
   };
 
   const pageStyle = {
@@ -128,8 +129,7 @@ export default function Home() {
     padding: "6px 14px",
     borderRadius: "999px",
     border: "1px solid rgba(148,163,184,0.7)",
-    background:
-      activeTab === tab ? "#fbbf24" : "rgba(15,23,42,0.9)",
+    background: activeTab === tab ? "#fbbf24" : "rgba(15,23,42,0.9)",
     cursor: "pointer",
   });
 
@@ -184,7 +184,7 @@ export default function Home() {
         </div>
       </header>
 
-      {/* HERO (always on top) */}
+      {/* HERO – always visible */}
       <section style={sectionBase}>
         <div style={{ display: "flex", gap: "24px", flexWrap: "wrap", alignItems: "center" }}>
           <img src="/Logo.png" alt="Storm Lead Machine" style={logoStyle} />
@@ -206,8 +206,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ACTIVE TAB CONTENT – feels like separate pages */}
-      <main style={sectionWithBg(skyByTab[activeTab])}>
+      {/* TAB CONTENT – feels like separate pages with different backgrounds */}
+      <main style={sectionWithBg(bgByTab[activeTab])}>
         {activeTab === "hail" && (
           <div>
             <h2 style={sectionTitle}>Hail Leads</h2>
@@ -430,4 +430,3 @@ export default function Home() {
     </div>
   );
 }
-
