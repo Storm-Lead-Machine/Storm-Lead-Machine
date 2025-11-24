@@ -27,3 +27,20 @@ export default function Home() {
     </div>
   );
 }
+<section style={sectionBase} className="fade-in">
+  <div
+    style={{
+      display: "flex",
+      gap: "24px",
+      flexWrap: "wrap",
+      alignItems: "center",
+    }}
+  >
+    <img
+      src="/Logo.png"
+      alt="Storm Lead Machine"
+      style={logoStyle}
+      className="hero-pulse"
+    />
+    <div>
+      {/* your H1 + text stay the same */}
